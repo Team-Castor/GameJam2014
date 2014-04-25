@@ -1,5 +1,6 @@
 package jitou;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -25,10 +26,11 @@ public class Main extends BasicGame {
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-    	g.drawOval(x, y, 100,100);
+    	//g.drawOval(x, y, 100,100);
     	x=(x+1)%400;
     	y=(y+1)%400;
     	System.out.println("render ");
+    	g.drawAnimation(new Animation(), x, y);
     	
     }
 
@@ -43,7 +45,8 @@ public class Main extends BasicGame {
 	public static void main(String[] args) throws SlickException {
 		// TODO Auto-generated method stub
 		AppGameContainer game  = new AppGameContainer(new Main(), 640, 480, false);
-		game.setSmoothDeltas(false);
+		game.setSmoothDeltas(true);
+		game.setTargetFrameRate(60); 
 		game.start();
 
 	}
