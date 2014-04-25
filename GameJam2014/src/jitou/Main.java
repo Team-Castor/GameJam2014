@@ -62,6 +62,7 @@ public class Main extends BasicGame {
 		game.setSmoothDeltas(true);
 		game.setTargetFrameRate(60); 
 		game.start();
+		//test
 
 	}
 
