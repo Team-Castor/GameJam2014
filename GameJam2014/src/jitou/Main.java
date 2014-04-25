@@ -15,7 +15,8 @@ public class Main extends BasicGame {
         super("Lesson 1 :: WindowGame");
         x = 0;
     	y = 0;
-    
+    	
+    	
     }
 
     @Override
@@ -27,11 +28,13 @@ public class Main extends BasicGame {
     	g.drawOval(x, y, 100,100);
     	x=(x+1)%400;
     	y=(y+1)%400;
+    	System.out.println("render ");
     	
     }
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
+    	System.out.println("update "+delta);
     	
     }
     
@@ -40,7 +43,7 @@ public class Main extends BasicGame {
 	public static void main(String[] args) throws SlickException {
 		// TODO Auto-generated method stub
 		AppGameContainer game  = new AppGameContainer(new Main(), 640, 480, false);
-		
+		game.setSmoothDeltas(false);
 		game.start();
 
 	}
