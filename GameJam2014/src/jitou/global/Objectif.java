@@ -9,7 +9,7 @@ public class Objectif {
 	}
 	
 	public void trouverNouvelObjectif(){
-		System.out.println("trouver un but");
+		System.out.println("trouver un but ");
 	}
 	
 	
