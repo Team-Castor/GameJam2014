@@ -9,7 +9,7 @@ public class AppGame extends AppGameContainer{
 	
 	
 	public AppGame() throws SlickException{
-		super(new Game(titreFenPrincipale), 800, 600, false);
+		super(new Game(titreFenPrincipale), 800, 1000, false);
 		Log.setVerbose(false);
 		this.setSmoothDeltas(true);
 		this.setTargetFrameRate(60);

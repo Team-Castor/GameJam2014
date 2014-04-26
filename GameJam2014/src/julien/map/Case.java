@@ -40,7 +40,7 @@ public class Case extends Sprite{
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
-			img.setImageColor(0, 0,0);
+			img.setImageColor(0.2f,0.2f,0.2f);
 		}
 
 		

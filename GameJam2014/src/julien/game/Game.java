@@ -34,21 +34,26 @@ public class Game  extends BasicGame{
     private int containerW, containerH;
     
     private ArrayList<Case> casesADessiner = new ArrayList<Case>();
+    private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
 
-    
 	public Game(String titre) {
 		super(titre);
 	}
 
 	public void init(GameContainer container) throws SlickException {
 		Input input = container.getInput();
-        liste = new Sprite[100];
         board = BoardGame.boardGame;
-		for(int i=0;i<100;i++){
-			liste[i]=new Sprite();
-		}
 		containerH = container.getHeight();
 		containerW = container.getWidth();
+		
+		int h = board.getDimensionworldy() ;
+		int w = board.getDimensionworldx() ;
+
+		for (int x = 0 ; x < w ; x++) {
+			for (int y = 0 ; y < h ; y++) {
+				casesHorsEcran.add(new Case(x*Case.getDimensionX()-offsetX,y*Case.getDimensionY()-offsetY,x,y));
+			}
+		}
 		computeCaseADessiner();
 	}
 
@@ -110,31 +115,45 @@ public class Game  extends BasicGame{
 
 
 	public void update(GameContainer container, int delta) throws SlickException {
-		board.update(delta);
+		//board.update(delta);
 		
 		containerH = container.getHeight();
 		containerW = container.getWidth();
 
-		for(int i=0;i<this.liste.length;i++){
-			liste[i].update(delta);		
-		}
-		
-
-		
 	}
 	
 	private void computeCaseADessiner() {
-		casesADessiner.clear();
 		int h = board.getDimensionworldy() ;
 		int w = board.getDimensionworldx() ;
 		
+		for (int i = 0 ; i < casesHorsEcran.size(); i++) {
+			if (batimentIsOnScreen(casesHorsEcran.get(i).getXcor(),casesHorsEcran.get(i).getYcor())) {
+				casesADessiner.add(casesHorsEcran.get(i));
+				casesHorsEcran.remove(i);
+				i--;
+				System.out.println("cases à pas dessiner : " + casesHorsEcran.size());
+
+			}
+		}
+		
+		for (int i = 0 ; i < casesADessiner.size(); i++) {
+			if (!batimentIsOnScreen(casesADessiner.get(i).getXcor(),casesADessiner.get(i).getYcor())) {
+				casesHorsEcran.add(casesADessiner.get(i));
+				casesADessiner.remove(i);
+				i--;
+				System.out.println("cases à dessiner : " + casesADessiner.size());
+			}
+		}
+		System.out.println("cases à dessiner : " + casesADessiner.size());
+		
+		/*
 		for (int x = 0 ; x < w ; x++) {
 			for (int y = 0 ; y < h ; y++) {
 				if (batimentIsOnScreen(x,y)) {
 					casesADessiner.add(new Case(x*Case.getDimensionX()-offsetX,y*Case.getDimensionY()-offsetY,x,y));
 				}
 			}
-		}
+		}*/
 	}
 	
 	private boolean batimentIsOnScreen(int x, int y) {
