@@ -265,12 +265,22 @@ public class BoardGame {
 			}
 		}
 		int poids = 0;
+		System.out.println("path debut"+depart+" "+fin);
 		findPath(depart.x, depart.y, fin, distance, batiments, poids, null);
 
 
 		path.add(boardGame.getBatiment(fin.x, fin.y));
 		Batiment b = batiments[fin.x][fin.y];
 
+		System.out.println("path debut"+boardGame.getListeBatiments());
+
+		System.out.println("path debut"+depart+" "+b);
+		for(int x=0;x<getDimensionworldx();x++){
+			for(int y=0;y<getDimensionworldy();y++){
+				System.out.print(boardGame.getBatiment(x, y));
+				}
+			System.out.println();
+		}
 		
 		if(fin!=depart && b!=null){
 			while(b!=null){
@@ -282,6 +292,7 @@ public class BoardGame {
 
 			}
 		}
+		System.out.println("path fin fin");
 
 		Collections.reverse(path);
 		return path;	
