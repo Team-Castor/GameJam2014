@@ -77,4 +77,36 @@ public class Objectif {
 	}
 	
 	
+	public void accomplirObjectif(Batiment batiment) {
+		System.out.println("On fait l'objectif!");
+		
+		//Apres on reinitialise
+		seRendre 	= null;
+		type 		= ObjectifType.aucun;		
+	}
+	
+
+	public Batiment getSeRendre() {
+		return seRendre;
+	}
+
+	public void setSeRendre(Batiment seRendre) {
+		this.seRendre = seRendre;
+	}
+
+	public ObjectifType getType() {
+		return type;
+	}
+
+	public void setType(ObjectifType type) {
+		this.type = type;
+	}
+
+
+	
+	
+	
+	
+	
+	
 }

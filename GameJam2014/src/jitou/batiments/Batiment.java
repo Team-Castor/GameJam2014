@@ -11,14 +11,31 @@ public class Batiment {
 
 
 	Batiment(Point pos, TypeBatiment type){
-		this.pos=pos;
-		this.type=type;
+		this.setPos(pos);
+		this.type = type;
 
 		voisins[Orientation.est.getValue()]		=null;
 		voisins[Orientation.ouest.getValue()]	=null;
 		voisins[Orientation.nord.getValue()]	=null;
 		voisins[Orientation.sud.getValue()]		=null;
 	}
+
+
+
+
+	public Point getPos() {
+		return pos;
+	}
+
+	public void setPos(Point pos) {
+		this.pos = pos;
+	}
+
+	public TypeBatiment getType() {
+		return type;
+	}
+
+
 
 
 
