@@ -110,6 +110,8 @@ public class Game  extends BasicGame{
 
 
 	public void update(GameContainer container, int delta) throws SlickException {
+		board.update(delta);
+		
 		containerH = container.getHeight();
 		containerW = container.getWidth();
 
@@ -138,8 +140,6 @@ public class Game  extends BasicGame{
 	private boolean batimentIsOnScreen(int x, int y) {
 		int xmin = x*Case.getDimensionX() - offsetX;
 		int ymin = y*Case.getDimensionY() - offsetY;
-
-
 
 		if (xmin + Case.getDimensionX() >= 0 &&
 			ymin + Case.getDimensionY() >= 0 &&
