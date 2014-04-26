@@ -33,6 +33,7 @@ public class Game  extends BasicGame{
     private int offsetX, offsetY;
     private int containerW, containerH;
     private int pressedKey;
+    Input input;
     
     private ArrayList<Case> casesADessiner = new ArrayList<Case>();
     private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
@@ -42,7 +43,7 @@ public class Game  extends BasicGame{
 	}
 
 	public void init(GameContainer container) throws SlickException {
-		Input input = container.getInput();
+		input = container.getInput();
         board = BoardGame.boardGame;
 		containerH = container.getHeight();
 		containerW = container.getWidth();
@@ -75,27 +76,29 @@ public class Game  extends BasicGame{
 	
 	
 	public void checkKey() {
-		switch (pressedKey) {
-		
-		case 203 : offsetX = offsetX + defilement;
-					computeCaseADessiner();
-					break;
-			
-		case 205 : offsetX = offsetX - defilement;
-					computeCaseADessiner();
-					break;
-				
-		case 200 : offsetY = offsetY - defilement;
-					computeCaseADessiner();
-					break;
-
-		case 208 : offsetY = offsetY + defilement;
-					computeCaseADessiner();
-					break;
-		
-		default : break;
+		if (input.isKeyDown(Input.KEY_UP))
+		{
+			offsetY = offsetY - defilement;
+			computeCaseADessiner();
 		}
+		else if (input.isKeyDown(Input.KEY_DOWN))
+		{
+			offsetY = offsetY + defilement;
+			computeCaseADessiner();
+		}
+		else if (input.isKeyDown(Input.KEY_LEFT))
+		{
+			offsetX = offsetX + defilement;
+			computeCaseADessiner();
+		}
+		else if (input.isKeyDown(Input.KEY_RIGHT))
+		{
+			offsetX = offsetX - defilement;
+			computeCaseADessiner();
+		}
+		
 	}
+	
 	
 	
 	public void mouseClicked(int button,int  x, int  y, int  clickCount) {
