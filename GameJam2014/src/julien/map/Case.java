@@ -68,13 +68,42 @@ public class Case extends Sprite{
 				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Refectoire) {
 					img = new Image("julien/images/Salle_refectoire.png");
 					img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
-				}
+					batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+				} else
+					if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Hopital) {
+						img = new Image("julien/images/Salle_hopital.png");
+						img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+						batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+					} 
+			 else
+				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Chaudiere) {
+					img = new Image("julien/images/Salle_Chaudiere.png");
+					img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+					batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+				} 
+		 else
+			if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Dortoir) {
+				img = new Image("julien/images/Salle_dortoir.png");
+				img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+				batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+			} 
+	 else if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.FermeHydroponique) {
+			img = new Image("julien/images/Salle_ferme.png");
+			img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+			batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+		} 
 				else {
 					img = new Image("julien/images/Terre01.png");
 					img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 					batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 					img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
 				}
+				
+				//Dessin des couloirs
+				if (batiment != null) {
+					//batiment.ge
+				}
+				
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}

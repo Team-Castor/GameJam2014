@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import julien.map.Case;
+import julien.mechant.Mechant;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.GL11;
@@ -41,6 +42,7 @@ public class Game  extends BasicGame{
 	private ArrayList<Case> casesADessiner = new ArrayList<Case>();
 	private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
 	private static ArrayList<Citoyen> citoyenSansSprite = new ArrayList<Citoyen>();
+	private ArrayList<GCarte> gCartes = new ArrayList<GCarte>();
 
 	private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 
@@ -118,6 +120,8 @@ public class Game  extends BasicGame{
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		checkKey();
+		
+		drawCartes(container,g);
 
 		for (Citoyen c : citoyenSansSprite) {
 			this.spritesHumains.add(new SpriteHumain(c));
@@ -155,6 +159,16 @@ public class Game  extends BasicGame{
 
 		//g.drawString("Score : "+points, 100,50);
 
+	}
+
+	//public void 
+	
+	private void drawCartes(GameContainer container, Graphics g) {
+		
+		for (int i = 0 ; i < gCartes.size() ; i++) {
+			
+		}
+		
 	}
 
 	public static void addSpriteCitoyen(Citoyen c) {
@@ -229,7 +243,7 @@ public class Game  extends BasicGame{
 		for (Case c : casesADessiner) {
 			c.redraw();
 		}
-		for (Case c : casesADessiner) {
+		for (Case c : casesHorsEcran) {
 			c.redraw();
 		}
 	}

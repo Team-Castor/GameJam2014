@@ -17,12 +17,12 @@ public class SpriteHumain extends Sprite {
 	public int xcor, ycor;
 	Citoyen c;
 	Animation anim;
-	private static ArrayList<Image> images = new ArrayList<Image>();
+	private static ArrayList<Image> imagesgauche = new ArrayList<Image>();
 	
 	public SpriteHumain (Citoyen c) {
 		super(0,0,dimensionX,dimensionY);
 		this.c = c;
-		if (SpriteHumain.images.isEmpty()) {
+		if (SpriteHumain.imagesgauche.isEmpty()) {
 			try {
 				loadImages();
 			} catch (SlickException e) {
@@ -45,7 +45,7 @@ public class SpriteHumain extends Sprite {
 		anim = new Animation();
 		anim.setAutoUpdate(true);
         for (int i = 0; i < 3; i++){
-        	anim.addFrame(images.get(i),100);
+        	anim.addFrame(imagesgauche.get(i),100);
         }
 	}
 
@@ -90,10 +90,10 @@ public class SpriteHumain extends Sprite {
 	}
 
 	public void loadImages() throws SlickException {
-		images.add(new Image("julien/images/marche1.png"));
-		images.add(new Image("julien/images/marche2.png"));
-		images.add(new Image("julien/images/marche3.png"));
-		images.add(new Image("julien/images/marche4.png"));
+		imagesgauche.add(new Image("julien/images/marche1.png"));
+		imagesgauche.add(new Image("julien/images/marche2.png"));
+		imagesgauche.add(new Image("julien/images/marche3.png"));
+		imagesgauche.add(new Image("julien/images/marche4.png"));
 
 	}
 

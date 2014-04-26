@@ -1,6 +1,7 @@
 package julien.game;
 
 import jitou.global.BoardGame;
+import julien.mechant.Mechant;
 
 import org.newdawn.slick.SlickException;
 
@@ -10,6 +11,7 @@ public class Main {
 
 	public static void main(String[] args)  {
 		
+		new Mechant();
 		BoardGame.boardGame.initialisation();
 
 		AppGame app = null;
