@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 public class Main extends BasicGame {
 	
     public Main()  {
-        super("Lesson 1 :: WindowGame");    	
+        super("Sous la surface");    	
     }
 
     @Override
