@@ -21,7 +21,7 @@ public class Citoyen {
 
 
 	public Citoyen(Point pos){
-		this(pos, 3000f, 32.5f, 6000f);
+		this(pos, 3000f, 32.5f, (float) (1000+Math.random()*5000));
 	}
 
 	public Citoyen(Point pos, float nourritureRestante, float temperatureCorporelle, float fatigue){
@@ -32,75 +32,99 @@ public class Citoyen {
 		this.fatigue =fatigue;
 		ressourceTransporte = null;
 		objectif = new Objectif(this);
-		setWorkingTime(0.0);
+		setWorkingTime(-1.0);
 	}
 
 
 	public void update(int delta){
+		final  double facteurDiv = 150.0;
+
 		nourritureRestante-=delta;
 		fatigue -=delta;
-		
+
 		if(workingTime>=0.0){
 			workingTime = workingTime - delta;
+			if(workingTime<0.0){
+				objectif.getSeRendre().back(this);
+				objectif.reset();
+				System.out.println("Reset "+objectif.getType().getValue()+" "+fatigue);
+
+			}
 		}
 		else{
 			if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 				pathfinder = null;
 				objectif.trouverNouvelObjectif();
 			}else{
-				System.out.println("pathfinder  : "+  pathfinder);
+				System.out.println("Time "+objectif.getType().getValue()+"  "+fatigue);
 
-				if(pathfinder == null){
-					pathfinder = BoardGame.findPath(pos, objectif.getSeRendre().getPos() );
-				}
-				System.out.println(pathfinder);
-				Point vers = pathfinder.get(0).getPos();
-				int dx = vers.x - pos.x;
-				int dy = vers.y - pos.y;
-				if(dx!=0 || dy!=0){//On va changer de case
-					posInside.setLocation(posInside.getX()+dx*delta/10.0, posInside.getY()+dy*delta/10.0);
-					if(posInside.getX()>1){
-						posInside.setLocation(-1, posInside.getY());
-						pos.x++;
-					}
-					if(posInside.getX()<-1){
-						posInside.setLocation(1, posInside.getY());
-						pos.x--;
-					}
-					if(posInside.getY()>1){
-						posInside.setLocation( posInside.getX(), -1);
-						pos.y++;
+				if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 
-					}
-					if(posInside.getY()<-1){
-						posInside.setLocation( posInside.getX(), 1);
-						pos.y--;
+				}else{
+					//System.out.println(workingTime+"pathfinder  : "+  pathfinder);
 
+					if(pathfinder == null){
+						pathfinder = BoardGame.findPath(pos, objectif.getSeRendre().getPos() );
 					}
-				}
-				else{ //On se dirige vers le centre
-					posInside.setLocation(
-							posInside.getX()-Math.signum(posInside.getX())*delta/10.0,
-							posInside.getY()-Math.signum(posInside.getY())*delta/10.0);
-					if(posInside.distance(0.0, 0.0)<0.1){
-						pathfinder.remove(0);
+					Point vers = pathfinder.get(0).getPos();
+					//System.out.println(this.pos+"  "+this.posInside+"  "+vers+"  "+pathfinder);
 
-						if(pathfinder.size()>0){//Changement de case
+					int dx = vers.x - pos.x;
+					int dy = vers.y - pos.y;
+					if(dx!=0 || dy!=0){//On va changer de case
+						System.out.println(dx+" , "+dy);
+						posInside.setLocation(
+								posInside.getX()+dx*delta/facteurDiv,
+								posInside.getY()+dy*delta/facteurDiv);
+						if(posInside.getX()>1){
+							posInside.setLocation(-1, posInside.getY());
+							pos.x++;
 						}
-						else{
-							objectif.accomplirObjectif(BoardGame.boardGame.getBatiment(pos.x,pos.y));
-							pathfinder=null;
+						if(posInside.getX()<-1){
+							posInside.setLocation(1, posInside.getY());
+							pos.x--;
+						}
+						if(posInside.getY()>1){
+							posInside.setLocation( posInside.getX(), -1);
+							pos.y++;
+
+						}
+						if(posInside.getY()<-1){
+							posInside.setLocation( posInside.getX(), 1);
+							pos.y--;
+
+						}
+					}
+					else{ //On se dirige vers le centre
+
+						if(posInside.distance(0.0, 0.0)<0.2){
+
+							System.out.println("Remove path");
+							pathfinder.remove(0);
+
+							if(pathfinder.size()>0){//Changement de case
+							}
+							else{
+								objectif.accomplirObjectif(BoardGame.boardGame.getBatiment(pos.x,pos.y));
+								pathfinder=null;
+							}
+						}else{
+							System.out.println(delta+"  "+Math.signum(posInside.getX())*(double)delta/facteurDiv);
+							posInside.setLocation(
+									posInside.getX()-Math.signum(posInside.getX())*delta/facteurDiv,
+									posInside.getY()-Math.signum(posInside.getY())*delta/facteurDiv);
 						}
 					}
 				}
 
 			}
 
-			//Suivre objectif
 		}
 	}
 
-
+	public boolean estActif(){
+		return workingTime>0;
+	}
 
 
 	public Point getPos() {

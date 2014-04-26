@@ -52,5 +52,11 @@ public class Batiment {
 
 
 
+	public void back(Citoyen c) {
+	}
+
+
+
+
 
 }

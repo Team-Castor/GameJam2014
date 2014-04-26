@@ -12,15 +12,11 @@ public class Main {
 	public static void main(String[] args)  {
 
 		BoardGame.boardGame.initialisation();
-		for(int i=0;i<1000;i++){
-			BoardGame.boardGame.update(10);
-			BoardGame.boardGame.update(10);
-			BoardGame.boardGame.update(10);
-		}
-		
+
 		
 		
 		AppGame app = null;
+		
 		try {
 			app = new AppGame();
 		} catch (SlickException e) {

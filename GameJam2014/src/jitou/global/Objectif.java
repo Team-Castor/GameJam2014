@@ -21,7 +21,6 @@ public class Objectif {
 	}
 	
 	public void trouverNouvelObjectif(){
-		System.out.println("Je vais chercher un but ");
 		BoardGame game = BoardGame.boardGame;
 		/*
 		 * - Nourrire Critique
@@ -53,7 +52,7 @@ public class Objectif {
 			seRendre 	= refDispo;
 			type 		= ObjectifType.manger;
 		}
-		else if(citoyen.getNourritureRestante()<SEUIL_FATIGUE_CRITIQUE  && dorDispo!=null){
+		else if(citoyen.getFatigue()<SEUIL_FATIGUE_CRITIQUE  && dorDispo!=null){
 			// Allez se reposer
 			seRendre 	= dorDispo;
 			type 		= ObjectifType.se_reposer;
@@ -74,18 +73,14 @@ public class Objectif {
 			int proba = (int) (Math.random()*100);
 		}
 		
-		System.out.println("Je vais faire "+type.getValue());
 
 	}
 	
 	
 	public void accomplirObjectif(Batiment batiment) {
-		System.out.println("On fait l'objectif!");
+		System.out.println("On fait l'objectif!"+batiment);
 		batiment.effet(citoyen, type);
 		
-		//Apres on reinitialise
-		seRendre 	= null;
-		type 		= ObjectifType.aucun;		
 	}
 	
 
@@ -103,6 +98,11 @@ public class Objectif {
 
 	public void setType(ObjectifType type) {
 		this.type = type;
+	}
+
+	public void reset() {
+		type= ObjectifType.aucun;
+		seRendre = null;
 	}
 
 

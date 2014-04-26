@@ -38,11 +38,11 @@ public class BoardGame {
 			citoyens.get(i).update(delta);
 		}
 	}
-	
+
 	public void initialisation() {
 
-		
-		
+
+
 		TypeBatiment batimentDepart[] = {
 				TypeBatiment.Generateur, 
 				TypeBatiment.Refectoire, 
@@ -50,7 +50,7 @@ public class BoardGame {
 				TypeBatiment.Chaudiere, 
 				TypeBatiment.MineDeFer, 
 				TypeBatiment.PuitPetrol};
-		
+
 		Point positionPossible[] = {
 				new Point(dimensionWorldX/2, dimensionWorldY-1), 
 				new Point(dimensionWorldX/2, dimensionWorldY-2),
@@ -64,8 +64,8 @@ public class BoardGame {
 			Batiment bat = null;
 			int val = batimentDepart[j].getValue();
 
-			
-			
+
+
 			if(val== TypeBatiment.Generateur.getValue()){
 				bat = new Generateur(positionPossible[i]);
 			}else if(val==TypeBatiment.Refectoire.getValue()){
@@ -87,8 +87,8 @@ public class BoardGame {
 
 			j = (j+1)%batimentDepart.length;
 		}
-		
-		for(int i=0;i<10;i++){
+
+		for(int i=0;i<80;i++){
 			citoyens.add(new Citoyen(positionPossible[(int) (Math.random()*positionPossible.length)]));
 		}
 	}
@@ -174,23 +174,35 @@ public class BoardGame {
 	{
 		ArrayList<Batiment>  path 	= new ArrayList<Batiment> ();
 		int distance[][] 		= new int[getDimensionworldx()][getDimensionworldy()];
+		Batiment batiments[][] 	= new Batiment[getDimensionworldx()][getDimensionworldy()];
+
 		for(int x=0;x<getDimensionworldx();x++){
 			for(int y=0;y<getDimensionworldy();y++){
-				distance[x][y] = 100000;
+				distance[x][y]  = 100000;
+				batiments[x][y] = null;
 			}
 		}
 		int poids = 0;
-		Batiment batiments[][] 	= new Batiment[getDimensionworldx()][getDimensionworldy()];
-		findPath(depart.x, depart.y, fin, distance, batiments, poids,null);
+		System.out.println("path debut");
+		findPath(depart.x, depart.y, fin, distance, batiments, poids, null);
+		System.out.println("path fin");
 		
 		path.add(boardGame.getBatiment(fin.x, fin.y));
 		Batiment b = batiments[fin.x][fin.y];
-		while(b!=null){
-			path.add(b);
-			b = batiments[b.getPos().x][b.getPos().y];
+		System.out.println("path fin"+b);
+
+		if(fin!=depart && b!=null){
+			while(b!=null){
+				path.add(b);
+				b = batiments[b.getPos().x][b.getPos().y];
+				System.out.println("de "+b);
+
+			}
 		}
+		System.out.println("path fin fin");
+
 		Collections.reverse(path);
-		return path;
+		return path;	
 	}
 
 
@@ -209,7 +221,7 @@ public class BoardGame {
 						findPath(x-1, y, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
 					}
 				}
-				if(x<boardGame.getDimensionworldx()-1){
+				if(x<BoardGame.getDimensionworldx()-1){
 					if(boardGame.getBatiment(x+1, y)!=null){
 						findPath(x+1, y, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
 					}
@@ -219,7 +231,7 @@ public class BoardGame {
 						findPath(x, y-1, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
 					}
 				}
-				if(y<boardGame.getDimensionworldy()-1){
+				if(y<BoardGame.getDimensionworldy()-1){
 					if(boardGame.getBatiment(x, y+1)!=null){
 						findPath(x, y+1, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
 					}
