@@ -7,20 +7,27 @@ public class Sprite {
 	private Image img;
 	private float x, y;
 	private float vx, vy;
+	private int w, h;
 
 	public Sprite(){
 		x = 20f;
 		y = 20f;
 		vx = (float) (Math.random()-0.5);
 		vy = (float) (Math.random()-0.5);
+		w = (int) (Math.random()*14+5); 
+		h = (int) (Math.random()*14+5); 
+
 		try {
-			img = new Image(20,20);
-			img.getGraphics().drawLine(0, 0,10,10);
-			img.getGraphics().drawLine(10, 0,0,10);
+			img = new Image((int)w,(int)h);
+			img.getGraphics().drawRect(0, 0, w-1, h-1);
+
+			img.getGraphics().drawLine(0, 0,w,h);
+			img.getGraphics().drawLine(w, 0,0,h);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 		img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
+		
 	}
 	
 
@@ -39,6 +46,11 @@ public class Sprite {
 		else if(y>dimY) y=0;
 	}
 
+	public boolean collision(int x, int y){
+		return x>this.x && x<this.x+w &&  y>this.y && y<this.y+h;
+	}
+	
+	
 	public Image getImage(){
 		return img;
 	}
