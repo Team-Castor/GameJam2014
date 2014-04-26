@@ -18,7 +18,7 @@ import de.matthiasmann.twl.renderer.lwjgl.LWJGLRenderer;
 import de.matthiasmann.twl.theme.ThemeManager;
 
 public class Game  extends BasicGame{
-	private final int defilement = 10;
+	private final int defilement = -10;
 	
 	private Sprite[] liste;
 	private int points=0;
