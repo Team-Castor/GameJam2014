@@ -123,7 +123,7 @@ public class BoardGame {
 			j = (j+1)%batimentDepart.length;
 		}
 		System.out.println(liste_batiments);
-		for(int i=0;i<1;i++){
+		for(int i=0;i<10;i++){
 			citoyens.add(new Citoyen(positionPossible[(int) (Math.random()*positionPossible.length)]));
 		}
 	}

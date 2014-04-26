@@ -37,18 +37,18 @@ public class Citoyen {
 
 
 	public void update(int delta){
-		final  double facteurDiv = 150.0;
+		final  double facteurDiv = 200.0;
 		//System.out.println(BoardGame.boardGame.getListeBatiments());
 
-		System.out.println(pos+" "+this.objectif+" "+workingTime);
+		System.out.println(this+"  "+pos+" "+this.posInside+"  "+delta/200.+" "+workingTime+"  "+pathfinder);
 		temperatureCorporelle += BoardGame.boardGame.getBatiment(pos.x, pos.y).getTemperatureSalle()*0.1;
-		nourritureRestante-=delta;
-		fatigue -=delta;
+		nourritureRestante		-= delta;
+		fatigue 				-= delta;
 
 		if(workingTime>=0.0){
 			workingTime = workingTime - delta;
 			if(workingTime<0.0){
-				//objectif.reset();
+				pathfinder = null;
 				objectif.getSeRendre().back(this);
 			}
 		}
@@ -57,42 +57,38 @@ public class Citoyen {
 				pathfinder = null;
 				objectif.trouverNouvelObjectif();
 			}else{
-				//System.out.println("Time "+objectif.getType().getValue()+"  "+fatigue);
 
 				if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 
 				}else{
-					//System.out.println(workingTime+"pathfinder  : "+  pathfinder);
-
 					if(objectif.getSeRendre()!=null){
 						if(pathfinder == null){
 							pathfinder = BoardGame.findPath(pos, objectif.getSeRendre().getPos() );
 						}
-		
+
 						if(pathfinder.size()>0){
 							Point vers = new Point(pathfinder.get(0).getPos());
-							//System.out.println(this.pos+"  "+this.posInside+"  "+vers+"  "+pathfinder);
-							int dx = vers.x - pos.x;
-							int dy = vers.y - pos.y;
+							int dx = (int) Math.signum(vers.x - pos.x);
+							int dy = (int) Math.signum(vers.y - pos.y);
 							if(dx!=0 || dy!=0){
 								posInside.setLocation(
 										posInside.getX()+dx*delta/facteurDiv,
 										posInside.getY()+dy*delta/facteurDiv);
-								if(posInside.getX()>1){
-									posInside.setLocation(-0.99, posInside.getY());
+								if(posInside.getX()>=1){
+									posInside.setLocation(-0.98, posInside.getY());
 									pos.x++;
 								}
-								else if(posInside.getX()<-1){
-									posInside.setLocation(0.99, posInside.getY());
+								else if(posInside.getX()<=-1){
+									posInside.setLocation(0.98, posInside.getY());
 									pos.x--;
 								}
-								if(posInside.getY()>1){
-									posInside.setLocation( posInside.getX(), -0.99);
+								if(posInside.getY()>=1){
+									posInside.setLocation( posInside.getX(), -0.98);
 									pos.y++;
 
 								}
-								else if(posInside.getY()<-1){
-									posInside.setLocation( posInside.getX(), 0.99);
+								else if(posInside.getY()<=-1){
+									posInside.setLocation( posInside.getX(), 0.98);
 									pos.y--;
 
 								}
@@ -108,9 +104,25 @@ public class Citoyen {
 										pathfinder=null;
 									}
 								}else{
-									posInside.setLocation(
-											posInside.getX()-Math.signum(posInside.getX())*delta/facteurDiv,
-											posInside.getY()-Math.signum(posInside.getY())*delta/facteurDiv);
+									if(Math.signum(posInside.getX())<0){
+										posInside.setLocation(Math.min(0.0,
+												posInside.getX()+delta/facteurDiv),
+												posInside.getY());
+									}else{
+										posInside.setLocation(Math.max(0.0,
+												posInside.getX()-delta/facteurDiv),
+												posInside.getY());
+									}
+									if(Math.signum(posInside.getY())<0){
+										posInside.setLocation(
+												posInside.getX(),
+												Math.min(0.,posInside.getY()+delta/facteurDiv));
+									}else{
+										posInside.setLocation(
+												posInside.getX(),
+												Math.max(0.,posInside.getY()-delta/facteurDiv));
+									}
+					
 								}
 							}
 						}
@@ -123,7 +135,7 @@ public class Citoyen {
 			}
 
 		}
-		
+
 
 	}
 
