@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import jitou.batiments.Batiment;
 import jitou.ressources.Ressource;
+import julien.game.Game;
 
 public class Citoyen {
 	private Point  	pos;
@@ -33,6 +34,7 @@ public class Citoyen {
 		ressourceTransporte = null;
 		objectif = new Objectif(this);
 		setWorkingTime(-1.0);
+		Game.getInstance().addSpriteCitoyen(this);
 	}
 
 
