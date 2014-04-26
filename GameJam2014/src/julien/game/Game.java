@@ -223,6 +223,15 @@ public class Game  extends BasicGame{
 		return false;
 
 	}
+	
+	public void changementCase(int x, int y) {
+		for (Case c : casesADessiner) {
+			c.redraw();
+		}
+		for (Case c : casesADessiner) {
+			c.redraw();
+		}
+	}
 
 	public static Game getInstance() {
 		return instance;

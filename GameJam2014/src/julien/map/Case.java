@@ -21,24 +21,7 @@ public class Case extends Sprite{
 		this.xcor = xcor;
 		this.ycor = ycor;
 		
-		if (BoardGame.boardGame.getBatiment(xcor, ycor) != null) {
-			try {
-				img = new Image("julien/images/Terre01.png");
-				img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
-				batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
-				img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
-			
-		} else {
-			try {
-				img = new Image("julien/images/Terre00.png");
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
-		}
-
+		redraw();
 		
 	}
 
@@ -77,6 +60,32 @@ public class Case extends Sprite{
 	public void calculerPosition(int offsetX, int offsetY, int h) {
 		x = xcor*Case.getDimensionX()-offsetX;
 		y = (ycor*Case.getDimensionY()-offsetY - h) * -1 - Case.getDimensionY();
+	}
+
+	public void redraw() {
+		if (BoardGame.boardGame.getBatiment(xcor, ycor) != null) {
+			try {
+				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Dortoir) {
+					img = new Image("julien/images/Salle_refectoire.png");
+					img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+				}
+				else {
+					img = new Image("julien/images/Terre01.png");
+					img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+					batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+					img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
+				}
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+			
+		} else {
+			try {
+				img = new Image("julien/images/Terre00.png");
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+		}		
 	}
 	
 	
