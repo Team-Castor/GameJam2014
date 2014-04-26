@@ -18,6 +18,8 @@ import de.matthiasmann.twl.renderer.lwjgl.LWJGLRenderer;
 import de.matthiasmann.twl.theme.ThemeManager;
 
 public class Game  extends BasicGame{
+	
+	private static Game instance;
 	private final int defilement = -10;
 	
 	private Sprite[] liste;
@@ -37,6 +39,8 @@ public class Game  extends BasicGame{
     
     private ArrayList<Case> casesADessiner = new ArrayList<Case>();
     private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
+    
+    private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 
 	public Game(String titre) {
 		super(titre);
@@ -47,6 +51,7 @@ public class Game  extends BasicGame{
         board = BoardGame.boardGame;
 		containerH = container.getHeight();
 		containerW = container.getWidth();
+		instance = this;
 		
 		int h = board.getDimensionworldy() ;
 		int w = board.getDimensionworldx() ;
@@ -118,15 +123,21 @@ public class Game  extends BasicGame{
 	
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
 		for(Citoyen cit : citoyens){
-			g.setColor(Color.red);
-			g.fillOval((float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2)))-offsetX,
-					(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1, (float)10,(float) 10);		
+			g.drawImage(new SpriteHumain(this, null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
+					(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
+			);
+			//g.setColor(Color.red);
+			//g.fillOval((float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2)))-offsetX,
+			//		(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1, (float)10,(float) 10);		
 		}
 		
 		//g.drawString("Score : "+points, 100,50);
 
 	}
-
+	
+	public void addSpriteCitoyen(Citoyen c) {
+		this.spritesHumains.add(new SpriteHumain(this, c));
+	}
 
 
 	public void update(GameContainer container, int delta) throws SlickException {
@@ -190,4 +201,9 @@ public class Game  extends BasicGame{
 		
 	}
 
+	public static Game getInstance() {
+		return instance;
+	}
+
+	
 }
