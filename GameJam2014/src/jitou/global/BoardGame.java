@@ -4,8 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.omg.CORBA.SystemException;
-
 import jitou.batiments.Arsenal;
 import jitou.batiments.Batiment;
 import jitou.batiments.Chaudiere;

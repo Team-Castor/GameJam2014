@@ -68,6 +68,7 @@ public class Citoyen {
 						}
 						else{
 							objectif.accomplirObjectif(BoardGame.boardGame.getBatiment(pos.x,pos.y));
+							pathfinder.remove(0);
 							pathfinder=null;
 						}
 					}
@@ -148,6 +149,10 @@ public class Citoyen {
 
 	public void setWorkingTime(double workingTime) {
 		this.workingTime = workingTime;
+	}
+
+	public void mange(double d) {
+		nourritureRestante+=d*1500.0;
 	}
 
 

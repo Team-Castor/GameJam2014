@@ -2,6 +2,9 @@ package jitou.batiments;
 
 import java.awt.Point;
 
+import jitou.global.Citoyen;
+import jitou.global.ObjectifType;
+
 public class Batiment {
 	private Point pos;
 	private TypeBatiment type;
@@ -33,6 +36,13 @@ public class Batiment {
 
 	public TypeBatiment getType() {
 		return type;
+	}
+
+
+
+
+	public void effet(Citoyen citoyen, ObjectifType type) {
+		System.out.println("Batiment doit etre virtuel...:s");
 	}
 
 

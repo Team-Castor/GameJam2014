@@ -16,8 +16,10 @@ public class Main {
 			BoardGame.boardGame.update(10);
 			BoardGame.boardGame.update(10);
 			BoardGame.boardGame.update(10);
-
 		}
+		
+		
+		
 		AppGame app = null;
 		try {
 			app = new AppGame();
