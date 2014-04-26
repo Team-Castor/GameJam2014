@@ -65,7 +65,7 @@ public class Case extends Sprite{
 	public void redraw() {
 		if (BoardGame.boardGame.getBatiment(xcor, ycor) != null) {
 			try {
-				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Dortoir) {
+				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Refectoire) {
 					img = new Image("julien/images/Salle_refectoire.png");
 					img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 				}
