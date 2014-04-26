@@ -38,6 +38,7 @@ public class Refectoire extends Batiment{
 		}else if(type.getValue()==ObjectifType.rapporterNourritureRefectoir.getValue()){
 			if(quantiteNourriture>1.0){
 				double q = citoyen.getRessourceTransporte().getQuantite();
+				citoyen.setRessourceTransporte(null);
 				quantiteNourriture+=q;
 				citoyen.setWorkingTime(tempsRangerNourriture);
 			}

@@ -53,6 +53,7 @@ public class Batiment {
 
 
 	public void back(Citoyen c) {
+		c.getObjectif().reset();
 	}
 
 	public double getTemperatureSalle() {

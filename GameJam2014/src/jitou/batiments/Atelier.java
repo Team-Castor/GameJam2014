@@ -23,11 +23,12 @@ public class Atelier extends Batiment{
 	public void effet(Citoyen citoyen, ObjectifType type) {
 		if(type.getValue() == ObjectifType.rapporterferAtelier.getValue()){
 			fer+=citoyen.getRessourceTransporte().getQuantite();
+			citoyen.setRessourceTransporte(null);
+
 			citoyen.setWorkingTime(workingTime);
 		}
 	}
 	
-	public void back(Citoyen c) {
-	}
+
 	
 }

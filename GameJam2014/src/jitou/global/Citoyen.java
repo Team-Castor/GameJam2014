@@ -38,7 +38,8 @@ public class Citoyen {
 
 	public void update(int delta){
 		final  double facteurDiv = 250.0;
-		//temperatureCorporelle += BoardGame.boardGame.getBatiment(pos.x, pos.y).getTemperatureSalle()*0.1;
+		System.out.println(pos);
+		temperatureCorporelle += BoardGame.boardGame.getBatiment(pos.x, pos.y).getTemperatureSalle()*0.1;
 		nourritureRestante-=delta;
 		fatigue -=delta;
 
@@ -200,7 +201,7 @@ public class Citoyen {
 	}
 
 	public void mange(double d) {
-		nourritureRestante+=d*1500.0;
+		nourritureRestante+=d*2000.0;
 	}
 
 
