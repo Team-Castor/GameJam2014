@@ -11,40 +11,19 @@ import org.newdawn.slick.SlickException;
 
 
 public class Main extends BasicGame {
-	private int x, y;
-	private Animation anim = null;
 	
     public Main()  {
-        super("Lesson 1 :: WindowGame");
-        x = 0;
-    	y = 0;
-    	
-    	
+        super("Lesson 1 :: WindowGame");    	
     }
 
     @Override
     public void init(GameContainer container) throws SlickException {
-       	Image [] imgs = {new Image(20,20),new Image(20,20),new Image(20,20),new Image(20,20),new Image(20,20),new Image(20,20)};
-    	for(int i=0;i<imgs.length;i++)
-    		{
-    		imgs[i].setImageColor((float)(0.1*i),0.5f, 0.1f, 0.5f);
-
-    		
-    		}
-    	anim =new Animation(imgs, 100, false);
-    	anim.setLooping(true);
-    
     }
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-    	//g.drawOval(x, y, 100,100);
-    	x=(x+1)%400;x=50;
-    	y=(y+1)%400;y=50;
-    	System.out.println("render "+anim);
-    	anim.update(50);
-    	g.drawAnimation(anim, x, y);
-    	anim.draw();
+    	System.out.println("render ");
+ 
 
     }
 
