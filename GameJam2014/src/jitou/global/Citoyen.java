@@ -48,7 +48,7 @@ public class Citoyen {
 				pathfinder = null;
 				objectif.trouverNouvelObjectif();
 			}else{
-				System.out.println("pathfinder : "+  pathfinder);
+				System.out.println("pathfinder  : "+  pathfinder);
 
 				if(pathfinder == null){
 					pathfinder = BoardGame.findPath(pos, objectif.getSeRendre().getPos() );
