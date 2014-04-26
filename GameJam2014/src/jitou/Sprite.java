@@ -16,7 +16,7 @@ public class Sprite {
 		vy = (float) (Math.random()-0.5);
 		w = (int) (Math.random()*14+5); 
 		h = (int) (Math.random()*14+5); 
-
+		
 		try {
 			img = new Image((int)w,(int)h);
 			img.getGraphics().drawRect(0, 0, w-1, h-1);

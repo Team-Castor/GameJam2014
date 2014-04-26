@@ -21,7 +21,7 @@ public class Citoyen {
 
 
 	public Citoyen(Point pos){
-		this(pos, 500f, 32.5f, 400f);
+		this(pos, 3000f, 32.5f, 6000f);
 	}
 
 	public Citoyen(Point pos, float nourritureRestante, float temperatureCorporelle, float fatigue){
@@ -37,6 +37,9 @@ public class Citoyen {
 
 
 	public void update(int delta){
+		nourritureRestante-=delta;
+		fatigue -=delta;
+		
 		if(workingTime>=0.0){
 			workingTime = workingTime - delta;
 		}

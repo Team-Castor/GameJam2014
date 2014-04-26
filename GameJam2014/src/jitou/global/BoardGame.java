@@ -221,7 +221,7 @@ public class BoardGame {
 						findPath(x, y-1, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
 					}
 				}
-				if(x<boardGame.getDimensionworldy()-1){
+				if(y<boardGame.getDimensionworldy()-1){
 					if(boardGame.getBatiment(x, y+1)!=null){
 						findPath(x, y+1, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
 					}
@@ -231,6 +231,14 @@ public class BoardGame {
 		}
 
 
+	}
+
+	public ArrayList<Citoyen> getCitoyens() {
+		return citoyens;
+	}
+
+	public void setCitoyens(ArrayList<Citoyen> citoyens) {
+		this.citoyens = citoyens;
 	}
 
 

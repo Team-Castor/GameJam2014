@@ -17,10 +17,11 @@ public class Objectif {
 	
 	public Objectif(Citoyen citoyen){
 		this.citoyen= citoyen;
+		type= ObjectifType.aucun;
 	}
 	
 	public void trouverNouvelObjectif(){
-		System.out.println("trouver un but ");
+		System.out.println("Je vais chercher un but ");
 		BoardGame game = BoardGame.boardGame;
 		/*
 		 * - Nourrire Critique
@@ -73,7 +74,8 @@ public class Objectif {
 			int proba = (int) (Math.random()*100);
 		}
 		
-		
+		System.out.println("Je vais faire "+type.getValue());
+
 	}
 	
 	
