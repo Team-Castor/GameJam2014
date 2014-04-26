@@ -131,6 +131,38 @@ public class BoardGame {
 
 
 
+	   public static ArrayList<Point> findPath( int x, int y,  ArrayList<Point>  path) {
+	        
+	        return null;
+	    }
+	   
+	   public static int getDimensionworldx() {
+		return dimensionWorldX;
+	}
+
+	public static int getDimensionworldy() {
+		return dimensionWorldY;
+	}
+
+	public static ArrayList<Point> findPath( int x, int y, boolean[][] passed, ArrayList<Point>  path) {
+	        passed[x][y] = true;
+	        path.add(new Point(x,y));
+	        
+	        if(x==boardGame.dimensionWorldX-1&&y==boardGame.dimensionWorldY-1) return path;
+	        ArrayList<Point> temp=null;
+	        
+	        if(x<boardGame.dimensionWorldX-1&& boardGame.getBatiment(x+1,y)!=null&&!passed[x+1][y]) temp = findPath(x+1,y,passed,path);
+	        if(temp!=null) return temp;
+	        if(y<boardGame.dimensionWorldY-1&& boardGame.getBatiment(x,y+1)!=null&&!passed[x][y+1]) temp = findPath(x,y+1,passed,path);
+	        if(temp!=null) return temp;
+	        if(x>0&& boardGame.getBatiment(x-1,y)!=null&&!passed[x-1][y]) temp = findPath(x-1,y,passed,path);
+	        if(temp!=null) return temp;
+	        if(y>0&& boardGame.getBatiment(x,y-1)!=null&&!passed[x][y-1]) temp = findPath(x,y-1,passed,path);
+	        if(temp!=null) return temp;
+	        
+	        path.remove(path.size()-1);
+	        return null;
+	    }
 
 
 }
