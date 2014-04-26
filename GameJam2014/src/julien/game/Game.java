@@ -39,6 +39,7 @@ public class Game  extends BasicGame{
     
     private ArrayList<Case> casesADessiner = new ArrayList<Case>();
     private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
+    private static ArrayList<Citoyen> citoyenSansSprite = new ArrayList<Citoyen>();
     
     private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 
@@ -117,15 +118,22 @@ public class Game  extends BasicGame{
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		checkKey();
 		
+		for (Citoyen c : citoyenSansSprite) {
+			this.spritesHumains.add(new SpriteHumain(c));
+		}
+		citoyenSansSprite.clear();
+		
 		for (int i = 0 ; i < casesADessiner.size() ; i++) {
 			g.drawImage(casesADessiner.get(i).getImage(), casesADessiner.get(i).getX(), casesADessiner.get(i).getY());	
 		}
 	
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
-		for(Citoyen cit : citoyens){
-			g.drawImage(new SpriteHumain(this, null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
-					(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
-			);
+		for(SpriteHumain cit : spritesHumains){
+			g.drawAnimation(cit.getAnim(), (float)((cit.getC().getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getC().getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
+					(float)(((cit.getC().getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getC().getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1);
+		//	g.drawImage(new SpriteHumain(null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
+		//			(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
+		//	);
 			//g.setColor(Color.red);
 			//g.fillOval((float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2)))-offsetX,
 			//		(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1, (float)10,(float) 10);		
@@ -136,7 +144,8 @@ public class Game  extends BasicGame{
 	}
 	
 	public static void addSpriteCitoyen(Citoyen c) {
-		//this.spritesHumains.add(new SpriteHumain(this, c));
+		Game.citoyenSansSprite.add(c);
+		//Game.spritesHumains.add(new SpriteHumain(c));
 	}
 
 
