@@ -98,7 +98,6 @@ public class Game  extends BasicGame{
 	
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
 		for(Citoyen cit : citoyens){
-			System.out.println("citoyen");
 			g.setColor(Color.red);
 			g.fillOval((float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))),
 					(float)((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2))), (float)10,(float) 10);		
