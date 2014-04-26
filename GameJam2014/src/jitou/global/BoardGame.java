@@ -123,7 +123,7 @@ public class BoardGame {
 			j = (j+1)%batimentDepart.length;
 		}
 		System.out.println(liste_batiments);
-		for(int i=0;i<8;i++){
+		for(int i=0;i<1;i++){
 			citoyens.add(new Citoyen(positionPossible[(int) (Math.random()*positionPossible.length)]));
 		}
 	}
@@ -145,7 +145,7 @@ public class BoardGame {
 	public Refectoire nourritureDisponible() {
 		ArrayList<Refectoire> liste = new ArrayList<Refectoire>() ;
 		for(int i=0;i<Refectoire.listeRefectoire.size();i++){
-			if(Refectoire.listeRefectoire.get(i).getQuantiteNourriture()>0){
+			if(Refectoire.listeRefectoire.get(i).getQuantiteNourriture()>0.0){
 				liste.add(Refectoire.listeRefectoire.get(i));
 			}
 		}
@@ -265,34 +265,23 @@ public class BoardGame {
 			}
 		}
 		int poids = 0;
-		System.out.println("path debut"+depart+" "+fin);
 		findPath(depart.x, depart.y, fin, distance, batiments, poids, null);
 
 
 		path.add(boardGame.getBatiment(fin.x, fin.y));
 		Batiment b = batiments[fin.x][fin.y];
 
-		System.out.println("path debut"+boardGame.getListeBatiments());
 
-		System.out.println("path debut"+depart+" "+b);
-		for(int x=0;x<getDimensionworldx();x++){
-			for(int y=0;y<getDimensionworldy();y++){
-				System.out.print(boardGame.getBatiment(x, y));
-				}
-			System.out.println();
-		}
 		
-		if(fin!=depart && b!=null){
+		if(!fin.equals(depart) && b!=null){
 			while(b!=null){
 				path.add(b);
 				//if(b== batiments[b.getPos().x][b.getPos().y]) break;
 				b = batiments[b.getPos().x][b.getPos().y];
-
 				//System.out.println("de "+b);
-
 			}
 		}
-		System.out.println("path fin fin");
+		
 
 		Collections.reverse(path);
 		return path;	

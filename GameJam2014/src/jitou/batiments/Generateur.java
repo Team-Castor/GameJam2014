@@ -21,6 +21,7 @@ public class Generateur extends Batiment {
 	public void effet(Citoyen citoyen, ObjectifType type) {
 		if(type.getValue() == ObjectifType.rapporterGenerateur.getValue()){
 			electricite+=citoyen.getRessourceTransporte().getQuantite();
+			citoyen.setRessourceTransporte(null);
 			citoyen.setWorkingTime(workingTime);
 		}
 	}

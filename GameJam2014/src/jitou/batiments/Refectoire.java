@@ -28,15 +28,17 @@ public class Refectoire extends Batiment{
 	}
 
 	public void effet(Citoyen citoyen, ObjectifType type) {
+		//System.out.println("Manger ? "+quantiteNourriture);
+
 		if(type.getValue()==ObjectifType.manger.getValue()){
-			if(quantiteNourriture>1.0){
+			if(quantiteNourriture>=1.0){
 				double q = 1.0;
 				quantiteNourriture-=q;
 				citoyen.mange(1.0);
 				citoyen.setWorkingTime(tempsManger);
 			}
 		}else if(type.getValue()==ObjectifType.rapporterNourritureRefectoir.getValue()){
-			if(quantiteNourriture>1.0){
+			if(quantiteNourriture>=0.0){
 				double q = citoyen.getRessourceTransporte().getQuantite();
 				citoyen.setRessourceTransporte(null);
 				quantiteNourriture+=q;
@@ -48,5 +50,9 @@ public class Refectoire extends Batiment{
 		}
 	}
 
+	public void back(Citoyen c) {
+		c.getObjectif().reset();
+	}
+	
 }
 

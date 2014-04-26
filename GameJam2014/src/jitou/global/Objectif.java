@@ -57,13 +57,13 @@ public class Objectif {
 
 		if(citoyen.getNourritureRestante()<SEUIL_FAMINE_CRITIQUE && refDispo!=null){
 			// Allez chercher de la nourriture
-//			seRendre 	= refDispo;
-//			type 		= ObjectifType.manger;
+			seRendre 	= refDispo;
+			type 		= ObjectifType.manger;
 		}
 		else if(citoyen.getFatigue()<SEUIL_FATIGUE_CRITIQUE  && dorDispo!=null){
 			// Allez se reposer
-//			seRendre 	= dorDispo;
-//			type 		= ObjectifType.se_reposer;
+			seRendre 	= dorDispo;
+			type 		= ObjectifType.se_reposer;
 		}
 		else if(game.estAttaquer() && arsDispo!=null){
 			//Allez defendre ville
@@ -73,28 +73,28 @@ public class Objectif {
 		}
 		else if(citoyen.getNourritureRestante()<SEUIL_FAMINE && refDispo!=null){
 			// Allez chercher de la nourriture
-//			seRendre 	= refDispo;
-//			type 		= ObjectifType.manger;
+			seRendre 	= refDispo;
+			type 		= ObjectifType.manger;
 		}
-		else if(citoyen.getNourritureRestante()<SEUIL_FATIGUE  && dorDispo!=null){
+		else if(citoyen.getFatigue()<SEUIL_FATIGUE  && dorDispo!=null){
 			// Allez se reposer
 			seRendre 	= dorDispo;
 			type 		= ObjectifType.se_reposer;
 		}
 		else{
 			int proba = (int) (Math.random()*100);
-//			if(proba<20){
-//				seRendre 	= ferDispo;
-//				type 		= ObjectifType.allerAUneFerme;
-//			}
-//			else if(proba<40){
-//				seRendre 	= minDispo;
-//				type 		= ObjectifType.allerAUneMineDeFer;
-//			}
-//			else if(proba<60){
-//				seRendre 	= puiDispo;
-//				type 		= ObjectifType.allerPuitPetrole;
-//			}
+			if(proba<20){
+				seRendre 	= ferDispo;
+				type 		= ObjectifType.allerAUneFerme;
+			}
+			else if(proba<40){
+				seRendre 	= minDispo;
+				type 		= ObjectifType.allerAUneMineDeFer;
+			}
+			else if(proba<60){
+				seRendre 	= puiDispo;
+				type 		= ObjectifType.allerPuitPetrole;
+			}
 			
 		}
 
@@ -150,7 +150,9 @@ public class Objectif {
 	}
 
 
-
+	public String toString(){
+		return this.getSeRendre()+" "+this.type.getValue();
+	}
 
 
 

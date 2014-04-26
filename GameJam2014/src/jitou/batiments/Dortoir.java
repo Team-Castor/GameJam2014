@@ -34,6 +34,7 @@ public class Dortoir extends Batiment{
 	
 	public void back(Citoyen c) {
 		nb_occupant--;
+		c.getObjectif().reset();
 	}
 	
 }
