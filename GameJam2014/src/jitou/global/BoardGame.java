@@ -18,7 +18,7 @@ import jitou.batiments.Refectoire;
 import jitou.batiments.TypeBatiment;;
 
 public class BoardGame {
-	private Batiment[][] 			grille_batiments=null;
+	//private Batiment[][] 			grille_batiments=null;
 	private ArrayList<Batiment>		liste_batiments=null;
 	private ArrayList<Citoyen>  	citoyens =null;
 
@@ -28,7 +28,7 @@ public class BoardGame {
 
 	public static BoardGame boardGame = new BoardGame();
 	private BoardGame(){
-		grille_batiments = new Batiment[dimensionWorldX][dimensionWorldY];
+		//grille_batiments = new Batiment[dimensionWorldX][dimensionWorldY];
 		liste_batiments = new ArrayList<Batiment>();
 		citoyens = new ArrayList();
 		liste_batiments.clear();
@@ -123,19 +123,22 @@ public class BoardGame {
 			j = (j+1)%batimentDepart.length;
 		}
 		System.out.println(liste_batiments);
-		for(int i=0;i<10;i++){
+		for(int i=0;i<5;i++){
 			citoyens.add(new Citoyen(positionPossible[(int) (Math.random()*positionPossible.length)]));
 		}
 	}
 
 	public void addBatiment(Point p, Batiment bat){
 		this.liste_batiments.add(bat);
-		grille_batiments[p.x][p.y] = bat;
+		//grille_batiments[p.x][p.y] = bat;
 	}
 
 
 	public Batiment getBatiment(int x, int y){
-		return  grille_batiments[x][y];
+		for(Batiment b : liste_batiments){
+			if(b.getPos().equals(new Point(x, y))) return b;
+		}
+		return  null;
 	}
 
 	public ArrayList<Batiment> getListeBatiments(){
@@ -270,18 +273,17 @@ public class BoardGame {
 
 		path.add(boardGame.getBatiment(fin.x, fin.y));
 		Batiment b = batiments[fin.x][fin.y];
-
-
-		
 		if(!fin.equals(depart) && b!=null){
 			while(b!=null){
 				path.add(b);
-				//if(b== batiments[b.getPos().x][b.getPos().y]) break;
 				b = batiments[b.getPos().x][b.getPos().y];
-				//System.out.println("de "+b);
 			}
 		}
+	
 		
+		System.out.println(boardGame.getListeBatiments());
+		System.out.println(depart+"  "+batiments[depart.x][depart.y]);
+		path.add(boardGame.getBatiment(depart.x,depart.y));
 
 		Collections.reverse(path);
 		return path;	

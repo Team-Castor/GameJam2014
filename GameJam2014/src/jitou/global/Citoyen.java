@@ -34,7 +34,8 @@ public class Citoyen {
 		ressourceTransporte = null;
 		objectif = new Objectif(this);
 		setWorkingTime(-1.0);
-		Game.getInstance().addSpriteCitoyen(this);
+		Game.getInstance();
+		Game.addSpriteCitoyen(this);
 	}
 
 
@@ -94,6 +95,9 @@ public class Citoyen {
 									pos.y--;
 
 								}
+								
+								System.out.println(this+"  "+pos+" "+this.posInside+"  "+dx+"  "+dy);
+
 							}
 							else{
 
@@ -110,7 +114,7 @@ public class Citoyen {
 										posInside.setLocation(Math.min(0.0,
 												posInside.getX()+delta/facteurDiv),
 												posInside.getY());
-									}else{
+									}else if(Math.signum(posInside.getX())>0){
 										posInside.setLocation(Math.max(0.0,
 												posInside.getX()-delta/facteurDiv),
 												posInside.getY());
@@ -119,11 +123,13 @@ public class Citoyen {
 										posInside.setLocation(
 												posInside.getX(),
 												Math.min(0.,posInside.getY()+delta/facteurDiv));
-									}else{
+									}else if(Math.signum(posInside.getY())>0){
 										posInside.setLocation(
 												posInside.getX(),
 												Math.max(0.,posInside.getY()-delta/facteurDiv));
 									}
+									
+
 					
 								}
 							}
@@ -137,6 +143,7 @@ public class Citoyen {
 			}
 
 		}
+		System.out.println(this+"  "+pos+"-> "+this.posInside+"  ");
 
 
 	}
@@ -147,20 +154,20 @@ public class Citoyen {
 
 
 	public Point getPos() {
-		return pos;
+		return new Point(pos.x,pos.y);
 	}
 
-	public void setPos(Point pos) {
+	/*public void setPos(Point pos) {
 		this.pos = pos;
-	}
+	}*/
 
 	public Point2D getPosInside() {
 		return posInside;
 	}
 
-	public void setPosInside(Point2D posInside) {
+	/*public void setPosInside(Point2D posInside) {
 		this.posInside = posInside;
-	}
+	}*/
 
 	public float getNourritureRestante() {
 		return nourritureRestante;
