@@ -48,27 +48,47 @@ public class Citoyen {
 				pathfinder = null;
 				objectif.trouverNouvelObjectif();
 			}else{
+				System.out.println("pathfinder : "+  pathfinder);
+
 				if(pathfinder == null){
 					pathfinder = BoardGame.findPath(pos, objectif.getSeRendre().getPos() );
 				}
-
+				System.out.println(pathfinder);
 				Point vers = pathfinder.get(0).getPos();
 				int dx = vers.x - pos.x;
 				int dy = vers.y - pos.y;
 				if(dx!=0 || dy!=0){//On va changer de case
 					posInside.setLocation(posInside.getX()+dx*delta/10.0, posInside.getY()+dy*delta/10.0);
+					if(posInside.getX()>1){
+						posInside.setLocation(-1, posInside.getY());
+						pos.x++;
+					}
+					if(posInside.getX()<-1){
+						posInside.setLocation(1, posInside.getY());
+						pos.x--;
+					}
+					if(posInside.getY()>1){
+						posInside.setLocation( posInside.getX(), -1);
+						pos.y++;
+
+					}
+					if(posInside.getY()<-1){
+						posInside.setLocation( posInside.getX(), 1);
+						pos.y--;
+
+					}
 				}
 				else{ //On se dirige vers le centre
 					posInside.setLocation(
 							posInside.getX()-Math.signum(posInside.getX())*delta/10.0,
 							posInside.getY()-Math.signum(posInside.getY())*delta/10.0);
 					if(posInside.distance(0.0, 0.0)<0.1){
+						pathfinder.remove(0);
+
 						if(pathfinder.size()>0){//Changement de case
-							pathfinder.remove(0);
 						}
 						else{
 							objectif.accomplirObjectif(BoardGame.boardGame.getBatiment(pos.x,pos.y));
-							pathfinder.remove(0);
 							pathfinder=null;
 						}
 					}

@@ -45,7 +45,9 @@ public class Batiment {
 		System.out.println("Batiment doit etre virtuel...:s");
 	}
 
-
+	public String toString(){
+		return getType().getNom()+"("+pos.x+","+pos.y+")";
+	}
 
 
 
