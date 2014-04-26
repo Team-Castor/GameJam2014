@@ -53,13 +53,19 @@ public class BoardGame {
 				}
 			}
 			this.liste_batiments.get(i).setTemperatureSalle(
-					0.85*this.liste_batiments.get(i).getTemperatureSalle()+(0.15*somme/(double)nb)-delta/1100.);
+					0.95*this.liste_batiments.get(i).getTemperatureSalle()+(0.05*somme/(double)nb)-delta/1100.);
 		}
 
 		for(Chaudiere c : Chaudiere.listeChaudieres){
 			c.chauffe();
 		}
 
+		for(Atelier a : Atelier.listeAtelier){
+			if(a.getFer()>1000){
+				constructionSalle();
+				a.setFer(a.getFer()-1000);
+			}
+		}
 
 		// Tour civil
 		for(int i=0;i<citoyens.size();i++){
@@ -67,6 +73,61 @@ public class BoardGame {
 		}
 
 
+	}
+
+	private void constructionSalle() {
+		final TypeBatiment bats[] = {
+				TypeBatiment.Generateur, 
+				TypeBatiment.Refectoire, 
+				TypeBatiment.Dortoir, 
+				TypeBatiment.Chaudiere, 
+				TypeBatiment.MineDeFer, 
+				TypeBatiment.PuitPetrol, 
+				TypeBatiment.FermeHydroponique, 
+				TypeBatiment.Atelier, 
+				TypeBatiment.Arsenal, 
+				TypeBatiment.Hopital};
+		int nb = (int) (Math.random()*bats.length);
+		int val = bats[nb].getValue();
+		
+		ArrayList<Point> liste = new ArrayList<Point>();
+		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
+		
+		for(Batiment b : boardGame.liste_batiments){
+			int x = b.getPos().x;
+			int y = b.getPos().y;
+			for(int j=0;j<listePts.length;j++){
+				if(x+listePts[j].x>=0 && x+listePts[j].x<BoardGame.getDimensionworldx()&&
+						y+listePts[j].y>=0 && y+listePts[j].y<BoardGame.getDimensionworldy()-2){
+					if(boardGame.getBatiment(x+listePts[j].x, y+listePts[j].y)==null){
+						liste.add(new Point(x+listePts[j].x, y+listePts[j].y));
+					}
+				}
+			}
+		}
+		Point p = (listePts[(int) (Math.random()*listePts.length)]);
+		Batiment bat=null;
+		if(val== TypeBatiment.Generateur.getValue()){
+			bat = new Generateur(p);
+		}else if(val==TypeBatiment.Refectoire.getValue()){
+			bat = new Refectoire(p);
+			((Refectoire)bat).setQuantiteNourriture(20);
+		}else if(val==TypeBatiment.Chaudiere.getValue()){
+			bat = new Chaudiere(p);
+		}else if(val==TypeBatiment.Dortoir.getValue()){
+			bat = new Dortoir(p); 
+		}else if(val==TypeBatiment.MineDeFer.getValue()){
+			bat = new MineDeFer(p); 
+		}else if(val==TypeBatiment.PuitPetrol.getValue()){
+			bat = new PuitPetrol(p); 
+		}else if(val==TypeBatiment.FermeHydroponique.getValue()){
+			bat = new Ferme(p); 
+		}else if(val==TypeBatiment.Atelier.getValue()){
+			bat = new Atelier(p); 
+		}
+		addBatiment(p,bat);
+		
+		julien.game.Game.getInstance().changementCase(p.x, p.y);
 	}
 
 	public void initialisation() {

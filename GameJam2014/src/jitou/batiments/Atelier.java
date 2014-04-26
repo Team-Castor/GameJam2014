@@ -14,6 +14,8 @@ public class Atelier extends Batiment{
 	private double fer = 0.0;
 			
 			
+	
+
 	public Atelier(Point pos) {
 		super(pos, TypeBatiment.Atelier);
 		listeAtelier.add(this);
@@ -34,6 +36,14 @@ public class Atelier extends Batiment{
 		return "Fer : "+fer;
 	}
 	
+	public double getFer() {
+		return fer;
+	}
+
+
+	public void setFer(double fer) {
+		this.fer = fer;
+	}
 
 	
 }

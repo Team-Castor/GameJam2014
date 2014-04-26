@@ -34,7 +34,7 @@ public class PuitPetrol extends Batiment{
 	
 	public void back(Citoyen c) {
 		nb_occupant--;
-		c.setRessourceTransporte(new Ressource( RessourceType.petrole, 2.0));
+		c.setRessourceTransporte(new Ressource( RessourceType.petrole, 4.0));
 		c.getObjectif().rapporterPetrole();
 	}
 	

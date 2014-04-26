@@ -8,7 +8,7 @@ import jitou.global.ObjectifType;
 
 public class Generateur extends Batiment {
 	public static ArrayList<Generateur> listeGenerateurs =  new ArrayList<Generateur>();
-	private final double ratioPetrolToElec = 0.3;
+	private final double ratioPetrolToElec = 0.6;
 	private double electricite = 50;
 	private double workingTime = 500;
 	
