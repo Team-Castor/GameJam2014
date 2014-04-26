@@ -113,5 +113,13 @@ public class SpriteHumain extends Sprite {
 		this.c = c;
 	}
 
+	public boolean actualiser(Game game) {
+		if (c.getEstMort()) {
+			game.getSpritesHumains().remove(this);
+			return true;
+		}
+		return false;
+	}
+
 	
 }
