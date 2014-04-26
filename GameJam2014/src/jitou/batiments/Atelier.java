@@ -29,6 +29,11 @@ public class Atelier extends Batiment{
 		}
 	}
 	
+	
+	public String info() {
+		return "Fer : "+fer;
+	}
+	
 
 	
 }

@@ -12,7 +12,7 @@ public class Dortoir extends Batiment{
 
 	int nb_occupant = 0;
 	int nb_occupant_max = 20;
-	double workingTime=300.0;
+	double workingTime=2300.0;
 			
 			
 	public Dortoir(Point pos) {
@@ -27,7 +27,7 @@ public class Dortoir extends Batiment{
 	public void effet(Citoyen citoyen, ObjectifType type) {
 		if(placeDisponible()){
 			nb_occupant++;
-			citoyen.setFatigue((float) (1000+Math.random()*5000));
+			citoyen.setFatigue((float) (3000+Math.random()*5000));
 			citoyen.setWorkingTime(workingTime);
 		}
 	}
@@ -37,4 +37,8 @@ public class Dortoir extends Batiment{
 		c.getObjectif().reset();
 	}
 	
+	
+	public String info() {
+		return nb_occupant+" / "+nb_occupant_max;
+	}
 }

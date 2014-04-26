@@ -56,5 +56,9 @@ public class Refectoire extends Batiment{
 		c.getObjectif().reset();
 	}
 	
+	public String info() {
+		return "Nourriture: "+quantiteNourriture;
+	}
+	
 }
 

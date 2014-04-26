@@ -14,7 +14,7 @@ public class PuitPetrol extends Batiment{
 
 	int nb_occupant = 0;
 	int nb_occupant_max = 3;
-	double workingTime = 400;
+	double workingTime = 1200;
 	
 	public PuitPetrol(Point pos) {
 		super(pos, TypeBatiment.PuitPetrol);
@@ -34,7 +34,11 @@ public class PuitPetrol extends Batiment{
 	
 	public void back(Citoyen c) {
 		nb_occupant--;
-		c.setRessourceTransporte(new Ressource( RessourceType.petrole, 10));
+		c.setRessourceTransporte(new Ressource( RessourceType.petrole, 2.0));
 		c.getObjectif().rapporterPetrole();
+	}
+	
+	public String info() {
+		return nb_occupant+" / "+nb_occupant_max;
 	}
 }

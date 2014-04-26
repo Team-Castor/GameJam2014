@@ -42,4 +42,8 @@ public class MineDeFer extends Batiment{
 		c.setRessourceTransporte(new Ressource( RessourceType.fer, 5));
 		c.getObjectif().rapporterFer();
 	}
+	
+	public String info() {
+		return nb_occupant+" / "+nb_occupant_max;
+	}
 }

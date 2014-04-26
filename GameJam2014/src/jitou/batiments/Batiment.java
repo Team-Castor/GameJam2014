@@ -67,5 +67,12 @@ public class Batiment {
 
 
 
+	public String info() {
+		return "nothing";
+	}
+
+
+
+
 
 }

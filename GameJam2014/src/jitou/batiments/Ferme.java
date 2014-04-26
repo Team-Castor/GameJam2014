@@ -39,4 +39,7 @@ public class Ferme extends Batiment{
 		c.getObjectif().rapporterNourriture();
 	}
 	
+	public String info() {
+		return nb_occupant+" / "+nb_occupant_max;
+	}
 }

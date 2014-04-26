@@ -14,6 +14,7 @@ public class Case extends Sprite{
 	static private int dimensionX = 175;
 	static private int dimensionY = 175;
 	public int xcor, ycor;
+	public Batiment batiment;
 	
 	public Case (int x , int y, int xcor, int ycor) {
 		super(x,y,dimensionX,dimensionY);
@@ -24,7 +25,7 @@ public class Case extends Sprite{
 			try {
 				img = new Image("julien/images/Terre01.png");
 				img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
-				
+				batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 				img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
 			} catch (SlickException e) {
 				e.printStackTrace();

@@ -103,7 +103,7 @@ public class Objectif {
 
 
 	public void accomplirObjectif(Batiment batiment) {
-		System.out.println("On fait l'objectif dans le "+batiment+" "+type.getValue());
+		//System.out.println("On fait l'objectif dans le "+batiment+" "+type.getValue());
 		batiment.effet(citoyen, type);
 
 	}

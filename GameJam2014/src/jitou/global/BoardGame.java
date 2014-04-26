@@ -36,7 +36,7 @@ public class BoardGame {
 	}
 
 	public void update(int delta){
-		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
+		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1),new Point(0, 0)};
 		for(int i = 0;i<this.liste_batiments.size();i++){
 			int x = liste_batiments.get(i).getPos().x;
 			int y = liste_batiments.get(i).getPos().y;
@@ -53,9 +53,12 @@ public class BoardGame {
 				}
 			}
 			this.liste_batiments.get(i).setTemperatureSalle(
-					this.liste_batiments.get(i).getTemperatureSalle()+(0.7*somme/nb));
+					0.85*this.liste_batiments.get(i).getTemperatureSalle()+(0.15*somme/(double)nb)-delta/1100.);
 		}
 
+		for(Chaudiere c : Chaudiere.listeChaudieres){
+			c.chauffe();
+		}
 
 
 		// Tour civil
@@ -248,6 +251,18 @@ public class BoardGame {
 		for(int i=0;i<PuitPetrol.listePuitsPetrols.size();i++){
 			if(PuitPetrol.listePuitsPetrols.get(i).placeDisponible()){
 				liste.add(PuitPetrol.listePuitsPetrols.get(i));
+			}
+		}
+		if(liste.isEmpty()) return null;
+		else
+			return liste.get((int) (Math.random()*liste.size()));	
+	}
+
+	public Generateur trouverGenerateurAvecElec() {
+		ArrayList<Generateur> liste = new ArrayList<Generateur>() ;
+		for(int i=0;i<Generateur.listeGenerateurs.size();i++){
+			if(Generateur.listeGenerateurs.get(i).getElectricite()>0.0){
+				liste.add(Generateur.listeGenerateurs.get(i));
 			}
 		}
 		if(liste.isEmpty()) return null;

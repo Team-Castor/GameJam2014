@@ -1,6 +1,7 @@
 package julien.game;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import jitou.global.BoardGame;
@@ -18,30 +19,30 @@ import de.matthiasmann.twl.renderer.lwjgl.LWJGLRenderer;
 import de.matthiasmann.twl.theme.ThemeManager;
 
 public class Game  extends BasicGame{
-	
+
 	private static Game instance;
 	private final int defilement = -10;
-	
+
 	private Sprite[] liste;
 	private int points=0;
-	
-    private LWJGLRenderer lwjglRenderer;
-    private ThemeManager theme;
-    private GUI gui;
-    private Widget root;
-    private TWLInputAdapter twlInputAdapter;
-    private BoardGame board;
-    
-    private int offsetX, offsetY;
-    private int containerW, containerH;
-    private int pressedKey;
-    Input input;
-    
-    private ArrayList<Case> casesADessiner = new ArrayList<Case>();
-    private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
-    private static ArrayList<Citoyen> citoyenSansSprite = new ArrayList<Citoyen>();
-    
-    private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
+
+	private LWJGLRenderer lwjglRenderer;
+	private ThemeManager theme;
+	private GUI gui;
+	private Widget root;
+	private TWLInputAdapter twlInputAdapter;
+	private BoardGame board;
+
+	private int offsetX, offsetY;
+	private int containerW, containerH;
+	private int pressedKey;
+	Input input;
+
+	private ArrayList<Case> casesADessiner = new ArrayList<Case>();
+	private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
+	private static ArrayList<Citoyen> citoyenSansSprite = new ArrayList<Citoyen>();
+
+	private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 
 	public Game(String titre) {
 		super(titre);
@@ -49,11 +50,11 @@ public class Game  extends BasicGame{
 
 	public void init(GameContainer container) throws SlickException {
 		input = container.getInput();
-        board = BoardGame.boardGame;
+		board = BoardGame.boardGame;
 		containerH = container.getHeight();
 		containerW = container.getWidth();
 		instance = this;
-		
+
 		int h = board.getDimensionworldy() ;
 		int w = board.getDimensionworldx() ;
 
@@ -69,18 +70,18 @@ public class Game  extends BasicGame{
 	public void keyPressed(int key, char c) {
 		super.keyPressed(key, c);
 		System.out.println("Id : "+key+" , char : "+c);
-		
+
 		pressedKey = key;
 
-		
+
 	}
 	public void keyReleased(int key, char c) {
 		if (key == pressedKey) {
 			pressedKey = 0;
 		}
 	}
-	
-	
+
+
 	public void checkKey() {
 		if (input.isKeyDown(Input.KEY_UP))
 		{
@@ -102,11 +103,11 @@ public class Game  extends BasicGame{
 			offsetX = offsetX - defilement;
 			computeCaseADessiner();
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 	public void mouseClicked(int button,int  x, int  y, int  clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
 		System.out.println("Id : "+button+" , XY : "+x+","+y+" count : "+clickCount);
@@ -117,36 +118,45 @@ public class Game  extends BasicGame{
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		checkKey();
-		
+
 		for (Citoyen c : citoyenSansSprite) {
 			this.spritesHumains.add(new SpriteHumain(c));
 		}
 		citoyenSansSprite.clear();
-		
+		DecimalFormat df = new DecimalFormat("00.0");
+
 		for (int i = 0 ; i < casesADessiner.size() ; i++) {
 			g.drawImage(casesADessiner.get(i).getImage(), casesADessiner.get(i).getX(), casesADessiner.get(i).getY());	
+			if(casesADessiner.get(i).batiment!=null){
+				g.drawString(casesADessiner.get(i).batiment.info(),casesADessiner.get(i).getX(), casesADessiner.get(i).getY());
+				g.drawString(df.format( casesADessiner.get(i).batiment.getTemperatureSalle())+"°C",casesADessiner.get(i).getX(), 
+						casesADessiner.get(i).getY()+julien.map.Case.getDimensionY()-25);
+			//	System.out.println(casesADessiner.get(i).batiment.getTemperatureSalle());
+			}
 		}
-	
+		
+		
+
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
 		for (int i = 0 ; i < spritesHumains.size() ; i++) {
 			if (spritesHumains.get(i).actualiser(this)) i--;
 		}
-		
+
 		for(SpriteHumain cit : spritesHumains){
 			g.drawAnimation(cit.getAnim(), (float)((cit.getC().getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getC().getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
 					(float)(((cit.getC().getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getC().getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1);
-		//	g.drawImage(new SpriteHumain(null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
-		//			(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
-		//	);
+			//	g.drawImage(new SpriteHumain(null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
+			//			(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
+			//	);
 			//g.setColor(Color.red);
 			//g.fillOval((float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2)))-offsetX,
 			//		(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1, (float)10,(float) 10);		
 		}
-		
+
 		//g.drawString("Score : "+points, 100,50);
 
 	}
-	
+
 	public static void addSpriteCitoyen(Citoyen c) {
 		Game.citoyenSansSprite.add(c);
 		//Game.spritesHumains.add(new SpriteHumain(c));
@@ -155,26 +165,26 @@ public class Game  extends BasicGame{
 
 	public void update(GameContainer container, int delta) throws SlickException {
 		board.update(delta);
-		
+
 		containerH = container.getHeight();
 		containerW = container.getWidth();
 
 	}
-	
+
 	private void computeCaseADessiner() {
 		int h = board.getDimensionworldy() ;
 		int w = board.getDimensionworldx() ;
-		
+
 		for (int i = 0 ; i < casesHorsEcran.size(); i++) {
 			if (batimentIsOnScreen(casesHorsEcran.get(i).getXcor(),casesHorsEcran.get(i).getYcor())) {
 				casesADessiner.add(casesHorsEcran.get(i));
 				casesHorsEcran.remove(i);
 				i--;
-			//	System.out.println("cases �� pas dessiner : " + casesHorsEcran.size());
+				//	System.out.println("cases �� pas dessiner : " + casesHorsEcran.size());
 
 			}
 		}
-		
+
 		for (int i = 0 ; i < casesADessiner.size(); i++) {
 			if (!batimentIsOnScreen(casesADessiner.get(i).getXcor(),casesADessiner.get(i).getYcor())) {
 				casesHorsEcran.add(casesADessiner.get(i));
@@ -187,7 +197,7 @@ public class Game  extends BasicGame{
 			}
 		}
 		//	System.out.println("cases �� dessiner : " + casesADessiner.size());
-		
+
 		/*
 		for (int x = 0 ; x < w ; x++) {
 			for (int y = 0 ; y < h ; y++) {
@@ -197,21 +207,21 @@ public class Game  extends BasicGame{
 			}
 		}*/
 	}
-	
+
 	private boolean batimentIsOnScreen(int x, int y) {
 		int xmin = x*Case.getDimensionX() - offsetX;
 		int ymin = y*Case.getDimensionY() - offsetY;
 
 		if (xmin + Case.getDimensionX() >= 0 &&
-			ymin + Case.getDimensionY() >= 0 &&
-			xmin < containerW &&
-			ymin < containerH
-			) {
+				ymin + Case.getDimensionY() >= 0 &&
+				xmin < containerW &&
+				ymin < containerH
+				) {
 			return true;
 		}
-		
+
 		return false;
-		
+
 	}
 
 	public static Game getInstance() {
@@ -370,5 +380,5 @@ public class Game  extends BasicGame{
 		Game.instance = instance;
 	}
 
-	
+
 }

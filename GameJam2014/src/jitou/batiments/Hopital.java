@@ -19,4 +19,7 @@ public class Hopital extends Batiment{
 		return nb_occupant<nb_occupant_max;
 	}
 	
+	public String info() {
+		return nb_occupant+" / "+nb_occupant_max;
+	}
 }
