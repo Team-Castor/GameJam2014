@@ -1,16 +1,17 @@
 package jitou.batiments;
 
+import java.awt.Point;
+
 public class Batiment {
-	private int posX, posY;
+	private Point pos;
 	private TypeBatiment type;
 	private Batiment voisins[] = new Batiment[4];
 
 
 
 
-	Batiment(int posX, int posY, TypeBatiment type){
-		this.posX=posX;
-		this.posY=posY;
+	Batiment(Point pos, TypeBatiment type){
+		this.pos=pos;
 		this.type=type;
 
 		voisins[Orientation.est.getValue()]		=null;

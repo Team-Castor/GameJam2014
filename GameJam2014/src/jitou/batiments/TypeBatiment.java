@@ -16,7 +16,7 @@ public enum TypeBatiment {
 	public String getNom() {
 		return nom;
 	}
-	public int getValue() {
+	public final int getValue() {
 		return value;
 	}
 }
