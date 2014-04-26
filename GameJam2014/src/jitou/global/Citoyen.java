@@ -11,6 +11,7 @@ import julien.game.Game;
 public class Citoyen {
 	//private Point  	pos;
 	private int posX, posY;
+	private boolean estMort = false;
 	
 	private Point2D posInside;
 	private float nourritureRestante, temperatureCorporelle, fatigue;
@@ -24,7 +25,7 @@ public class Citoyen {
 
 
 	public Citoyen(Point pos){
-		this(pos, 3000f, 32.5f, (float) (1000+Math.random()*5000));
+		this(pos, 4000f, 32.5f, (float) (1000+Math.random()*5000));
 	}
 
 	public Citoyen(Point pos, float nourritureRestante, float temperatureCorporelle, float fatigue){
@@ -151,8 +152,22 @@ public class Citoyen {
 		//System.out.println(this+"  "+pos+"-> "+this.posInside+"  ");
 
 
+		testSurvie();
 	}
-
+	
+	
+	public void testSurvie(){
+		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<0){
+			BoardGame.boardGame.killCitoyen(this);
+			estMort=true;
+		}
+	}
+	
+	public boolean getEstMort(){
+		return estMort;
+	}
+	
+	
 	public boolean estActif(){
 		return workingTime>0;
 	}
@@ -227,7 +242,7 @@ public class Citoyen {
 	}
 
 	public void mange(double d) {
-		nourritureRestante+=d*2000.0;
+		nourritureRestante+=d*2500.0+Math.random()*1000;
 	}
 
 

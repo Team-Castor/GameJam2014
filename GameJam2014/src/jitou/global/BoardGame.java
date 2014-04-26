@@ -101,6 +101,7 @@ public class BoardGame {
 				bat = new Generateur(positionPossible[i]);
 			}else if(val==TypeBatiment.Refectoire.getValue()){
 				bat = new Refectoire(positionPossible[i]);
+				((Refectoire)bat).setQuantiteNourriture(20);
 			}else if(val==TypeBatiment.Chaudiere.getValue()){
 				bat = new Chaudiere(positionPossible[i]);
 			}else if(val==TypeBatiment.Dortoir.getValue()){
@@ -123,7 +124,7 @@ public class BoardGame {
 			j = (j+1)%batimentDepart.length;
 		}
 		System.out.println(liste_batiments);
-		for(int i=0;i<5;i++){
+		for(int i=0;i<15;i++){
 			citoyens.add(new Citoyen(positionPossible[(int) (Math.random()*positionPossible.length)]));
 		}
 	}
@@ -318,5 +319,11 @@ public class BoardGame {
 
 
 		}
+	}
+
+	
+	public void killCitoyen(Citoyen citoyen) {
+		System.out.println("Mort : "+citoyen.getFatigue()+" , "+citoyen.getNourritureRestante()+" , "+citoyen.getTemperatureCorporelle());
+		boardGame.getCitoyens().remove(citoyen);
 	}
 }

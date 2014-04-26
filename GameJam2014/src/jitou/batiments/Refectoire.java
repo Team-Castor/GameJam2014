@@ -36,6 +36,8 @@ public class Refectoire extends Batiment{
 				quantiteNourriture-=q;
 				citoyen.mange(1.0);
 				citoyen.setWorkingTime(tempsManger);
+				System.out.println("Miam");
+
 			}
 		}else if(type.getValue()==ObjectifType.rapporterNourritureRefectoir.getValue()){
 			if(quantiteNourriture>=0.0){
