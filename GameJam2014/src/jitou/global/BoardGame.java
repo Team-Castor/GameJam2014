@@ -131,12 +131,8 @@ public class BoardGame {
 
 
 
-	   public static ArrayList<Point> findPath( int x, int y,  ArrayList<Point>  path) {
-	        
-	        return null;
-	    }
-	   
-	   public static int getDimensionworldx() {
+
+	public static int getDimensionworldx() {
 		return dimensionWorldX;
 	}
 
@@ -144,25 +140,50 @@ public class BoardGame {
 		return dimensionWorldY;
 	}
 
-	public static ArrayList<Point> findPath( int x, int y, boolean[][] passed, ArrayList<Point>  path) {
-	        passed[x][y] = true;
-	        path.add(new Point(x,y));
-	        
-	        if(x==boardGame.dimensionWorldX-1&&y==boardGame.dimensionWorldY-1) return path;
-	        ArrayList<Point> temp=null;
-	        
-	        if(x<boardGame.dimensionWorldX-1&& boardGame.getBatiment(x+1,y)!=null&&!passed[x+1][y]) temp = findPath(x+1,y,passed,path);
-	        if(temp!=null) return temp;
-	        if(y<boardGame.dimensionWorldY-1&& boardGame.getBatiment(x,y+1)!=null&&!passed[x][y+1]) temp = findPath(x,y+1,passed,path);
-	        if(temp!=null) return temp;
-	        if(x>0&& boardGame.getBatiment(x-1,y)!=null&&!passed[x-1][y]) temp = findPath(x-1,y,passed,path);
-	        if(temp!=null) return temp;
-	        if(y>0&& boardGame.getBatiment(x,y-1)!=null&&!passed[x][y-1]) temp = findPath(x,y-1,passed,path);
-	        if(temp!=null) return temp;
-	        
-	        path.remove(path.size()-1);
-	        return null;
-	    }
+	public static ArrayList<Point> findPath( Point depart, Point Fin)
+	{
+		ArrayList<Point>  path 	= new ArrayList<Point> ();
+		int distance[][] 		= new int[getDimensionworldx()][getDimensionworldy()];
+		for(int x=0;x<getDimensionworldx();x++){
+			for(int y=0;y<getDimensionworldy();y++){
+				distance[x][y] = 100000;
+			}
+		}
+
+
+		Batiment batiments[][] 	= new Batiment[getDimensionworldx()][getDimensionworldy()];
+
+
+		return path;
+	}
+
+
+	public static void findPath( int x, int y, Point f, int distance[][],Batiment batiments[][], int poids, Batiment bat) {
+
+		if(poids<distance[f.x][f.y]){
+			distance[f.x][f.y]  = poids;
+			batiments[f.x][f.y] = bat;
+
+			if(x==f.x&& y==f.y ){
+				//Oui !!!
+			}
+			else{
+				if(x>0){
+					if(boardGame.getBatiment(x-1, y)!=null){
+						findPath(x-1, y, f, distance, batiments, poids+1,boardGame.getBatiment(x-1, y) );
+					}
+				}
+				else if(x<boardGame.getDimensionworldx()-1){
+					if(boardGame.getBatiment(x+1, y)!=null){
+						findPath(x+1, y, f, distance, batiments, poids+1,boardGame.getBatiment(x+1, y) );
+					}
+				}
+			}
+
+		}
+
+
+	}
 
 
 }
