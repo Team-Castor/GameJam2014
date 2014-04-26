@@ -81,6 +81,7 @@ public class Objectif {
 	
 	public void accomplirObjectif(Batiment batiment) {
 		System.out.println("On fait l'objectif!");
+		batiment.effet(citoyen, type);
 		
 		//Apres on reinitialise
 		seRendre 	= null;

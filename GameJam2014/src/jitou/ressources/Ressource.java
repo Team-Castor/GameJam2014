@@ -8,4 +8,22 @@ public class Ressource {
 		this.typeRessource = typeRessource;
 		this.quantite = quantite;
 	}
+
+	public RessourceType getTypeRessource() {
+		return typeRessource;
+	}
+
+	public void setTypeRessource(RessourceType typeRessource) {
+		this.typeRessource = typeRessource;
+	}
+
+	public double getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(double quantite) {
+		this.quantite = quantite;
+	}
+	
+	
 }
