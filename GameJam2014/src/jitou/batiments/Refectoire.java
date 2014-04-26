@@ -11,7 +11,7 @@ public class Refectoire extends Batiment{
 
 	private double quantiteNourriture = 0.0;
 	private double tempsManger = 60.0;
-	private double tempsRangerNourriture = 60.0;
+	private double tempsRangerNourriture = 200.0;
 
 
 	public Refectoire(Point pos) {
@@ -32,7 +32,7 @@ public class Refectoire extends Batiment{
 
 		if(type.getValue()==ObjectifType.manger.getValue()){
 			if(quantiteNourriture>=1.0){
-				double q = 15.0;
+				double q = Math.min(quantiteNourriture, 5.0);
 				quantiteNourriture-=q;
 				citoyen.mange(q);
 				citoyen.setWorkingTime(tempsManger);

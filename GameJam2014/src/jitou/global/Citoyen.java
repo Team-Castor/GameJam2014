@@ -18,7 +18,7 @@ public class Citoyen {
 	private Ressource ressourceTransporte;
 	private Objectif objectif=null;
 	private Maladie maladie = null;
-
+	
 
 	private double workingTime;
 	private ArrayList<Batiment> pathfinder = null;
@@ -56,10 +56,13 @@ public class Citoyen {
 
 		if(workingTime>=0.0){
 			workingTime = workingTime - delta;
+			
+
 			if(workingTime<0.0){
 				pathfinder = null;
 				objectif.getSeRendre().back(this);
-			}
+			}	
+			
 		}
 		else{
 			if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
@@ -243,7 +246,7 @@ public class Citoyen {
 	}
 
 	public void mange(double d) {
-		nourritureRestante+=d*500.0+Math.random()*1000;
+		nourritureRestante+=d*1000.0+Math.random()*1000;
 	}
 
 

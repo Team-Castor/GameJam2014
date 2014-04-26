@@ -61,9 +61,10 @@ public class BoardGame {
 		}
 
 		for(Atelier a : Atelier.listeAtelier){
-			if(a.getFer()>1000){
+			double prix = this.liste_batiments.size()*1+10;
+			if(a.getFer()>prix){
 				constructionSalle();
-				a.setFer(a.getFer()-1000);
+				a.setFer(a.getFer()-prix);
 			}
 		}
 
@@ -89,29 +90,31 @@ public class BoardGame {
 				TypeBatiment.Hopital};
 		int nb = (int) (Math.random()*bats.length);
 		int val = bats[nb].getValue();
-		
+
 		ArrayList<Point> liste = new ArrayList<Point>();
 		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
-		
+
 		for(Batiment b : boardGame.liste_batiments){
 			int x = b.getPos().x;
 			int y = b.getPos().y;
+
 			for(int j=0;j<listePts.length;j++){
-				if(x+listePts[j].x>=0 && x+listePts[j].x<BoardGame.getDimensionworldx()&&
+				if(x+listePts[j].x>=0 && x+listePts[j].x<BoardGame.getDimensionworldx() &&
 						y+listePts[j].y>=0 && y+listePts[j].y<BoardGame.getDimensionworldy()-2){
 					if(boardGame.getBatiment(x+listePts[j].x, y+listePts[j].y)==null){
-						liste.add(new Point(x+listePts[j].x, y+listePts[j].y));
+						liste.add(new Point((x+listePts[j].x), (y+listePts[j].y)));
 					}
 				}
 			}
 		}
-		Point p = (listePts[(int) (Math.random()*listePts.length)]);
+
+		Point p = (liste.get((int) (Math.random()*liste.size())));
+		System.out.println("Construction "+p);
 		Batiment bat=null;
 		if(val== TypeBatiment.Generateur.getValue()){
 			bat = new Generateur(p);
 		}else if(val==TypeBatiment.Refectoire.getValue()){
 			bat = new Refectoire(p);
-			((Refectoire)bat).setQuantiteNourriture(20);
 		}else if(val==TypeBatiment.Chaudiere.getValue()){
 			bat = new Chaudiere(p);
 		}else if(val==TypeBatiment.Dortoir.getValue()){
@@ -124,9 +127,13 @@ public class BoardGame {
 			bat = new Ferme(p); 
 		}else if(val==TypeBatiment.Atelier.getValue()){
 			bat = new Atelier(p); 
+		}else if(val==TypeBatiment.Hopital.getValue()){
+			bat = new Hopital(p); 
+		}else if(val==TypeBatiment.Arsenal.getValue()){
+			bat = new Arsenal(p); 
 		}
 		addBatiment(p,bat);
-		
+
 		julien.game.Game.getInstance().changementCase(p.x, p.y);
 	}
 
@@ -356,8 +363,8 @@ public class BoardGame {
 				b = batiments[b.getPos().x][b.getPos().y];
 			}
 		}
-	
-		
+
+
 		//	System.out.println(boardGame.getListeBatiments());
 		//	System.out.println(depart+"  "+batiments[depart.x][depart.y]);
 		path.add(boardGame.getBatiment(depart.x,depart.y));
@@ -397,7 +404,7 @@ public class BoardGame {
 		}
 	}
 
-	
+
 	public void killCitoyen(Citoyen citoyen) {
 		System.out.println("Mort : "+citoyen.getFatigue()+" , "+citoyen.getNourritureRestante()+" , "+citoyen.getTemperatureCorporelle());
 		boardGame.getCitoyens().remove(citoyen);
