@@ -282,8 +282,8 @@ public class BoardGame {
 		}
 	
 		
-		System.out.println(boardGame.getListeBatiments());
-		System.out.println(depart+"  "+batiments[depart.x][depart.y]);
+		//	System.out.println(boardGame.getListeBatiments());
+		//	System.out.println(depart+"  "+batiments[depart.x][depart.y]);
 		path.add(boardGame.getBatiment(depart.x,depart.y));
 
 		Collections.reverse(path);
