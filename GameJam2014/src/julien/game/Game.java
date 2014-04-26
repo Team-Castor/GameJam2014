@@ -127,7 +127,9 @@ public class Game  extends BasicGame{
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		checkKey();
 		
-		drawCartes(container,g);
+		for(int i=0;i<this.gCartes.size();i++){
+			gCartes.get(i).survolDecalage(input.getMouseX(),input.getMouseY());
+		}
 
 		for (Citoyen c : citoyenSansSprite) {
 			this.spritesHumains.add(new SpriteHumain(c));
@@ -178,13 +180,6 @@ public class Game  extends BasicGame{
 		}
 	}
 	
-	private void drawCartes(GameContainer container, Graphics g) {
-		
-		for (int i = 0 ; i < gCartes.size() ; i++) {
-			
-		}
-		
-	}
 
 	public static void addSpriteCitoyen(Citoyen c) {
 		Game.citoyenSansSprite.add(c);

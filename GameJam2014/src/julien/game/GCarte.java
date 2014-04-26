@@ -18,6 +18,11 @@ public class GCarte extends Sprite{
 	static private int dimensionY = 300;
 	static private int decalX = 40;
 	static private int decalY = 15;
+	static private int vitesseDecalage = 8;
+	static private int decalageMin = 20;
+	static private int decalageMax = 300;
+	
+	private int decalage = decalageMin;
 	public int xcor, ycor;
 	public Batiment batiment;
 	Carte carte;
@@ -29,6 +34,20 @@ public class GCarte extends Sprite{
 		
 	}
 
+	public void decaler() {
+		if (decalage < decalageMax) {
+			decalage += vitesseDecalage;
+			this.y = - getDimensionY() + decalage;
+		}
+	}
+	
+	public void recaler() {
+		if (decalage > decalageMin) {
+			decalage -= vitesseDecalage;
+			this.y = - getDimensionY() + decalage;
+		}
+	}
+	
 	public static int getDimensionX() {
 		return dimensionX;
 	}
@@ -69,16 +88,22 @@ public class GCarte extends Sprite{
 			} else {
 				carte.selectionBien();
 			}
-			
 		}
-		
 		return x>this.x && x<this.x+w &&  y>this.y && y<this.y+h;
+	}
+	
+	public void survolDecalage(int x, int y){
+		if (x>this.x && x<this.x+w &&  y>this.y && y<this.y+h) {
+			decaler();
+		} else {
+			recaler();
+		}
 	}
 
 	public void redraw(int i, GameContainer container) {
 		
 		this.x = (decalX * (i + 1)) + (dimensionX * i);
-		this.y = 0;//container.getHeight() - getDimensionY();;
+		this.y = - getDimensionY() + decalageMin;//container.getHeight() - getDimensionY();;
 		
 		try {
 			img = new Image("julien/images/carte.png");
