@@ -128,6 +128,10 @@ public class Game  extends BasicGame{
 		}
 	
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
+		for (int i = 0 ; i < spritesHumains.size() ; i++) {
+			if (spritesHumains.get(i).actualiser(this)) i--;
+		}
+		
 		for(SpriteHumain cit : spritesHumains){
 			g.drawAnimation(cit.getAnim(), (float)((cit.getC().getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getC().getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
 					(float)(((cit.getC().getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getC().getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1);
@@ -150,7 +154,7 @@ public class Game  extends BasicGame{
 
 
 	public void update(GameContainer container, int delta) throws SlickException {
-		board.update(delta);
+		//board.update(delta);
 		
 		containerH = container.getHeight();
 		containerW = container.getWidth();
@@ -212,6 +216,158 @@ public class Game  extends BasicGame{
 
 	public static Game getInstance() {
 		return instance;
+	}
+
+	public Sprite[] getListe() {
+		return liste;
+	}
+
+	public void setListe(Sprite[] liste) {
+		this.liste = liste;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public LWJGLRenderer getLwjglRenderer() {
+		return lwjglRenderer;
+	}
+
+	public void setLwjglRenderer(LWJGLRenderer lwjglRenderer) {
+		this.lwjglRenderer = lwjglRenderer;
+	}
+
+	public ThemeManager getTheme() {
+		return theme;
+	}
+
+	public void setTheme(ThemeManager theme) {
+		this.theme = theme;
+	}
+
+	public GUI getGui() {
+		return gui;
+	}
+
+	public void setGui(GUI gui) {
+		this.gui = gui;
+	}
+
+	public Widget getRoot() {
+		return root;
+	}
+
+	public void setRoot(Widget root) {
+		this.root = root;
+	}
+
+	public TWLInputAdapter getTwlInputAdapter() {
+		return twlInputAdapter;
+	}
+
+	public void setTwlInputAdapter(TWLInputAdapter twlInputAdapter) {
+		this.twlInputAdapter = twlInputAdapter;
+	}
+
+	public BoardGame getBoard() {
+		return board;
+	}
+
+	public void setBoard(BoardGame board) {
+		this.board = board;
+	}
+
+	public int getOffsetX() {
+		return offsetX;
+	}
+
+	public void setOffsetX(int offsetX) {
+		this.offsetX = offsetX;
+	}
+
+	public int getOffsetY() {
+		return offsetY;
+	}
+
+	public void setOffsetY(int offsetY) {
+		this.offsetY = offsetY;
+	}
+
+	public int getContainerW() {
+		return containerW;
+	}
+
+	public void setContainerW(int containerW) {
+		this.containerW = containerW;
+	}
+
+	public int getContainerH() {
+		return containerH;
+	}
+
+	public void setContainerH(int containerH) {
+		this.containerH = containerH;
+	}
+
+	public int getPressedKey() {
+		return pressedKey;
+	}
+
+	public void setPressedKey(int pressedKey) {
+		this.pressedKey = pressedKey;
+	}
+
+	public Input getInput() {
+		return input;
+	}
+
+	public void setInput(Input input) {
+		this.input = input;
+	}
+
+	public ArrayList<Case> getCasesADessiner() {
+		return casesADessiner;
+	}
+
+	public void setCasesADessiner(ArrayList<Case> casesADessiner) {
+		this.casesADessiner = casesADessiner;
+	}
+
+	public ArrayList<Case> getCasesHorsEcran() {
+		return casesHorsEcran;
+	}
+
+	public void setCasesHorsEcran(ArrayList<Case> casesHorsEcran) {
+		this.casesHorsEcran = casesHorsEcran;
+	}
+
+	public static ArrayList<Citoyen> getCitoyenSansSprite() {
+		return citoyenSansSprite;
+	}
+
+	public static void setCitoyenSansSprite(ArrayList<Citoyen> citoyenSansSprite) {
+		Game.citoyenSansSprite = citoyenSansSprite;
+	}
+
+	public ArrayList<SpriteHumain> getSpritesHumains() {
+		return spritesHumains;
+	}
+
+	public void setSpritesHumains(ArrayList<SpriteHumain> spritesHumains) {
+		this.spritesHumains = spritesHumains;
+	}
+
+	public int getDefilement() {
+		return defilement;
+	}
+
+	public static void setInstance(Game instance) {
+		Game.instance = instance;
 	}
 
 	
