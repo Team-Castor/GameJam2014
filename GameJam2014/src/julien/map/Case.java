@@ -11,8 +11,8 @@ import julien.game.Sprite;
 
 public class Case extends Sprite{
 
-	static private int dimensionX = 100;
-	static private int dimensionY = 100;
+	static private int dimensionX = 75;
+	static private int dimensionY = 75;
 	public int xcor, ycor;
 	
 	public Case (int x , int y, int xcor, int ycor) {

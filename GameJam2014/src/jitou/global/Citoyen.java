@@ -41,7 +41,6 @@ public class Citoyen {
 		//temperatureCorporelle += BoardGame.boardGame.getBatiment(pos.x, pos.y).getTemperatureSalle()*0.1;
 		nourritureRestante-=delta;
 		fatigue -=delta;
-		System.out.println("update 1 : "+BoardGame.boardGame.getListeBatiments());
 
 		if(workingTime>=0.0){
 			workingTime = workingTime - delta;
@@ -55,27 +54,21 @@ public class Citoyen {
 				pathfinder = null;
 				objectif.trouverNouvelObjectif();
 			}else{
-				//System.out.println("Time "+objectif.getType().getValue()+"  "+fatigue);
 
 				if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 
 				}else{
-					//System.out.println(workingTime+"pathfinder  : "+  pathfinder);
-
 					if(objectif.getSeRendre()!=null){
-						System.out.println("update 3 : "+BoardGame.boardGame.getListeBatiments());
 						if(pathfinder == null){
 							pathfinder = BoardGame.findPath(pos, objectif.getSeRendre().getPos() );
 						}
 		
 						if(pathfinder.size()>0){
 							Point vers = new Point(pathfinder.get(0).getPos());
-							//System.out.println(this.pos+"  "+this.posInside+"  "+vers+"  "+pathfinder);
 
 							int dx = vers.x - pos.x;
 							int dy = vers.y - pos.y;
 							if(dx!=0 || dy!=0){//On va changer de case
-								//System.out.println(dx+" , "+dy);
 								posInside.setLocation(
 										posInside.getX()+dx*delta/facteurDiv,
 										posInside.getY()+dy*delta/facteurDiv);
@@ -102,7 +95,6 @@ public class Citoyen {
 
 								if(posInside.distance(0.0, 0.0)<0.2){
 
-									//System.out.println("Remove path");
 									pathfinder.remove(0);
 
 									if(pathfinder.size()>0){//Changement de case
@@ -131,7 +123,6 @@ public class Citoyen {
 
 		}
 		
-		System.out.println("update 2 : "+BoardGame.boardGame.getListeBatiments());
 
 	}
 
