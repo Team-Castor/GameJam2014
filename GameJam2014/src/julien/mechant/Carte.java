@@ -12,8 +12,9 @@ public class Carte {
 	}
 	
 	public boolean selectionBien() {
+		System.out.println("Selection du bien");
 		if (effetBien.estJouable()) {
-			jouer();
+			jouer(effetBien);
 			return true;
 		} else {
 			return false;
@@ -21,16 +22,19 @@ public class Carte {
 	}
 	
 	public boolean selectionMal() {
+		System.out.println("Selection du mal");
 		if (effetMal.estJouable()) {
-			jouer();
+			System.out.println("Jouable!");
+			jouer(effetMal);
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	public void jouer() {
+	public void jouer(Effet e) {
 		Mechant.getInstance().defausser(this);
+		e.appliquer();
 	}
 
 	public Effet getEffetBien() {

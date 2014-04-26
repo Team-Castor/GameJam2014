@@ -2,6 +2,7 @@ package julien.mechant;
 
 import java.util.ArrayList;
 
+import julien.game.Game;
 import julien.mechant.effets.BIEN_direBonjour;
 import julien.mechant.effets.MAL_direCaca;
 
@@ -19,11 +20,12 @@ public class Mechant {
 		energies[0] = new EnergieMal(TypeEnergie.foi,100);
 		energies[1] = new EnergieMal(TypeEnergie.joie,100);
 		energies[2] = new EnergieMal(TypeEnergie.espoir,100);
-		
+	}
+	
+	public void premierePioche() {
 		for (int i = 0 ; i < tailleMain ; i++) {
 			piocher();
 		}
-
 	}
 
 	public static Mechant getInstance() {
@@ -32,12 +34,12 @@ public class Mechant {
 
 	public void defausser(Carte carte) {
 		cartes.remove(carte);
-		piocher(); //On recomplete la main
-		
+		piocher(); //On recomplete la main		
 	}
 	
 	public void piocher() {
 		cartes.add(new Carte(new BIEN_direBonjour() , new MAL_direCaca()));
+		Game.getInstance().redefinirLesCartes();
 	}
 
 	public void changerRessource(TypeEnergie type, int i) {

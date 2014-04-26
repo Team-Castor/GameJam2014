@@ -33,6 +33,7 @@ public class Game  extends BasicGame{
 	private Widget root;
 	private TWLInputAdapter twlInputAdapter;
 	private BoardGame board;
+	private GameContainer container;
 
 	private int offsetX, offsetY;
 	private int containerW, containerH;
@@ -52,10 +53,12 @@ public class Game  extends BasicGame{
 
 	public void init(GameContainer container) throws SlickException {
 		input = container.getInput();
+		this.container = container;
 		board = BoardGame.boardGame;
 		containerH = container.getHeight();
 		containerW = container.getWidth();
 		instance = this;
+		Mechant.getInstance().premierePioche();
 
 		int h = board.getDimensionworldy() ;
 		int w = board.getDimensionworldx() ;
@@ -112,7 +115,10 @@ public class Game  extends BasicGame{
 
 	public void mouseClicked(int button,int  x, int  y, int  clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
-		System.out.println("Id : "+button+" , XY : "+x+","+y+" count : "+clickCount);
+		
+		for(int i=0;i<this.gCartes.size();i++){
+			gCartes.get(i).collision(x, y);
+		}
 
 	}
 
@@ -139,7 +145,7 @@ public class Game  extends BasicGame{
 			}
 		}
 		
-		
+
 
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
 		for (int i = 0 ; i < spritesHumains.size() ; i++) {
@@ -158,10 +164,19 @@ public class Game  extends BasicGame{
 		}
 
 		//g.drawString("Score : "+points, 100,50);
+		
+		for (GCarte carte : gCartes) {
+			g.drawImage(carte.getImage(), carte.getX(), carte.getY());	
+		}
 
 	}
 
-	//public void 
+	public void redefinirLesCartes() {
+		gCartes.clear();
+		for (int i = 0 ; i < Mechant.getInstance().getCartes().size(); i++) {
+			gCartes.add(new GCarte(Mechant.getInstance().getCartes().get(i),i,container));
+		}
+	}
 	
 	private void drawCartes(GameContainer container, Graphics g) {
 		
