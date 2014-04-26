@@ -154,7 +154,7 @@ public class Game  extends BasicGame{
 
 
 	public void update(GameContainer container, int delta) throws SlickException {
-		//board.update(delta);
+		board.update(delta);
 		
 		containerH = container.getHeight();
 		containerW = container.getWidth();
