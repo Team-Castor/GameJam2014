@@ -32,6 +32,7 @@ public class Game  extends BasicGame{
     
     private int offsetX, offsetY;
     private int containerW, containerH;
+    private int pressedKey;
     
     private ArrayList<Case> casesADessiner = new ArrayList<Case>();
     private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
@@ -62,41 +63,52 @@ public class Game  extends BasicGame{
 		super.keyPressed(key, c);
 		System.out.println("Id : "+key+" , char : "+c);
 		
-		switch (key) {
-		
-		case 203 : offsetX =- defilement;
-					computeCaseADessiner();
-			
-		case 205 : offsetX =+ defilement;
-					computeCaseADessiner();
-				
-		
-		break;
-		
-		}
+		pressedKey = key;
 
 		
 	}
 	public void keyReleased(int key, char c) {
-		super.keyReleased(key, c);
-		System.out.println("Id : "+key+" , char : "+c);
+		if (key == pressedKey) {
+			pressedKey = 0;
+		}
 	}
+	
+	
+	public void checkKey() {
+		switch (pressedKey) {
+		
+		case 203 : offsetX = offsetX + defilement;
+					computeCaseADessiner();
+					break;
+			
+		case 205 : offsetX = offsetX - defilement;
+					computeCaseADessiner();
+					break;
+				
+		case 200 : offsetY = offsetY - defilement;
+					computeCaseADessiner();
+					break;
+
+		case 208 : offsetY = offsetY + defilement;
+					computeCaseADessiner();
+					break;
+		
+		default : break;
+		}
+	}
+	
+	
 	public void mouseClicked(int button,int  x, int  y, int  clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
 		System.out.println("Id : "+button+" , XY : "+x+","+y+" count : "+clickCount);
-		for(int i=0;i<this.liste.length;i++){
-			boolean ok = liste[i].collision(x, y);
-			if(ok){
-				System.out.println("Collision !");
-				points++;
-			}
-		}
+
 	}
 
 
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
-	
+		checkKey();
+		
 		for (int i = 0 ; i < casesADessiner.size() ; i++) {
 			g.drawImage(casesADessiner.get(i).getImage(), casesADessiner.get(i).getX(), casesADessiner.get(i).getY());	
 		}
@@ -104,8 +116,8 @@ public class Game  extends BasicGame{
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
 		for(Citoyen cit : citoyens){
 			g.setColor(Color.red);
-			g.fillOval((float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))),
-					(float)((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2))), (float)10,(float) 10);		
+			g.fillOval((float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2)))-offsetX,
+					(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1, (float)10,(float) 10);		
 		}
 		
 		//g.drawString("Score : "+points, 100,50);
@@ -142,6 +154,9 @@ public class Game  extends BasicGame{
 				casesADessiner.remove(i);
 				i--;
 				System.out.println("cases à dessiner : " + casesADessiner.size());
+			}
+			else {
+				casesADessiner.get(i).calculerPosition(offsetX,offsetY,containerH);
 			}
 		}
 		System.out.println("cases à dessiner : " + casesADessiner.size());

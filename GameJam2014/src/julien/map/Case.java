@@ -77,6 +77,14 @@ public class Case extends Sprite{
 	public void setYcor(int ycor) {
 		this.ycor = ycor;
 	}
+
+	public void calculerPosition(int offsetX, int offsetY, int h) {
+		x = xcor*Case.getDimensionX()-offsetX;
+		y = (ycor*Case.getDimensionY()-offsetY - h) * -1 - Case.getDimensionY();
+		
+		
+
+	}
 	
 	
 	
