@@ -49,7 +49,7 @@ public class Citoyen {
 		final  double facteurDiv = 200.0;
 		//System.out.println(BoardGame.boardGame.getListeBatiments());
 
-		System.out.println(this+"  "+posX+" "+this.posInside+"  "+delta/200.+" "+workingTime+"  "+pathfinder);
+		//System.out.println(this+"  "+posX+" "+this.posInside+"  "+delta/200.+" "+workingTime+"  "+pathfinder);
 		temperatureCorporelle += BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.1;
 		nourritureRestante		-= delta;
 		fatigue 				-= delta;
