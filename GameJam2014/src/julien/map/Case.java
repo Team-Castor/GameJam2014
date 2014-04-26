@@ -5,6 +5,7 @@ import org.newdawn.slick.SlickException;
 
 import jitou.batiments.Batiment;
 import jitou.batiments.TypeBatiment;
+import jitou.global.BoardGame;
 import julien.game.Sprite;
 
 public class Case extends Sprite{
@@ -18,16 +19,30 @@ public class Case extends Sprite{
 		this.xcor = xcor;
 		this.ycor = ycor;
 		
-		try {
-			img = new Image((int)w,(int)h);
-			img.getGraphics().drawRect(0, 0, w-1, h-1);
+		if (BoardGame.boardGame.getBatiment(xcor, ycor) != null) {
+			try {
+				img = new Image((int)w,(int)h);
+				img.getGraphics().drawRect(0, 0, w-1, h-1);
 
-			img.getGraphics().drawLine(0, 0,w,h);
-			img.getGraphics().drawLine(w, 0,0,h);
-		} catch (SlickException e) {
-			e.printStackTrace();
+				img.getGraphics().drawLine(0, 0,w,h);
+				img.getGraphics().drawLine(w, 0,0,h);
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+			img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
+		} else {
+			try {
+				img = new Image((int)w,(int)h);
+				img.getGraphics().drawRect(0, 0, w-1, h-1);
+
+				img.getGraphics().drawLine(0, 0,w,h);
+				img.getGraphics().drawLine(w, 0,0,h);
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+			img.setImageColor(0, 0,0);
 		}
-		img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
+
 		
 	}
 

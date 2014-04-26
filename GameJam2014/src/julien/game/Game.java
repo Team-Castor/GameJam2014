@@ -58,16 +58,17 @@ public class Game  extends BasicGame{
 		
 		switch (key) {
 		
-		case 203 :
+		case 203 : offsetX =- defilement;
+					computeCaseADessiner();
+			
+		case 205 : offsetX =+ defilement;
+					computeCaseADessiner();
+				
+		
+		break;
 		
 		}
-		
-		if (key == 203) { //flêche gauche
-			offsetX =- defilement;
-		}
-		else if (key == 203) { //flêche gauche
-			offsetX =- defilement;
-		}
+
 		
 	}
 	public void keyReleased(int key, char c) {
