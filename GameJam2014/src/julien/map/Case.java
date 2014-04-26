@@ -11,8 +11,8 @@ import julien.game.Sprite;
 
 public class Case extends Sprite{
 
-	static private int dimensionX = 175;
-	static private int dimensionY = 175;
+	static private int dimensionX = 100;
+	static private int dimensionY = 100;
 	public int xcor, ycor;
 	
 	public Case (int x , int y, int xcor, int ycor) {
@@ -22,7 +22,7 @@ public class Case extends Sprite{
 		
 		if (BoardGame.boardGame.getBatiment(xcor, ycor) != null) {
 			try {
-				img = new Image("julien/images/terre01.png");
+				img = new Image("julien/images/Terre01.png");
 
 			} catch (SlickException e) {
 				e.printStackTrace();
@@ -30,7 +30,7 @@ public class Case extends Sprite{
 		//	img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
 		} else {
 			try {
-				img = new Image("julien/images/terre00.png");
+				img = new Image("julien/images/Terre00.png");
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}

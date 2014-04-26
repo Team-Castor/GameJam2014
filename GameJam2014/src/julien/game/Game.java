@@ -146,7 +146,7 @@ public class Game  extends BasicGame{
 				casesADessiner.add(casesHorsEcran.get(i));
 				casesHorsEcran.remove(i);
 				i--;
-				System.out.println("cases à pas dessiner : " + casesHorsEcran.size());
+			//	System.out.println("cases à pas dessiner : " + casesHorsEcran.size());
 
 			}
 		}
@@ -156,13 +156,13 @@ public class Game  extends BasicGame{
 				casesHorsEcran.add(casesADessiner.get(i));
 				casesADessiner.remove(i);
 				i--;
-				System.out.println("cases à dessiner : " + casesADessiner.size());
+				//System.out.println("cases à dessiner : " + casesADessiner.size());
 			}
 			else {
 				casesADessiner.get(i).calculerPosition(offsetX,offsetY,containerH);
 			}
 		}
-		System.out.println("cases à dessiner : " + casesADessiner.size());
+		//	System.out.println("cases à dessiner : " + casesADessiner.size());
 		
 		/*
 		for (int x = 0 ; x < w ; x++) {

@@ -10,7 +10,7 @@ public class Arsenal extends Batiment{
 	int arme_disponible = 0;
 	
 	public Arsenal(Point pos) {
-		super(pos, TypeBatiment.Dortoir);
+		super(pos, TypeBatiment.Arsenal);
 		listeArsenals.add(this);
 	}
 

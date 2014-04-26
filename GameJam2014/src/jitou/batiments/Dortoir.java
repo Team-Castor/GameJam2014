@@ -28,8 +28,6 @@ public class Dortoir extends Batiment{
 		if(placeDisponible()){
 			nb_occupant++;
 			citoyen.setFatigue((float) (1000+Math.random()*5000));
-			
-			System.out.println("Working time ! "+workingTime);
 			citoyen.setWorkingTime(workingTime);
 		}
 	}

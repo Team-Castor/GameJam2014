@@ -6,15 +6,17 @@ import jitou.global.Citoyen;
 import jitou.global.ObjectifType;
 
 public class Batiment {
-	private Point pos;
+	private int x, y;
 	private TypeBatiment type;
 	private Batiment voisins[] = new Batiment[4];
 
+	private double temperatureSalle = 30.0;
 
 
 
 	Batiment(Point pos, TypeBatiment type){
-		this.setPos(pos);
+		x = pos.x;
+		y = pos.y;
 		this.type = type;
 
 		voisins[Orientation.est.getValue()]		=null;
@@ -26,13 +28,11 @@ public class Batiment {
 
 
 
-	public Point getPos() {
-		return pos;
+	public final Point getPos() {
+		return new Point(x, y);
 	}
 
-	public void setPos(Point pos) {
-		this.pos = pos;
-	}
+
 
 	public TypeBatiment getType() {
 		return type;
@@ -46,13 +46,21 @@ public class Batiment {
 	}
 
 	public String toString(){
-		return getType().getNom()+"("+pos.x+","+pos.y+")";
+		return getType().getNom()+"("+x+","+y+")";
 	}
 
 
 
 
 	public void back(Citoyen c) {
+	}
+
+	public double getTemperatureSalle() {
+		return temperatureSalle;
+	}
+
+	public void setTemperatureSalle(double temperatureSalle) {
+		this.temperatureSalle = temperatureSalle;
 	}
 
 

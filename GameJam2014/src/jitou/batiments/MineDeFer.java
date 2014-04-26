@@ -3,12 +3,19 @@ package jitou.batiments;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import jitou.global.Citoyen;
+import jitou.global.ObjectifType;
+import jitou.ressources.Ressource;
+import jitou.ressources.RessourceType;
+
 public class MineDeFer extends Batiment{
 	
 	public static ArrayList<MineDeFer> listeMineDeFer= new ArrayList<MineDeFer>();
 
-	int nb_occupant = 0;
-	int nb_occupant_max = 20;
+	private int nb_occupant = 0;
+	private int nb_occupant_max = 3;
+	private double workingTime = 1200;
+	
 	
 	public MineDeFer(Point pos) {
 		super(pos, TypeBatiment.MineDeFer);
@@ -19,4 +26,20 @@ public class MineDeFer extends Batiment{
 		return nb_occupant<nb_occupant_max;
 	}
 	
+	public boolean getDisponible(){
+		return nb_occupant<nb_occupant_max;
+	}
+	
+	public void effet(Citoyen citoyen, ObjectifType type) {
+		if(getDisponible()){
+			nb_occupant++;			
+			citoyen.setWorkingTime(workingTime);
+		}
+	}
+	
+	public void back(Citoyen c) {
+		nb_occupant--;
+		c.setRessourceTransporte(new Ressource( RessourceType.fer, 5));
+		c.getObjectif().rapporterFer();
+	}
 }

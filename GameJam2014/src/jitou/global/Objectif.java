@@ -1,10 +1,13 @@
 package jitou.global;
 
+import jitou.batiments.Atelier;
 import jitou.batiments.Batiment;
+import jitou.batiments.Generateur;
+import jitou.batiments.Refectoire;
 
 public class Objectif {
 	private Citoyen citoyen;
-	
+
 	private double SEUIL_FAMINE 			= 200.0;
 	private double SEUIL_FAMINE_CRITIQUE    = 50.0;
 	private double SEUIL_FATIGUE 			= 200.0;
@@ -13,13 +16,13 @@ public class Objectif {
 	public Batiment		seRendre = null;
 	public ObjectifType type = null;
 
-	
-	
+
+
 	public Objectif(Citoyen citoyen){
 		this.citoyen= citoyen;
 		type= ObjectifType.aucun;
 	}
-	
+
 	public void trouverNouvelObjectif(){
 		BoardGame game = BoardGame.boardGame;
 		/*
@@ -40,22 +43,27 @@ public class Objectif {
 		 * - ferme nourriture 
 		 * - exterieur
 		 */
-		
+
 		Batiment refDispo = game.nourritureDisponible();
 		Batiment dorDispo = game.dortoirDisponible();
-		
+
 		Batiment arsDispo = game.armeDisponible();
 		Batiment hopDispo = game.hopitalDisponible();
-		
+		Batiment ferDispo = game.trouverFerme();
+		Batiment minDispo = game.trouverMine();
+
+		Batiment puiDispo = game.trouverPuitPetrol();
+
+
 		if(citoyen.getNourritureRestante()<SEUIL_FAMINE_CRITIQUE && refDispo!=null){
 			// Allez chercher de la nourriture
-			seRendre 	= refDispo;
-			type 		= ObjectifType.manger;
+//			seRendre 	= refDispo;
+//			type 		= ObjectifType.manger;
 		}
 		else if(citoyen.getFatigue()<SEUIL_FATIGUE_CRITIQUE  && dorDispo!=null){
 			// Allez se reposer
-			seRendre 	= dorDispo;
-			type 		= ObjectifType.se_reposer;
+//			seRendre 	= dorDispo;
+//			type 		= ObjectifType.se_reposer;
 		}
 		else if(game.estAttaquer() && arsDispo!=null){
 			//Allez defendre ville
@@ -65,24 +73,65 @@ public class Objectif {
 		}
 		else if(citoyen.getNourritureRestante()<SEUIL_FAMINE && refDispo!=null){
 			// Allez chercher de la nourriture
+//			seRendre 	= refDispo;
+//			type 		= ObjectifType.manger;
 		}
 		else if(citoyen.getNourritureRestante()<SEUIL_FATIGUE  && dorDispo!=null){
 			// Allez se reposer
+			seRendre 	= dorDispo;
+			type 		= ObjectifType.se_reposer;
 		}
 		else{
 			int proba = (int) (Math.random()*100);
+//			if(proba<20){
+//				seRendre 	= ferDispo;
+//				type 		= ObjectifType.allerAUneFerme;
+//			}
+//			else if(proba<40){
+//				seRendre 	= minDispo;
+//				type 		= ObjectifType.allerAUneMineDeFer;
+//			}
+//			else if(proba<60){
+//				seRendre 	= puiDispo;
+//				type 		= ObjectifType.allerPuitPetrole;
+//			}
+			
 		}
-		
+
 
 	}
-	
-	
+
+
 	public void accomplirObjectif(Batiment batiment) {
 		System.out.println("On fait l'objectif!"+batiment);
 		batiment.effet(citoyen, type);
-		
+
 	}
-	
+
+
+	public void reset() {
+		type= ObjectifType.aucun;
+		seRendre = null;
+	}
+
+	public void rapporterNourriture() {
+		Batiment refDispo = Refectoire.listeRefectoire.get((int) (Math.random()*Refectoire.listeRefectoire.size()));
+		type= ObjectifType.rapporterNourritureRefectoir;
+		seRendre = refDispo;
+	}
+
+
+	public void rapporterFer() {
+		Batiment refDispo = Atelier.listeAtelier.get((int) (Math.random()*Atelier.listeAtelier.size()));
+		type= ObjectifType.rapporterferAtelier;
+		seRendre = refDispo;		
+	}
+
+	public void rapporterPetrole() {
+		Batiment refDispo = Generateur.listeGenerateurs.get((int) (Math.random()*Generateur.listeGenerateurs.size()));
+		type= ObjectifType.rapporterGenerateur;
+		seRendre = refDispo;		 	
+	}
 
 	public Batiment getSeRendre() {
 		return seRendre;
@@ -100,16 +149,10 @@ public class Objectif {
 		this.type = type;
 	}
 
-	public void reset() {
-		type= ObjectifType.aucun;
-		seRendre = null;
-	}
 
 
-	
-	
-	
-	
-	
-	
+
+
+
+
 }

@@ -11,7 +11,7 @@ public class Hopital extends Batiment{
 	int nb_occupant_max = 20;
 	
 	public Hopital(Point pos) {
-		super(pos, TypeBatiment.Dortoir);
+		super(pos, TypeBatiment.Hopital);
 		listeHopitaux.add(this);
 	}
 

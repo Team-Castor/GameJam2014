@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import jitou.batiments.Arsenal;
+import jitou.batiments.Atelier;
 import jitou.batiments.Batiment;
 import jitou.batiments.Chaudiere;
 import jitou.batiments.Dortoir;
+import jitou.batiments.Ferme;
 import jitou.batiments.Generateur;
 import jitou.batiments.Hopital;
 import jitou.batiments.MineDeFer;
@@ -34,9 +36,34 @@ public class BoardGame {
 	}
 
 	public void update(int delta){
+		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
+		for(int i = 0;i<this.liste_batiments.size();i++){
+			int x = liste_batiments.get(i).getPos().x;
+			int y = liste_batiments.get(i).getPos().y;
+
+			double somme = 0.0;
+			int nb = 0;
+			for(int j=0;j<listePts.length;j++){
+				if(x+listePts[j].x>=0 && x+listePts[j].x<BoardGame.getDimensionworldx()&&
+						y+listePts[j].y>=0 && y+listePts[j].y<BoardGame.getDimensionworldy()){
+					if(this.getBatiment(x+listePts[j].x, y+listePts[j].y)!=null){
+						somme+=getBatiment(x+listePts[j].x, y+listePts[j].y).getTemperatureSalle();
+						nb++;
+					}
+				}
+			}
+			this.liste_batiments.get(i).setTemperatureSalle(
+					this.liste_batiments.get(i).getTemperatureSalle()+(0.7*somme/nb));
+		}
+
+
+
+		// Tour civil
 		for(int i=0;i<citoyens.size();i++){
 			citoyens.get(i).update(delta);
 		}
+
+
 	}
 
 	public void initialisation() {
@@ -49,7 +76,9 @@ public class BoardGame {
 				TypeBatiment.Dortoir, 
 				TypeBatiment.Chaudiere, 
 				TypeBatiment.MineDeFer, 
-				TypeBatiment.PuitPetrol};
+				TypeBatiment.PuitPetrol, 
+				TypeBatiment.FermeHydroponique, 
+				TypeBatiment.Atelier};
 
 		Point positionPossible[] = {
 				new Point(dimensionWorldX/2, dimensionWorldY-1), 
@@ -57,7 +86,9 @@ public class BoardGame {
 				new Point(dimensionWorldX/2+1, dimensionWorldY-2), 
 				new Point(dimensionWorldX/2-1, dimensionWorldY-2), 
 				new Point(dimensionWorldX/2-1, dimensionWorldY-3),
-				new Point(dimensionWorldX/2+1, dimensionWorldY-3)};
+				new Point(dimensionWorldX/2+1, dimensionWorldY-3),
+				new Point(dimensionWorldX/2-1, dimensionWorldY-4),
+				new Point(dimensionWorldX/2+1, dimensionWorldY-4)};
 
 		int j  = (int) (Math.random()*batimentDepart.length);
 		for(int i=0;i<batimentDepart.length;i++){
@@ -78,6 +109,10 @@ public class BoardGame {
 				bat = new MineDeFer(positionPossible[i]); 
 			}else if(val==TypeBatiment.PuitPetrol.getValue()){
 				bat = new PuitPetrol(positionPossible[i]); 
+			}else if(val==TypeBatiment.FermeHydroponique.getValue()){
+				bat = new Ferme(positionPossible[i]); 
+			}else if(val==TypeBatiment.Atelier.getValue()){
+				bat = new Atelier(positionPossible[i]); 
 			}
 			else{
 				System.out.println("Probleme initialisation boardGame");
@@ -87,7 +122,7 @@ public class BoardGame {
 
 			j = (j+1)%batimentDepart.length;
 		}
-
+		System.out.println(liste_batiments);
 		for(int i=0;i<80;i++){
 			citoyens.add(new Citoyen(positionPossible[(int) (Math.random()*positionPossible.length)]));
 		}
@@ -115,8 +150,7 @@ public class BoardGame {
 			}
 		}
 		if(liste.isEmpty()) return null;
-		else
-			return liste.get((int) (Math.random()*liste.size()));
+		else return liste.get((int) (Math.random()*liste.size()));
 	}
 
 	public Dortoir dortoirDisponible() {
@@ -170,6 +204,54 @@ public class BoardGame {
 		return dimensionWorldY;
 	}
 
+
+
+
+	public ArrayList<Citoyen> getCitoyens() {
+		return citoyens;
+	}
+
+	public void setCitoyens(ArrayList<Citoyen> citoyens) {
+		this.citoyens = citoyens;
+	}
+
+	public Ferme trouverFerme() {
+		ArrayList<Ferme> liste = new ArrayList<Ferme>() ;
+		for(int i=0;i<Ferme.listeFerme.size();i++){
+			if(Ferme.listeFerme.get(i).getDisponible()){
+				liste.add(Ferme.listeFerme.get(i));
+			}
+		}
+		if(liste.isEmpty()) return null;
+		else
+			return liste.get((int) (Math.random()*liste.size()));
+	}
+
+	public MineDeFer trouverMine() {
+		ArrayList<MineDeFer> liste = new ArrayList<MineDeFer>() ;
+		for(int i=0;i<MineDeFer.listeMineDeFer.size();i++){
+			if(MineDeFer.listeMineDeFer.get(i).getDisponible()){
+				liste.add(MineDeFer.listeMineDeFer.get(i));
+			}
+		}
+		if(liste.isEmpty()) return null;
+		else
+			return liste.get((int) (Math.random()*liste.size()));		
+	}
+
+	public PuitPetrol trouverPuitPetrol() {
+		ArrayList<PuitPetrol> liste = new ArrayList<PuitPetrol>() ;
+		for(int i=0;i<PuitPetrol.listePuitsPetrols.size();i++){
+			if(PuitPetrol.listePuitsPetrols.get(i).placeDisponible()){
+				liste.add(PuitPetrol.listePuitsPetrols.get(i));
+			}
+		}
+		if(liste.isEmpty()) return null;
+		else
+			return liste.get((int) (Math.random()*liste.size()));	
+	}
+
+
 	public static ArrayList<Batiment> findPath( Point depart, Point fin)
 	{
 		ArrayList<Batiment>  path 	= new ArrayList<Batiment> ();
@@ -185,23 +267,29 @@ public class BoardGame {
 		int poids = 0;
 		System.out.println("path debut"+depart+" "+fin);
 		findPath(depart.x, depart.y, fin, distance, batiments, poids, null);
-		System.out.println("path fin");
-		
+
 
 		path.add(boardGame.getBatiment(fin.x, fin.y));
 		Batiment b = batiments[fin.x][fin.y];
-		System.out.println("path fin"+b);
 
-		
+		System.out.println("path debut"+boardGame.getListeBatiments());
+
+		System.out.println("path debut"+depart+" "+b);
+		for(int x=0;x<getDimensionworldx();x++){
+			for(int y=0;y<getDimensionworldy();y++){
+				System.out.print(boardGame.getBatiment(x, y));
+				}
+			System.out.println();
+		}
 		
 		if(fin!=depart && b!=null){
 			while(b!=null){
 				path.add(b);
-				if(b== batiments[b.getPos().x][b.getPos().y]) break;
+				//if(b== batiments[b.getPos().x][b.getPos().y]) break;
 				b = batiments[b.getPos().x][b.getPos().y];
-				
+
 				//System.out.println("de "+b);
-				
+
 			}
 		}
 		System.out.println("path fin fin");
@@ -221,40 +309,23 @@ public class BoardGame {
 				//Oui !!!
 			}
 			else{
-				if(x>0){
-					if(boardGame.getBatiment(x-1, y)!=null){
-						findPath(x-1, y, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
+				Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
+
+				for(int j=0;j<listePts.length;j++){
+					if(x+listePts[j].x>=0 && x+listePts[j].x<BoardGame.getDimensionworldx()&&
+							y+listePts[j].y>=0 && y+listePts[j].y<BoardGame.getDimensionworldy()){
+						if(boardGame.getBatiment(x+listePts[j].x, y+listePts[j].y)!=null){
+							findPath(x+listePts[j].x, y+listePts[j].y, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
+
+						}
 					}
 				}
-				if(x<BoardGame.getDimensionworldx()-1){
-					if(boardGame.getBatiment(x+1, y)!=null){
-						findPath(x+1, y, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
-					}
-				}
-				if(y>0){
-					if(boardGame.getBatiment(x, y-1)!=null){
-						findPath(x, y-1, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
-					}
-				}
-				if(y<BoardGame.getDimensionworldy()-1){
-					if(boardGame.getBatiment(x, y+1)!=null){
-						findPath(x, y+1, f, distance, batiments, poids+1,boardGame.getBatiment(x, y) );
-					}
-				}
+
+
+
 			}
 
+
 		}
-
-
 	}
-
-	public ArrayList<Citoyen> getCitoyens() {
-		return citoyens;
-	}
-
-	public void setCitoyens(ArrayList<Citoyen> citoyens) {
-		this.citoyens = citoyens;
-	}
-
-
 }
