@@ -225,6 +225,7 @@ public class Game  extends BasicGame{
 	}
 	
 	public void changementCase(int x, int y) {
+		//TODO : 
 		for (Case c : casesADessiner) {
 			c.redraw();
 		}
