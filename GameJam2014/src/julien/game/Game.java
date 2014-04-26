@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import jitou.global.BoardGame;
+import jitou.global.Citoyen;
 import julien.map.Case;
 
 import org.lwjgl.LWJGLException;
@@ -17,7 +18,7 @@ import de.matthiasmann.twl.renderer.lwjgl.LWJGLRenderer;
 import de.matthiasmann.twl.theme.ThemeManager;
 
 public class Game  extends BasicGame{
-	private final int defilement = 2;
+	private final int defilement = 10;
 	
 	private Sprite[] liste;
 	private int points=0;
@@ -95,8 +96,15 @@ public class Game  extends BasicGame{
 			g.drawImage(casesADessiner.get(i).getImage(), casesADessiner.get(i).getX(), casesADessiner.get(i).getY());	
 		}
 	
+		ArrayList<Citoyen> citoyens = board.getCitoyens();
+		for(Citoyen cit : citoyens){
+			System.out.println("citoyen");
+			g.setColor(Color.red);
+			g.fillOval((float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))),
+					(float)((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2))), (float)10,(float) 10);		
+		}
 		
-		g.drawString("Score : "+points, 100,50);
+		//g.drawString("Score : "+points, 100,50);
 
 	}
 
@@ -107,9 +115,11 @@ public class Game  extends BasicGame{
 		containerW = container.getWidth();
 
 		for(int i=0;i<this.liste.length;i++){
-			liste[i].update(delta);
-			
+			liste[i].update(delta);		
 		}
+		
+
+		
 	}
 	
 	private void computeCaseADessiner() {
