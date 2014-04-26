@@ -32,28 +32,41 @@ public class Objectif {
 		 * - Nourrire
 		 * - Se reposer
 		 * - si pas attaque une arme -> allez la ramener 
+		 * 
+		 * random : 
+		 * 
 		 * - mine de fer -> atelier
 		 * - puit de petrol ->  generateur
 		 * - ferme nourriture 
 		 * - exterieur
 		 */
 		
-		if(citoyen.getNourritureRestante()<SEUIL_FAMINE_CRITIQUE && game.nourritureDisponible()!=null){
+		Batiment refDispo = game.nourritureDisponible();
+		Batiment dorDispo = game.dortoirDisponible();
+		
+		Batiment arsDispo = game.armeDisponible();
+		Batiment hopDispo = game.hopitalDisponible();
+		
+		if(citoyen.getNourritureRestante()<SEUIL_FAMINE_CRITIQUE && refDispo!=null){
 			// Allez chercher de la nourriture
+			seRendre 	= refDispo;
+			type 		= ObjectifType.manger;
 		}
-		else if(citoyen.getNourritureRestante()<SEUIL_FATIGUE_CRITIQUE  && game.dortoirDisponible()!=null){
+		else if(citoyen.getNourritureRestante()<SEUIL_FATIGUE_CRITIQUE  && dorDispo!=null){
 			// Allez se reposer
+			seRendre 	= dorDispo;
+			type 		= ObjectifType.se_reposer;
 		}
-		else if(game.estAttaquer() && game.armeDisponible()!=null){
+		else if(game.estAttaquer() && arsDispo!=null){
 			//Allez defendre ville
 		}
-		else if(citoyen.estMalade() && game.hopitalDisponible()!=null){
+		else if(citoyen.estMalade() && hopDispo!=null){
 			//Allez se soigner
 		}
-		else if(citoyen.getNourritureRestante()<SEUIL_FAMINE && game.nourritureDisponible()!=null){
+		else if(citoyen.getNourritureRestante()<SEUIL_FAMINE && refDispo!=null){
 			// Allez chercher de la nourriture
 		}
-		else if(citoyen.getNourritureRestante()<SEUIL_FATIGUE  && game.dortoirDisponible()!=null){
+		else if(citoyen.getNourritureRestante()<SEUIL_FATIGUE  && dorDispo!=null){
 			// Allez se reposer
 		}
 		else{

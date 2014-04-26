@@ -12,7 +12,7 @@ public class Citoyen {
 	private Ressource ressourceTransporte;
 	private Objectif objectif;
 	private Maladie maladie = null;
-	
+	private double workingTime;
 	
 	public Citoyen(Point pos){
 		this(pos, 500f, 32.5f, 400f);
@@ -24,8 +24,22 @@ public class Citoyen {
 		this.temperatureCorporelle = temperatureCorporelle;
 		this.fatigue =fatigue;
 		ressourceTransporte = null;
+		setWorkingTime(0.0);
 	}
 
+	
+	public void update(int delta){
+		if(workingTime>=0.0){
+			workingTime = workingTime - delta;
+		}
+		else{
+			//Suivre objectif
+		}
+	}
+	
+	
+	
+	
 	public Point getPos() {
 		return pos;
 	}
@@ -84,6 +98,14 @@ public class Citoyen {
 
 	public boolean estMalade() {
 		return maladie!=null;
+	}
+
+	public double getWorkingTime() {
+		return workingTime;
+	}
+
+	public void setWorkingTime(double workingTime) {
+		this.workingTime = workingTime;
 	}
 	
 	
