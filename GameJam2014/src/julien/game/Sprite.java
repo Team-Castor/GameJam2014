@@ -1,16 +1,23 @@
-package julien;
+package julien.game;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Sprite {
-	private Image img;
-	private float x, y;
-	private float vx, vy;
-	private int w, h;
+	protected Image img;
+	protected float x, y;
+	protected float vx, vy;
+	protected int w, h;
 
+	public Sprite(int x, int y, int w, int h) {
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+	}
+	
 	public Sprite(){
-		x = 20f;
+	/*	x = 20f;
 		y = 20f;
 		vx = (float) (Math.random()-0.5);
 		vy = (float) (Math.random()-0.5);
@@ -27,7 +34,7 @@ public class Sprite {
 			e.printStackTrace();
 		}
 		img.setImageColor((float)Math.random(), (float)Math.random(),(float) Math.random());
-		
+		*/
 	}
 	
 

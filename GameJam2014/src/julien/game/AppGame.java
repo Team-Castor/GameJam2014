@@ -1,4 +1,4 @@
-package julien;
+package julien.game;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
@@ -8,7 +8,7 @@ public class AppGame extends AppGameContainer{
 	
 	
 	public AppGame() throws SlickException{
-		super(new Game(titreFenPrincipale), 640, 480, false);
+		super(new Game(titreFenPrincipale), 800, 600, false);
 		this.setSmoothDeltas(true);
 		this.setTargetFrameRate(60); 
 		this.start();
