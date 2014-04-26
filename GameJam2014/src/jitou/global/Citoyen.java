@@ -9,7 +9,9 @@ import jitou.ressources.Ressource;
 import julien.game.Game;
 
 public class Citoyen {
-	private Point  	pos;
+	//private Point  	pos;
+	private int posX, posY;
+	
 	private Point2D posInside;
 	private float nourritureRestante, temperatureCorporelle, fatigue;
 	private Ressource ressourceTransporte;
@@ -26,7 +28,10 @@ public class Citoyen {
 	}
 
 	public Citoyen(Point pos, float nourritureRestante, float temperatureCorporelle, float fatigue){
-		this.pos = pos;
+		//this.pos = pos;
+		posX = pos.x;
+		posY = pos.y;
+		
 		posInside = new Point2D.Double(0.0,0.0);
 		this.nourritureRestante = nourritureRestante;
 		this.temperatureCorporelle = temperatureCorporelle;
@@ -43,8 +48,8 @@ public class Citoyen {
 		final  double facteurDiv = 200.0;
 		//System.out.println(BoardGame.boardGame.getListeBatiments());
 
-		System.out.println(this+"  "+pos+" "+this.posInside+"  "+delta/200.+" "+workingTime+"  "+pathfinder);
-		temperatureCorporelle += BoardGame.boardGame.getBatiment(pos.x, pos.y).getTemperatureSalle()*0.1;
+		System.out.println(this+"  "+posX+" "+this.posInside+"  "+delta/200.+" "+workingTime+"  "+pathfinder);
+		temperatureCorporelle += BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.1;
 		nourritureRestante		-= delta;
 		fatigue 				-= delta;
 
@@ -66,37 +71,37 @@ public class Citoyen {
 				}else{
 					if(objectif.getSeRendre()!=null){
 						if(pathfinder == null){
-							pathfinder = BoardGame.findPath(pos, objectif.getSeRendre().getPos() );
+							pathfinder = BoardGame.findPath(new Point(posX, posY), objectif.getSeRendre().getPos() );
 						}
 
 						if(pathfinder.size()>0){
 							Point vers = new Point(pathfinder.get(0).getPos());
-							int dx = (int) Math.signum(vers.x - pos.x);
-							int dy = (int) Math.signum(vers.y - pos.y);
+							int dx = (int) Math.signum(vers.x - posX);
+							int dy = (int) Math.signum(vers.y - posY);
 							if(dx!=0 || dy!=0){
 								posInside.setLocation(
 										posInside.getX()+dx*delta/facteurDiv,
 										posInside.getY()+dy*delta/facteurDiv);
 								if(posInside.getX()>=1){
 									posInside.setLocation(-0.98, posInside.getY());
-									pos.x++;
+									 posX++;
 								}
 								else if(posInside.getX()<=-1){
 									posInside.setLocation(0.98, posInside.getY());
-									pos.x--;
+									 posX--;
 								}
 								if(posInside.getY()>=1){
 									posInside.setLocation( posInside.getX(), -0.98);
-									pos.y++;
+									 posY++;
 
 								}
 								else if(posInside.getY()<=-1){
 									posInside.setLocation( posInside.getX(), 0.98);
-									pos.y--;
+									 posY--;
 
 								}
 								
-								System.out.println(this+"  "+pos+" "+this.posInside+"  "+dx+"  "+dy);
+								//System.out.println(this+"  "+pos+" "+this.posInside+"  "+dx+"  "+dy);
 
 							}
 							else{
@@ -106,7 +111,7 @@ public class Citoyen {
 									if(pathfinder.size()>0){
 									}
 									else{
-										objectif.accomplirObjectif(BoardGame.boardGame.getBatiment(pos.x,pos.y));
+										objectif.accomplirObjectif(BoardGame.boardGame.getBatiment( posX,  posY));
 										pathfinder=null;
 									}
 								}else{
@@ -143,7 +148,7 @@ public class Citoyen {
 			}
 
 		}
-		System.out.println(this+"  "+pos+"-> "+this.posInside+"  ");
+		//System.out.println(this+"  "+pos+"-> "+this.posInside+"  ");
 
 
 	}
@@ -154,7 +159,7 @@ public class Citoyen {
 
 
 	public Point getPos() {
-		return new Point(pos.x,pos.y);
+		return new Point( posX,  posY);
 	}
 
 	/*public void setPos(Point pos) {
