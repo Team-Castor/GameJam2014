@@ -15,7 +15,7 @@ import jitou.batiments.TypeBatiment;;
 public class BoardGame {
 	private Batiment[][] 			grille_batiments=null;
 	private ArrayList<Batiment>		liste_batiments=null;
-	private ArrayList<Citoyen>  citoyens =null;
+	private ArrayList<Citoyen>  	citoyens =null;
 
 
 	private static final int dimensionWorldX=10;
@@ -26,7 +26,7 @@ public class BoardGame {
 		grille_batiments = new Batiment[dimensionWorldX][dimensionWorldY];
 		liste_batiments = new ArrayList<Batiment>();
 		citoyens = new ArrayList();
-
+		liste_batiments.clear();
 		citoyens.clear();
 	}
 

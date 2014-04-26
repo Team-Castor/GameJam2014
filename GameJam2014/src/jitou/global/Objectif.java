@@ -8,4 +8,9 @@ public class Objectif {
 		this.citoyen= citoyen;
 	}
 	
+	public void trouverNouvelObjectif(){
+		System.out.println("trouver un but");
+	}
+	
+	
 }
