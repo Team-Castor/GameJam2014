@@ -31,16 +31,23 @@ public class MineDeFer extends Batiment{
 	}
 	
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		if(getDisponible()){
+		super.effet(citoyen, type);
+
+		if(getDisponible() && type.getValue()==ObjectifType.allerAUneMineDeFer.getValue()){
 			nb_occupant++;			
 			citoyen.setWorkingTime(workingTime);
 		}
 	}
 	
 	public void back(Citoyen c) {
+		if(c.getObjectif().getType().getValue()==ObjectifType.allerAUneMineDeFer.getValue()){
 		nb_occupant--;
 		c.setRessourceTransporte(new Ressource( RessourceType.fer, 5));
 		c.getObjectif().rapporterFer();
+		}
+		else{
+			super.back(c);
+		}
 	}
 	
 	public String info() {

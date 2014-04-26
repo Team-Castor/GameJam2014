@@ -54,6 +54,8 @@ public class BoardGame {
 			}
 			this.liste_batiments.get(i).setTemperatureSalle(
 					0.95*this.liste_batiments.get(i).getTemperatureSalle()+(0.05*somme/(double)nb)-delta/1100.);
+			
+			this.liste_batiments.get(i).update(delta);
 		}
 
 		for(Chaudiere c : Chaudiere.listeChaudieres){
@@ -106,6 +108,7 @@ public class BoardGame {
 					}
 				}
 			}
+			
 		}
 
 		Point p = (liste.get((int) (Math.random()*liste.size())));
@@ -408,5 +411,9 @@ public class BoardGame {
 	public void killCitoyen(Citoyen citoyen) {
 		System.out.println("Mort : "+citoyen.getFatigue()+" , "+citoyen.getNourritureRestante()+" , "+citoyen.getTemperatureCorporelle());
 		boardGame.getCitoyens().remove(citoyen);
+	}
+
+	public Batiment trouverSortie() {
+		return boardGame.getBatiment(this.dimensionWorldX/2,this.dimensionWorldY-1);
 	}
 }

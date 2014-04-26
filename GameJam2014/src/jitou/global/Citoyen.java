@@ -12,7 +12,7 @@ public class Citoyen {
 	//private Point  	pos;
 	private int posX, posY;
 	private boolean estMort = false;
-	
+	public boolean visible=true;
 	private Point2D posInside;
 	private float nourritureRestante, temperatureCorporelle, fatigue;
 	private Ressource ressourceTransporte;
@@ -52,7 +52,7 @@ public class Citoyen {
 		//System.out.println(this+"  "+posX+" "+this.posInside+"  "+delta/200.+" "+workingTime+"  "+pathfinder);
 		temperatureCorporelle = (float) (temperatureCorporelle*0.99*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.01*delta/50.0);
 		nourritureRestante		-= delta/10.0;
-		fatigue 				-= delta/20.0;
+		fatigue 				-= delta/12.0;
 
 		if(workingTime>=0.0){
 			workingTime = workingTime - delta;
@@ -161,9 +161,7 @@ public class Citoyen {
 	
 	public void testSurvie(){
 		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<0){
-			BoardGame.boardGame.getBatiment(posX, posY).back(this);
-			BoardGame.boardGame.killCitoyen(this);
-			estMort=true;
+			tuer();
 		}
 	}
 	
@@ -247,6 +245,12 @@ public class Citoyen {
 
 	public void mange(double d) {
 		nourritureRestante+=d*1000.0+Math.random()*1000;
+	}
+
+	public void tuer() {
+		BoardGame.boardGame.getBatiment(posX, posY).back(this);
+		BoardGame.boardGame.killCitoyen(this);
+		estMort=true;		
 	}
 
 

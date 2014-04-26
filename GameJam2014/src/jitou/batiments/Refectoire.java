@@ -29,6 +29,7 @@ public class Refectoire extends Batiment{
 
 	public void effet(Citoyen citoyen, ObjectifType type) {
 		//System.out.println("Manger ? "+quantiteNourriture);
+		super.effet(citoyen, type);
 
 		if(type.getValue()==ObjectifType.manger.getValue()){
 			if(quantiteNourriture>=1.0){
@@ -36,7 +37,7 @@ public class Refectoire extends Batiment{
 				quantiteNourriture-=q;
 				citoyen.mange(q);
 				citoyen.setWorkingTime(tempsManger);
-				System.out.println("Miam");
+				//System.out.println("Miam");
 
 			}
 		}else if(type.getValue()==ObjectifType.rapporterNourritureRefectoir.getValue()){
@@ -48,17 +49,22 @@ public class Refectoire extends Batiment{
 			}
 		}
 		else{
-			System.out.println("Refectoire type d'action non comprit...:s");
+			//System.out.println("Refectoire type d'action non comprit...:s");
 		}
 	}
 
 	public void back(Citoyen c) {
-		c.getObjectif().reset();
+		if( c.getObjectif().getType().getValue()==ObjectifType.rapporterNourritureRefectoir.getValue() ||
+				c.getObjectif().getType().getValue()==ObjectifType.manger.getValue()){
+
+			c.getObjectif().reset();
+		}
+		else 		super.back(c);
 	}
-	
+
 	public String info() {
 		return "Nourriture: "+quantiteNourriture;
 	}
-	
+
 }
 

@@ -53,6 +53,7 @@ public class Objectif {
 		Batiment minDispo = game.trouverMine();
 
 		Batiment puiDispo = game.trouverPuitPetrol();
+		Batiment sortie = game.trouverSortie();
 
 
 		if(citoyen.getNourritureRestante()<SEUIL_FAMINE_CRITIQUE && refDispo!=null){
@@ -95,7 +96,10 @@ public class Objectif {
 				seRendre 	= puiDispo;
 				type 		= ObjectifType.allerPuitPetrole;
 			}
-			
+			else if(proba<61){
+				seRendre 	= sortie;
+				type 		= ObjectifType.allerVersSortie;
+			}
 		}
 
 

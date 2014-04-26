@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
+import jitou.global.CitoyenDehors;
 import jitou.global.ObjectifType;
 
 public class Batiment {
@@ -20,13 +21,13 @@ public class Batiment {
 		y = pos.y;
 		this.type = type;
 
-		
-		
+
+
 		if(x<BoardGame.getDimensionworldx()) 		voisins[Orientation.est.getValue()]= BoardGame.boardGame.getBatiment(x+1, y);
 		if(x>0)voisins[Orientation.ouest.getValue()]	= BoardGame.boardGame.getBatiment(x-1, y);
 		if(y>0) voisins[Orientation.nord.getValue()]	= BoardGame.boardGame.getBatiment(x, y-1);
 		if(y<BoardGame.getDimensionworldy())	voisins[Orientation.sud.getValue()]		= BoardGame.boardGame.getBatiment(x, y+1); 
-		
+
 		if(voisins[Orientation.est.getValue()]!=null)voisins[Orientation.est.getValue()].setVoisin(this, Orientation.ouest);
 		if(voisins[Orientation.ouest.getValue()]!=null)voisins[Orientation.ouest.getValue()].setVoisin(this, Orientation.est);
 		if(voisins[Orientation.nord.getValue()]!=null)voisins[Orientation.nord.getValue()].setVoisin(this, Orientation.sud);
@@ -44,7 +45,9 @@ public class Batiment {
 		return voisins[n.getValue()];
 	}
 
-
+public void update(int delta){
+	
+}
 
 	public final Point getPos() {
 		return new Point(x, y);
@@ -60,7 +63,10 @@ public class Batiment {
 
 
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		System.out.println("Batiment doit etre virtuel...:s");
+		if(type.getValue()==ObjectifType.allerVersSortie.getValue()){
+			new CitoyenDehors(citoyen);
+			citoyen.setWorkingTime(500);
+		}
 	}
 
 	public String toString(){
@@ -71,6 +77,14 @@ public class Batiment {
 
 
 	public void back(Citoyen c) {
+		if(c.getObjectif().getType().getValue()==ObjectifType.allerVersSortie.getValue()){
+			c.visible = true;
+			CitoyenDehors.removeWith(c);
+			if(Math.random()*BoardGame.boardGame.getCitoyens().size()<=0.5*(BoardGame.boardGame.getCitoyens().size()-10)) BoardGame.boardGame.getCitoyens().add(
+					new Citoyen(
+							(Point) BoardGame.boardGame.getListeBatiments().get((int)(Math.random()*BoardGame.boardGame.getListeBatiments().size())).getPos().clone()));
+		}
+
 		c.getObjectif().reset();
 	}
 

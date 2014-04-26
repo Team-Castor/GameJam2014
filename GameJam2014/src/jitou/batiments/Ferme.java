@@ -27,16 +27,22 @@ public class Ferme extends Batiment{
 	}
 	
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		if(getDisponible()){
+		if(getDisponible() && type.getValue()==ObjectifType.allerAUneFerme.getValue()){
 			nb_occupant++;			
 			citoyen.setWorkingTime(workingTime);
 		}
 	}
 	
 	public void back(Citoyen c) {
+		if(c.getObjectif().getType().getValue()==ObjectifType.allerAUneFerme.getValue()){
+
 		nb_occupant--;
 		c.setRessourceTransporte(new Ressource( RessourceType.nourriture, 5));
 		c.getObjectif().rapporterNourriture();
+	}
+	else{
+		super.back(c);
+	}
 	}
 	
 	public String info() {

@@ -19,6 +19,8 @@ public class Generateur extends Batiment {
 
 	
 	public void effet(Citoyen citoyen, ObjectifType type) {
+		super.effet(citoyen, type);
+
 		if(type.getValue() == ObjectifType.rapporterGenerateur.getValue()){
 			electricite+=citoyen.getRessourceTransporte().getQuantite()*ratioPetrolToElec;
 			citoyen.setRessourceTransporte(null);
