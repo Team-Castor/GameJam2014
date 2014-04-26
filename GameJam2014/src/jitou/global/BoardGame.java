@@ -61,7 +61,7 @@ public class BoardGame {
 		}
 
 		for(Atelier a : Atelier.listeAtelier){
-			double prix = this.liste_batiments.size()*1+10;
+			double prix = this.liste_batiments.size()*10+100;
 			if(a.getFer()>prix){
 				constructionSalle();
 				a.setFer(a.getFer()-prix);

@@ -2,6 +2,7 @@ package jitou.batiments;
 
 import java.awt.Point;
 
+import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import jitou.global.ObjectifType;
 
@@ -19,12 +20,29 @@ public class Batiment {
 		y = pos.y;
 		this.type = type;
 
-		voisins[Orientation.est.getValue()]		=null;
-		voisins[Orientation.ouest.getValue()]	=null;
-		voisins[Orientation.nord.getValue()]	=null;
-		voisins[Orientation.sud.getValue()]		=null;
+		
+		
+		if(x<BoardGame.getDimensionworldx()) 		voisins[Orientation.est.getValue()]= BoardGame.boardGame.getBatiment(x+1, y);
+		if(x>0)voisins[Orientation.ouest.getValue()]	= BoardGame.boardGame.getBatiment(x-1, y);
+		if(y>0) voisins[Orientation.nord.getValue()]	= BoardGame.boardGame.getBatiment(x, y-1);
+		if(y<BoardGame.getDimensionworldy())	voisins[Orientation.sud.getValue()]		= BoardGame.boardGame.getBatiment(x, y+1); 
+		
+		if(voisins[Orientation.est.getValue()]!=null)voisins[Orientation.est.getValue()].setVoisin(this, Orientation.ouest);
+		if(voisins[Orientation.ouest.getValue()]!=null)voisins[Orientation.ouest.getValue()].setVoisin(this, Orientation.est);
+		if(voisins[Orientation.nord.getValue()]!=null)voisins[Orientation.nord.getValue()].setVoisin(this, Orientation.sud);
+		if(voisins[Orientation.sud.getValue()]!=null)voisins[Orientation.sud.getValue()].setVoisin(this, Orientation.nord);
+
 	}
 
+
+
+
+	public void setVoisin(Batiment batiment, Orientation nord) {
+		voisins[nord.getValue()] = batiment;
+	}
+	public Batiment getVoisin(Orientation n) {
+		return voisins[n.getValue()];
+	}
 
 
 
