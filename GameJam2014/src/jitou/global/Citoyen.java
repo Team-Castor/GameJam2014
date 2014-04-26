@@ -8,19 +8,82 @@ import jitou.ressources.Ressource;
 public class Citoyen {
 	private Point  	pos;
 	private Point2D posInside;
-	private float nourritureRestante, temperatureCorporelle;
+	private float nourritureRestante, temperatureCorporelle, fatigue;
 	private Ressource ressourceTransporte;
 	private Objectif objectif;
+	private Maladie maladie = null;
+	
 	
 	public Citoyen(Point pos){
-		this(pos, 100f, 32.5f);
+		this(pos, 500f, 32.5f, 400f);
 	}
 	
-	public Citoyen(Point pos, float nourritureRestante, float temperatureCorporelle){
+	public Citoyen(Point pos, float nourritureRestante, float temperatureCorporelle, float fatigue){
 		this.pos = pos;
 		this.nourritureRestante = nourritureRestante;
 		this.temperatureCorporelle = temperatureCorporelle;
+		this.fatigue =fatigue;
 		ressourceTransporte = null;
+	}
+
+	public Point getPos() {
+		return pos;
+	}
+
+	public void setPos(Point pos) {
+		this.pos = pos;
+	}
+
+	public Point2D getPosInside() {
+		return posInside;
+	}
+
+	public void setPosInside(Point2D posInside) {
+		this.posInside = posInside;
+	}
+
+	public float getNourritureRestante() {
+		return nourritureRestante;
+	}
+
+	public void setNourritureRestante(float nourritureRestante) {
+		this.nourritureRestante = nourritureRestante;
+	}
+
+	public float getTemperatureCorporelle() {
+		return temperatureCorporelle;
+	}
+
+	public void setTemperatureCorporelle(float temperatureCorporelle) {
+		this.temperatureCorporelle = temperatureCorporelle;
+	}
+
+	public float getFatigue() {
+		return fatigue;
+	}
+
+	public void setFatigue(float fatigue) {
+		this.fatigue = fatigue;
+	}
+
+	public Ressource getRessourceTransporte() {
+		return ressourceTransporte;
+	}
+
+	public void setRessourceTransporte(Ressource ressourceTransporte) {
+		this.ressourceTransporte = ressourceTransporte;
+	}
+
+	public Objectif getObjectif() {
+		return objectif;
+	}
+
+	public void setObjectif(Objectif objectif) {
+		this.objectif = objectif;
+	}
+
+	public boolean estMalade() {
+		return maladie!=null;
 	}
 	
 	

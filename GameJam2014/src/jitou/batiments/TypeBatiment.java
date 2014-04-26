@@ -3,7 +3,8 @@ package jitou.batiments;
 public enum TypeBatiment {
 	Refectoire(0,"Réfectoire" ), Generateur(1, "Générateur"), Dortoir(2, "Dortoir"),
 	Atelier(3, "Atelier"), Arsenal(4, "Arsenal"), Chaudiere(5, "Chaudière"),
-	FermeHydroponique(6, "Ferme hydroponique"), Hopital(7, "Hôpital");
+	FermeHydroponique(6, "Ferme hydroponique"), Hopital(7, "Hôpital"), MineDeFer(8, "Mine de fer"),
+	PuitPetrol(9, "Puit de pétrol");
 
 
 	private final int value;

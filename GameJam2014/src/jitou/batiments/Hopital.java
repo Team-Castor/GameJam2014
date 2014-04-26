@@ -3,16 +3,16 @@ package jitou.batiments;
 import java.awt.Point;
 import java.util.ArrayList;
 
-public class Dortoir extends Batiment{
+public class Hopital extends Batiment{
 	
-	public static ArrayList<Dortoir> listeDortoirs= new ArrayList<Dortoir>();
+	public static ArrayList<Hopital> listeHopitaux= new ArrayList<Hopital>();
 
 	int nb_occupant = 0;
 	int nb_occupant_max = 20;
 	
-	public Dortoir(Point pos) {
+	public Hopital(Point pos) {
 		super(pos, TypeBatiment.Dortoir);
-		listeDortoirs.add(this);
+		listeHopitaux.add(this);
 	}
 
 	public boolean placeDisponible(){
