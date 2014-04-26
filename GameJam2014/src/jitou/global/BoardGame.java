@@ -178,25 +178,30 @@ public class BoardGame {
 
 		for(int x=0;x<getDimensionworldx();x++){
 			for(int y=0;y<getDimensionworldy();y++){
-				distance[x][y]  = 100000;
+				distance[x][y]  = 1000000;
 				batiments[x][y] = null;
 			}
 		}
 		int poids = 0;
-		System.out.println("path debut");
+		System.out.println("path debut"+depart+" "+fin);
 		findPath(depart.x, depart.y, fin, distance, batiments, poids, null);
 		System.out.println("path fin");
 		
+
 		path.add(boardGame.getBatiment(fin.x, fin.y));
 		Batiment b = batiments[fin.x][fin.y];
 		System.out.println("path fin"+b);
 
+		
+		
 		if(fin!=depart && b!=null){
 			while(b!=null){
 				path.add(b);
+				if(b== batiments[b.getPos().x][b.getPos().y]) break;
 				b = batiments[b.getPos().x][b.getPos().y];
-				System.out.println("de "+b);
-
+				
+				//System.out.println("de "+b);
+				
 			}
 		}
 		System.out.println("path fin fin");
