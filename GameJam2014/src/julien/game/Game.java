@@ -53,6 +53,7 @@ public class Game  extends BasicGame{
 	private ArrayList<Case> casesHorsEcran = new ArrayList<Case>();
 	private static ArrayList<Citoyen> citoyenSansSprite = new ArrayList<Citoyen>();
 	private ArrayList<GCarte> gCartes = new ArrayList<GCarte>();
+	private ArrayList<GEnnemi> gEnnemis = new ArrayList<GEnnemi>();
 
 	private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 
@@ -191,10 +192,15 @@ public class Game  extends BasicGame{
 		}
 
 		//g.drawString("Score : "+points, 100,50);
+		for (GEnnemi e : gEnnemis) {
+			e.changeState(container, this);
+			g.drawAnimation(e.getAnim(), e.getX(), e.getY());	
+		}
 		
 		for (GCarte carte : gCartes) {
 			g.drawImage(carte.getImage(), carte.getX(), carte.getY());	
 		}
+
 
 		drawJauges(container , g);
 		
@@ -455,14 +461,14 @@ public class Game  extends BasicGame{
 		Game.instance = instance;
 	}
 
-	public void ennemiCreve(Ennemi ennemi) {
-		// TODO Auto-generated method stub
+	public void ennemiCreve(Ennemi e) {
+		
 		
 	}
 
-	public void nouvelEnnemi(Ennemi ennemi) {
-		// TODO Auto-generated method stub
-		
+	public void nouvelEnnemi(Ennemi e) {
+		this.gEnnemis.add(new GEnnemi(e));
+
 	}
 
 

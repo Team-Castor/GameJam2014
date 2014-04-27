@@ -185,8 +185,6 @@ public class SpriteHumain extends Sprite {
 		imagesDroite.set(2 , imagesDroite.get(2).getFlippedCopy(true, false));
 		imagesDroite.set(3 , imagesDroite.get(3).getFlippedCopy(true, false));
 		imagesTravail.add(new Image("julien/images/perso face.png"));
-
-
 	}
 
 	public Animation getAnim() {
