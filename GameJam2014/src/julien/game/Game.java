@@ -485,7 +485,7 @@ public class Game  extends BasicGame{
 		int x = (int) ((c.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + c.getPosInside().getX()*(Case.getDimensionX()/2))-Game.getInstance().getOffsetX());
 		int y = (int)(((c.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + c.getPosInside().getY()*(Case.getDimensionY()/2)))-Game.getInstance().getOffsetY() - Game.getInstance().container.getHeight()) * -1;
 
-		Game.getInstance().fx.add(new FX(type.explosion , x , y));
+		Game.getInstance().fx.add(new FX(type , x , y));
 	}
 
 
