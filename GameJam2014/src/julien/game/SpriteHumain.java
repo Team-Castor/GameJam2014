@@ -171,6 +171,7 @@ public class SpriteHumain extends Sprite {
 		if (etaitActif && !c.estActif()) {
 			etaitActif = false;
 			initAnimation();
+			//dsdq
 		} else if (!etaitActif && c.estActif()){
 			etaitActif = true;
 			initAnimation();
