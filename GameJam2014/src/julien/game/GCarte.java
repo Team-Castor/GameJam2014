@@ -86,19 +86,20 @@ public class GCarte extends Sprite{
 		this.ycor = ycor;
 	}
 
-	public boolean collision(int x, int y){
+	public String collisionCarte(int x, int y){
+	//	String obj=null;
 		if (x>this.x && x<this.x+w &&  y>this.y && y<this.y+h) {
 			if (y<(this.y)+(h/2)) {
 				carte.selectionMal();
 			} else {
 				carte.selectionBien();
-			}
-			this.log = new String(carte.getLog() );
+			} 
+			//obj+=(carte.getLog()) ;
 			System.out.println(log+" Ici : "+carte.getLog());
 			System.out.println(log+" Ici : "+this.log);
 
 		}
-		return x>this.x && x<this.x+w &&  y>this.y && y<this.y+h;
+		return (carte.getLog());//x>this.x && x<this.x+w &&  y>this.y && y<this.y+h;
 	}
 	
 	public void survolDecalage(int x, int y){

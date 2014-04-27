@@ -141,13 +141,13 @@ public class Game  extends BasicGame{
 		super.mouseClicked(button, x, y, clickCount);
 		
 		for(int i=0;i<this.gCartes.size();i++){
-			boolean ok =gCartes.get(i).collision(x, y);
-			if(ok){
-				System.out.println("MAJ "+gCartes.get(i).getLog());
-				toolTip.set(gCartes.get(i).getLog());
+			String str =gCartes.get(i).collisionCarte(x, y);
+			if(!str.isEmpty()){
+				System.out.println("MAJ "+str);
+				toolTip.set(str);
 				System.out.println("MAJ "+gCartes.get(i).getLog());
 
-			}
+			} 
 		}
 
 	}
