@@ -100,7 +100,13 @@ public class Case extends Sprite{
 										img = new Image("julien/images/Salle_Armement.png");
 										img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 										batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
-									} 
+									}
+									else
+										if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Atelier) {
+											img = new Image("julien/images/Salle_Atelier.png");
+											img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+											batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+										} 
 			 else
 				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Chaudiere) {
 					img = new Image("julien/images/Salle_Chaudiere.png");
