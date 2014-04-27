@@ -18,7 +18,7 @@ public class GCarte extends Sprite{
 	static private int dimensionY = 300;
 	static private int decalX = 40;
 	static private int decalY = 15;
-	static private int vitesseDecalage = 8;
+	static private int vitesseDecalage = 18;
 	static private int decalageMin = 20;
 	static private int decalageMax = 300;
 	

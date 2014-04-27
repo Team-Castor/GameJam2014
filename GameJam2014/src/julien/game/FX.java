@@ -11,7 +11,8 @@ public class FX extends Sprite{
 	Animation anim;
 	FXtype type;
 	ArrayList<Image> sangFrames = new ArrayList<Image>();
-	
+	ArrayList<Image> exploFrames = new ArrayList<Image>();
+
 	public FX(FXtype type , int x, int y) {
 		super(x,y,type.getX(),type.getY());
 		this.type = type;
@@ -30,6 +31,15 @@ public class FX extends Sprite{
             for (int i = 0; i < 5; i++){
             	anim.addFrame(sangFrames.get(i),100);
             }
+            anim.stopAt(4);
+		}
+		if (type.equals(FXtype.explosion)) {
+    		anim = new Animation();
+    		anim.setAutoUpdate(true);
+            for (int i = 0; i < 9; i++){
+            	anim.addFrame(exploFrames.get(i),100);
+            }
+            anim.stopAt(4);
 		}
 
 	}
@@ -45,6 +55,15 @@ public class FX extends Sprite{
 			sangFrames.add(new Image("julien/images/sang02.png"));
 			sangFrames.add(new Image("julien/images/sang03.png"));
 			sangFrames.add(new Image("julien/images/sang04.png"));
+			exploFrames.add(new Image("julien/images/explosion01_00.png"));
+			exploFrames.add(new Image("julien/images/explosion01_01.png"));
+			exploFrames.add(new Image("julien/images/explosion01_02.png"));
+			exploFrames.add(new Image("julien/images/explosion01_03.png"));
+			exploFrames.add(new Image("julien/images/explosion01_04.png"));
+			exploFrames.add(new Image("julien/images/explosion01_05.png"));
+			exploFrames.add(new Image("julien/images/explosion01_07.png"));
+			exploFrames.add(new Image("julien/images/explosion01_08png"));
+
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

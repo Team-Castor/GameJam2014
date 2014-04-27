@@ -197,12 +197,16 @@ public class Game  extends BasicGame{
 			g.drawAnimation(e.getAnim(), e.getX(), e.getY());	
 		}
 		
+		ArrayList<FX> fxToRemove = new ArrayList<FX>();
 		for (FX f : fx) {
 			g.drawAnimation(f.getAnim(), f.getX(), f.getY());
-			System.out.println(f.getAnim().getFrameCount());
-			//f.getAnim().
+			if (f.getAnim().isStopped()) {
+				fxToRemove.add(f);
+			}
 		}
-		
+		for (FX f : fxToRemove) {
+			fx.remove(f);
+		}
 		for (GCarte carte : gCartes) {
 			g.drawImage(carte.getImage(), carte.getX(), carte.getY());	
 		}
@@ -478,7 +482,10 @@ public class Game  extends BasicGame{
 	}
 
 	public static void addFX(Citoyen c, FXtype type) {
-		Game.getInstance().fx.add(new FX(type , c.getPos().x , c.getPos().y));
+		int x = (int) ((c.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + c.getPosInside().getX()*(Case.getDimensionX()/2))-Game.getInstance().getOffsetX());
+		int y = (int)(((c.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + c.getPosInside().getY()*(Case.getDimensionY()/2)))-Game.getInstance().getOffsetY() - Game.getInstance().container.getHeight()) * -1;
+
+		Game.getInstance().fx.add(new FX(type , x , y));
 	}
 
 
