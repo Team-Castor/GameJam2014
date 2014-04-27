@@ -8,6 +8,7 @@ import java.util.HashMap;
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import jitou.global.CitoyenDehors;
+import jitou.global.Ennemi;
 import julien.map.Case;
 import julien.mechant.EnergieMal;
 import julien.mechant.Mechant;
@@ -452,6 +453,16 @@ public class Game  extends BasicGame{
 
 	public static void setInstance(Game instance) {
 		Game.instance = instance;
+	}
+
+	public void ennemiCreve(Ennemi ennemi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void nouvelEnnemi(Ennemi ennemi) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
