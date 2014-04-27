@@ -27,6 +27,10 @@ public class Citoyen {
 	protected ArrayList<Batiment> pathfinder = null;
 	protected double nbTourRationnement=-1, puissanceRationnement;
 
+
+
+	private double puissanceBasket=0.0;
+
 	public Citoyen(Point pos){
 		this(pos, 4000f, 32.5f, (float) (1000+Math.random()*3000));
 	}
@@ -66,7 +70,7 @@ public class Citoyen {
 			puissanceRationnement=0.0;
 		}
 
-		final  double facteurDiv = 200.0+malusVitesse;
+		final  double facteurDiv = 200.0+malusVitesse-puissanceBasket;
 
 		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.999*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.001*delta/50.0)-malusPerteChaleur);
 		nourritureRestante		-= (double)Math.max(0.1, delta-puissanceRationnement)/10.0;
@@ -280,6 +284,7 @@ public class Citoyen {
 	public void tuer() {
 		BoardGame.boardGame.getBatiment(posX, posY).back(this);
 		BoardGame.boardGame.killCitoyen(this);
+		Fanatique.liste_fanatiques.remove(this);
 		estMort=true;		
 	}
 
@@ -297,6 +302,12 @@ public class Citoyen {
 		this.puissanceRationnement = puissanceRationnement;
 	}
 
+	public double getPuissanceBasket() {
+		return puissanceBasket;
+	}
+	public void puissanceBasket(double g) {
+		 puissanceBasket = g;
+	}
 
 
 }

@@ -15,6 +15,8 @@ public class MineDeFer extends Batiment{
 	private int nb_occupant = 0;
 	private int nb_occupant_max = 3;
 	private double workingTime = 1200;
+
+	private double nbTour=-1, puissance=0.0;
 	
 	
 	public MineDeFer(Point pos) {
@@ -42,7 +44,8 @@ public class MineDeFer extends Batiment{
 	public void back(Citoyen c) {
 		if(c.getObjectif().getType().getValue()==ObjectifType.allerAUneMineDeFer.getValue()){
 		nb_occupant--;
-		c.setRessourceTransporte(new Ressource( RessourceType.fer, 5));
+		
+		c.setRessourceTransporte(new Ressource( RessourceType.fer, 5+puissance));
 		c.getObjectif().rapporterFer();
 		}
 		else{
@@ -50,7 +53,21 @@ public class MineDeFer extends Batiment{
 		}
 	}
 	
+	public void update(int delta){
+		if(nbTour>0){
+			nbTour-=delta;
+		}
+		else{
+			puissance=0.0;
+		}
+	}
+	
 	public String info() {
 		return nb_occupant+" / "+nb_occupant_max;
+	}
+
+	public void filonDeFer(double nbTour, double puissance) {
+this.nbTour+=nbTour;
+this.puissance=puissance;
 	}
 }

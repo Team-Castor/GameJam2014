@@ -4,14 +4,10 @@ import java.util.ArrayList;
 
 import julien.game.Game;
 import julien.mechant.effets.*;
-import julien.mechant.effets.mechants.Armagedon;
-import julien.mechant.effets.mechants.AttaqueTaupeZombie;
-import julien.mechant.effets.mechants.Cannibalisme;
-import julien.mechant.effets.mechants.JeuneFou;
-import julien.mechant.effets.mechants.PanneChaudiere;
-import julien.mechant.effets.mechants.PetitePluieDeMeteroite;
-import julien.mechant.effets.mechants.PluieDeMeteroite;
-import julien.mechant.effets.mechants.VolOutils;
+import julien.mechant.effets.gentils.*;
+
+import julien.mechant.effets.mechants.*;
+
 
 public class Mechant {
 
@@ -50,13 +46,17 @@ public class Mechant {
 				new VolOutils(), new AttaqueTaupeZombie() };
 		return ef[(int)(Math.random()*ef.length)];
 	}
-	
+	public Effet piocherBonner(){
+		Effet[] ef = {new AvanceeMedicale(),new ChasseSorcieres(), new Rationnement(), 
+				 new SuperMacon(), new SuperBasket()};
+		return ef[(int)(Math.random()*ef.length)];
+	}
 	
 	public void piocher() {
 		
 		
 		
-		cartes.add(new Carte(new BIEN_direBonjour() , piocherMauvaise() ));
+		cartes.add(new Carte(piocherBonner() , piocherMauvaise() ));
 		Game.getInstance().redefinirLesCartes();
 	}
 

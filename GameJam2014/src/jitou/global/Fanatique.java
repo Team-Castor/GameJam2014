@@ -35,13 +35,7 @@ public class Fanatique extends Citoyen{
 
 	}
 
-	public void tuer() {
-		BoardGame.boardGame.getBatiment(posX, posY).back(this);
-		BoardGame.boardGame.killCitoyen(this);
-		liste_fanatiques.remove(this);
-		estMort=true;		
-	}
-	
+
 	
 	public void update(int delta){
 		double malusVitesse=0.0;
@@ -167,10 +161,6 @@ public class Fanatique extends Citoyen{
 		listeMaitre .add(type);
 	}
 	
-	public void testSurvie(){
-		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<-8){
-			tuer();
-		}
-	}
+
 	
 }

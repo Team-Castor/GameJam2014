@@ -45,6 +45,10 @@ public class Chaudiere extends Batiment{
 		this.panne = panne;
 		}
 
+	
+	public String info() {
+		return "";
+	}
 
 
 }

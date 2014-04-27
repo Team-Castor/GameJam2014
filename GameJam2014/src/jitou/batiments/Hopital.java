@@ -24,7 +24,7 @@ public class Hopital extends Batiment{
 	public boolean placeDisponible(){
 		return nb_occupant<nb_occupant_max;
 	}
-	
+
 	public void effet(Citoyen citoyen, ObjectifType type) {
 		super.effet(citoyen, type);
 
@@ -34,10 +34,10 @@ public class Hopital extends Batiment{
 			citoyen.setMaladie(null);
 		}
 	}
-	
+
 	public void back(Citoyen c) {
 		if(c.getObjectif().getType().getValue()==ObjectifType.se_soigner.getValue()){
-		nb_occupant--;
+			nb_occupant--;
 
 		}
 		else{
