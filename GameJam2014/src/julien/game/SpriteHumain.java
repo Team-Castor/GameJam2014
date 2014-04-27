@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
+import jitou.global.Fanatique;
 import julien.map.Case;
 
 import org.newdawn.slick.Animation;
@@ -17,12 +18,14 @@ public class SpriteHumain extends Sprite {
 	public int xcor, ycor;
 	Citoyen c;
 	Animation anim;
-	private static ArrayList<Image> imagesgauche = new ArrayList<Image>();
-	
+	private static ArrayList<Image> imagesGauche = new ArrayList<Image>();
+	private static ArrayList<Image> imagesDroite = new ArrayList<Image>();
+	private static ArrayList<Image> imagesGaucheFanatique = new ArrayList<Image>();
+
 	public SpriteHumain (Citoyen c) {
 		super(0,0,dimensionX,dimensionY);
 		this.c = c;
-		if (SpriteHumain.imagesgauche.isEmpty()) {
+		if (SpriteHumain.imagesGauche.isEmpty()) {
 			try {
 				loadImages();
 			} catch (SlickException e) {
@@ -42,13 +45,21 @@ public class SpriteHumain extends Sprite {
 	
 	private void initAnimation() {
 
-		anim = new Animation();
-		anim.setAutoUpdate(true);
-        for (int i = 0; i < 3; i++){
-        	anim.addFrame(imagesgauche.get(i),100);
+		if (!(c instanceof Fanatique)) {
+			anim = new Animation();
+			anim.setAutoUpdate(true);
+		for (int i = 0; i < 3; i++){
+			anim.addFrame(imagesGauche.get(i),100);
+			}
+        }
+        else {
+    		anim = new Animation();
+    		anim.setAutoUpdate(true);
+            for (int i = 0; i < 3; i++){
+            	anim.addFrame(imagesGaucheFanatique.get(i),100);
+            }
         }
 	}
-
 
 
 
@@ -90,10 +101,26 @@ public class SpriteHumain extends Sprite {
 	}
 
 	public void loadImages() throws SlickException {
-		imagesgauche.add(new Image("julien/images/marche1.png"));
-		imagesgauche.add(new Image("julien/images/marche2.png"));
-		imagesgauche.add(new Image("julien/images/marche3.png"));
-		imagesgauche.add(new Image("julien/images/marche4.png"));
+		imagesGauche.add(new Image("julien/images/marche1.png"));
+		imagesGauche.add(new Image("julien/images/marche2.png"));
+		imagesGauche.add(new Image("julien/images/marche3.png"));
+		imagesGauche.add(new Image("julien/images/marche4.png"));
+		imagesGaucheFanatique.add(new Image("julien/images/marche1.png"));
+		imagesGaucheFanatique.add(new Image("julien/images/marche2.png"));
+		imagesGaucheFanatique.add(new Image("julien/images/marche3.png"));
+		imagesGaucheFanatique.add(new Image("julien/images/marche4.png"));
+		imagesGaucheFanatique.get(0).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesGaucheFanatique.get(1).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesGaucheFanatique.get(2).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesGaucheFanatique.get(3).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesDroite.add(new Image("julien/images/marche1.png"));
+		imagesDroite.add(new Image("julien/images/marche2.png"));
+		imagesDroite.add(new Image("julien/images/marche3.png"));
+		imagesDroite.add(new Image("julien/images/marche4.png"));
+		imagesDroite.get(0).getFlippedCopy(true, false);
+		imagesDroite.get(1).getFlippedCopy(true, false);
+		imagesDroite.get(2).getFlippedCopy(true, false);
+		imagesDroite.get(3).getFlippedCopy(true, false);
 
 	}
 
