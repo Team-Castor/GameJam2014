@@ -3,6 +3,8 @@ package jitou.global;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import julien.game.Game;
+
 public class Ennemi {
 	int x, y;
 	EnnemiType type;
@@ -17,6 +19,7 @@ public class Ennemi {
 		this.y = y;
 		this.type = type;
 		ennemis.add(this);
+		Game.getInstance().nouvelEnnemi(this);
 	}
 	
 	public void update(int delta){
@@ -50,6 +53,7 @@ public class Ennemi {
 	
 	public void meurt(){
 		System.out.println("AttaqueTaupeZombie meurt");
+		Game.getInstance().ennemiCreve(this);
 
 		ennemis.remove(this);
 	}

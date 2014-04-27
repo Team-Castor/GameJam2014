@@ -89,9 +89,11 @@ public class Objectif {
 		else{
 			//Test nourriture
 			Refectoire r = Refectoire.listeRefectoire.get((int) (Math.random()*Refectoire.listeRefectoire.size()));
-			if(r.getQuantiteNourriture()<10 && ferDispo!=null ){
-				
+			if(r.getQuantiteNourriture()<50 && ferDispo!=null && Math.random()<0.7){
+				seRendre 	= ferDispo;
+				type 		= ObjectifType.allerAUneFerme;
 			}
+			//Test electricite
 			
 			int proba = (int) (Math.random()*100);
 			if(proba<20){
