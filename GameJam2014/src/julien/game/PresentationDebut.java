@@ -24,17 +24,7 @@ public class PresentationDebut{
 	int    el = 0;
 	
 	public PresentationDebut( GameContainer container) {
-		GraphicsEnvironment ge=
-				null;
-				 
-				        ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
-				 
-				        String []fontNames=ge.getAvailableFontFamilyNames();
-				 
-				        for (int i = 0; i< fontNames.length; i++) {
-				            System.out.println(fontNames[i]);
-				        }
-		//System.exit(1);
+		
 		font = new Font("Purisa", Font.BOLD, 40);
 		trueTypeFont = new TrueTypeFont(font, true);
 	}

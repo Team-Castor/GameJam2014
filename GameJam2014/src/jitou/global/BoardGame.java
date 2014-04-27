@@ -45,16 +45,13 @@ public class BoardGame {
 			double somme = 0.0;
 			int nb = 0;
 			for(int j=0;j<listePts.length;j++){
-				if(x+listePts[j].x>=0 && x+listePts[j].x<BoardGame.getDimensionworldx()&&
-						y+listePts[j].y>=0 && y+listePts[j].y<BoardGame.getDimensionworldy()){
 					if(this.getBatiment(x+listePts[j].x, y+listePts[j].y)!=null){
 						somme+=getBatiment(x+listePts[j].x, y+listePts[j].y).getTemperatureSalle();
 						nb++;
 					}
-				}
 			}
 			this.liste_batiments.get(i).setTemperatureSalle(
-					0.96*this.liste_batiments.get(i).getTemperatureSalle()+(0.04*somme/(double)nb)-delta/1100.);
+					0.96*this.liste_batiments.get(i).getTemperatureSalle()+(0.04*somme/(double)nb)-delta/1000.);
 			
 			this.liste_batiments.get(i).update(delta);
 		}

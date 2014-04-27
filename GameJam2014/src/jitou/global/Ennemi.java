@@ -32,10 +32,10 @@ public class Ennemi {
 	}
 
 	public void update(int delta){
-		vx+= (Math.random()-0.5)/200;
-		vy+= (Math.random()-0.5)/200;
+		vx+= (Math.random()-0.5)/250;
+		vy+= (Math.random()-0.5)/250;
 		double norme = Math.abs(vx)+Math.abs(vy);
-		norme*=200;
+		norme*=150;
 		vx/=norme;
 		vy/=norme;
 		

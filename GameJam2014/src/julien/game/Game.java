@@ -499,7 +499,11 @@ public class Game  extends BasicGame{
 	}
 
 	public void ennemiCreve(Ennemi e) {
-		gEnnemis.remove(e);
+		
+		for(int i=0;i<gEnnemis.size();i++){
+			if(gEnnemis.get(i).getEnemis()==e) 		gEnnemis.remove(gEnnemis.get(i));
+
+		}
 		
 	}
 
