@@ -96,7 +96,7 @@ public class Objectif {
 				seRendre 	= puiDispo;
 				type 		= ObjectifType.allerPuitPetrole;
 			}
-			else if(proba<65){
+			else if(proba<80){
 				seRendre 	= sortie;
 				type 		= ObjectifType.allerVersSortie;
 			}
@@ -160,30 +160,11 @@ public class Objectif {
 
 	public void trouverNouvelObjectifFanatique() {
 		BoardGame game = BoardGame.boardGame;
-		/*
-		 * - Nourrire Critique
-		 * - Se reposer Critique
-		 * - malade -> se soigner
-		 * - si attaque :
-		 * ---- si arme allezattaque
-		 * ---- sinon allez chercher arme
-		 * - Nourrire
-		 * - Se reposer
-		 * - si pas attaque une arme -> allez la ramener 
-		 * 
-		 * random : 
-		 * 
-		 * - mine de fer -> atelier
-		 * - puit de petrol ->  generateur
-		 * - ferme nourriture 
-		 * - exterieur
-		 */
 
 		Batiment refDispo = game.nourritureDisponible();
 		Batiment dorDispo = game.dortoirDisponible();
 
 		Batiment hopDispo = game.hopitalDisponible();
-;
 
 
 		if(citoyen.getNourritureRestante()<SEUIL_FAMINE_CRITIQUE && refDispo!=null){

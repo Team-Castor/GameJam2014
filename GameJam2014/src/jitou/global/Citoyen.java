@@ -21,7 +21,7 @@ public class Citoyen {
 	protected Ressource ressourceTransporte;
 	protected Objectif objectif=null;
 	protected Maladie maladie = null;
-	
+	protected boolean armee = false;
 
 	protected double workingTime;
 	protected ArrayList<Batiment> pathfinder = null;
@@ -274,6 +274,10 @@ public class Citoyen {
 		BoardGame.boardGame.getBatiment(posX, posY).back(this);
 		BoardGame.boardGame.killCitoyen(this);
 		estMort=true;		
+	}
+
+	public boolean aUneArme() {
+		return armee;
 	}
 
 

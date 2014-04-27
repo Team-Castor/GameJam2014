@@ -247,7 +247,7 @@ public class BoardGame {
 	}
 
 	public boolean estAttaquer() {
-		return false;
+		return Ennemi.ennemis.size()>0;
 	}
 
 	public Hopital hopitalDisponible() {

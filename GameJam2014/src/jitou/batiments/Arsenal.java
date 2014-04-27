@@ -7,7 +7,7 @@ public class Arsenal extends Batiment{
 	
 	public static ArrayList<Arsenal> listeArsenals= new ArrayList<Arsenal>();
 
-	int arme_disponible = 0;
+	int arme_disponible = 10;
 	
 	public Arsenal(Point pos) {
 		super(pos, TypeBatiment.Arsenal);
