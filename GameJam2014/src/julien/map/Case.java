@@ -77,6 +77,30 @@ public class Case extends Sprite{
 						img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 						batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 					} 
+					else
+						if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.PuitPetrol) {
+							img = new Image("julien/images/Salle_petrol.png");
+							img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+							batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+						}
+						else
+							if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.MineDeFer) {
+								img = new Image("julien/images/Salle_mine de fer.png");
+								img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+								batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+							} 
+							else
+								if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Generateur) {
+									img = new Image("julien/images/Salle_Generateur.png");
+									img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+									batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+								}
+								else
+									if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Arsenal) {
+										img = new Image("julien/images/Salle_Armement.png");
+										img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
+										batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
+									} 
 			 else
 				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Chaudiere) {
 					img = new Image("julien/images/Salle_Chaudiere.png");
