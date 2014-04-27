@@ -107,6 +107,7 @@ public class GCarte extends Sprite{
 		
 		try {
 			img = new Image("julien/images/carte.png");
+			img.getGraphics().drawString(this.carte.getEffetMal().getClass().getSimpleName(), 10, 10);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

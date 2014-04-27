@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import julien.game.Game;
 import julien.mechant.effets.BIEN_direBonjour;
-import julien.mechant.effets.MAL_direCaca;
+import julien.mechant.effets.*;
+import julien.mechant.effets.PetitePluieDeMeteroite;
 
 public class Mechant {
 
@@ -37,8 +38,17 @@ public class Mechant {
 		piocher(); //On recomplete la main		
 	}
 	
+	public Effet piocherMauvaise(){
+		Effet[] ef = {new Armagedon(),new Cannibalisme(), new JeuneFou(), new PanneChaudiere(), new PetitePluieDeMeteroite(), new PluieDeMeteroite(), new VolOutils() };
+		return ef[(int)(Math.random()*ef.length)];
+	}
+	
+	
 	public void piocher() {
-		cartes.add(new Carte(new BIEN_direBonjour() , new MAL_direCaca()));
+		
+		
+		
+		cartes.add(new Carte(new BIEN_direBonjour() , piocherMauvaise() ));
 		Game.getInstance().redefinirLesCartes();
 	}
 

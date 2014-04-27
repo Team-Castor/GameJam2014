@@ -29,6 +29,10 @@ public class Atelier extends Batiment{
 			citoyen.setRessourceTransporte(null);
 
 			citoyen.setWorkingTime(workingTime);
+			
+		}else 	if(type.getValue() == ObjectifType.allerVolerOutils.getValue()){
+			fer=Math.max(0.0, fer-10.0);
+			citoyen.setWorkingTime(50.0);
 		}
 	}
 	

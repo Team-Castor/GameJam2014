@@ -317,6 +317,17 @@ public class BoardGame {
 		else
 			return liste.get((int) (Math.random()*liste.size()));		
 	}
+	
+	public Atelier trouverAtelier() {
+		ArrayList<Atelier> liste = new ArrayList<Atelier>() ;
+		for(int i=0;i<Atelier.listeAtelier.size();i++){
+				liste.add(Atelier.listeAtelier.get(i));
+			
+		}
+		if(liste.isEmpty()) return null;
+		else
+			return liste.get((int) (Math.random()*liste.size()));		
+	}
 
 	public PuitPetrol trouverPuitPetrol() {
 		ArrayList<PuitPetrol> liste = new ArrayList<PuitPetrol>() ;

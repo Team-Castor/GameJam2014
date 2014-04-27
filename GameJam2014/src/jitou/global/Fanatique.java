@@ -3,8 +3,11 @@ package jitou.global;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import jitou.batiments.Atelier;
+
 public class Fanatique extends Citoyen{
-	public ArrayList<Fanatique> liste_fanatiques = new ArrayList<Fanatique>();
+	public static ArrayList<Fanatique> liste_fanatiques = new ArrayList<Fanatique>();
+	private ArrayList<ObjectifType> listeMaitre = new ArrayList<ObjectifType>();
 
 
 	public Fanatique(Point pos) {
@@ -14,7 +17,20 @@ public class Fanatique extends Citoyen{
 
 
 	protected void nouvelObjectif() {
-		objectif.trouverNouvelObjectifFanatique();	
+		if(listeMaitre.size()>0){
+			ObjectifType t = listeMaitre.get(0);
+			listeMaitre.remove(0);
+			if(t.getValue()==ObjectifType.allerVolerOutils.getValue()){
+				Atelier at = BoardGame.boardGame.trouverAtelier();
+				if(at!=null){
+					this.objectif.setType(t);
+					this.objectif.setSeRendre(at);
+				}
+			}
+		}else{
+			objectif.trouverNouvelObjectifFanatique();	
+		}
+		
 		System.out.println("Ordre fanatique "+ objectif);
 
 	}
@@ -137,6 +153,11 @@ public class Fanatique extends Citoyen{
 
 		testSurvie();
 	}
+	
+	public void ordonner(ObjectifType type){
+		listeMaitre .add(type);
+	}
+	
 	public void testSurvie(){
 		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<0){
 			tuer();

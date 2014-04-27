@@ -16,7 +16,7 @@ public class Armagedon extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {//Pas d'effet gentil !
+	public void appliquer() {
 		super.appliquer();
 		int nb = (int) Math.ceil(CitoyenDehors.liste_cit.size()*pourcentage);
 		for(int i=0;i<nb;i++){
