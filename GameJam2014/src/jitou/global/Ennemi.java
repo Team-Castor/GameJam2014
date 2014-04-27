@@ -7,14 +7,21 @@ import julien.game.Game;
 
 public class Ennemi {
 	int x, y;
+	double px, py;
+	double vx, vy;
 	EnnemiType type;
 	public static ArrayList<Ennemi> ennemis= new ArrayList<Ennemi>();
-
+	
 	public enum EnnemiType{
 		tompeZombi, zombi;
 	}
 
 	public Ennemi(int x, int y, EnnemiType type){
+		px=0.0;
+		py=0.0;
+		vx = (Math.random()-0.5)/100.0;
+		vy = (Math.random()-0.5)/100.0;
+		
 		this.x = x;
 		this.y = y;
 		this.type = type;
@@ -23,6 +30,58 @@ public class Ennemi {
 	}
 
 	public void update(int delta){
+		
+		px = px+vx;
+		py = py+vy;
+		if(py<-0.98){
+			py = 0.98;
+			y--;
+		}
+		else if(py>0.98){
+			py = -0.98;
+			y++;
+		}
+		if(px<-0.98){
+			px = 0.98;
+			x--;
+		}
+		else if(x>0.98){
+			px = -0.98;
+			x++;
+		}
+		
+		if(BoardGame.boardGame.getBatiment(x, y)==null){
+				vx = -vx;
+				vy = -vy;
+				
+				px +=vx;
+				px = px+vx;
+	
+				if(px<-0.98){
+					px = 0.98;
+					x--;
+				}
+				else if(x>0.98){
+					px = -0.98;
+					x++;
+				}
+		
+			
+				py +=vy;
+				py = py+vy;
+
+				if(py<-0.98){
+					py = 0.98;
+					y--;
+				}
+				else if(py>0.98){
+					py = -0.98;
+					y++;
+				}
+		}
+		
+		
+		
 		System.out.println("AttaqueTaupeZombie ");
 		for(int i=0;i<BoardGame.boardGame.getCitoyens().size();i++){
 			if(BoardGame.boardGame.getCitoyens().get(i).getPos().equals(new Point(x, y))){
