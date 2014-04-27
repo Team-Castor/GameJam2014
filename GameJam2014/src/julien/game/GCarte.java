@@ -205,7 +205,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Canibalism.png");
 		}
 		else if(c.getClass().toString().equals(FuiteRadiationGenerateur.class.toString())){
-			return  new Image("julien/images/effets/sabotage des réacteurs.png");
+			return  new Image("julien/images/effets/sabotage des reacteurs.png");
 		}
 		else if(c.getClass().toString().equals(Grippe.class.toString())){
 			return  new Image("julien/images/effets/Grippe.png");
@@ -235,7 +235,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Zombification.png");
 		}
 		else if(c.getClass().toString().equals(SabotageReserveExplosif.class.toString())){
-			return  new Image("julien/images/effets/Sabotage des explosifs.png");
+			return  new Image("julien/images/effets/sabotage des explosifs.png");
 		}
 		else if(c.getClass().toString().equals(VolOutils.class.toString())){
 			return  new Image("julien/images/effets/vol doutils.png");
@@ -256,7 +256,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/rat creve.png");
 		}
 		else if(c.getClass().toString().equals(NourritureEmpoisonnee.class.toString())){
-			return  new Image("julien/images/effets/nourriture empoisonneee.png");
+			return  new Image("julien/images/effets/nourriture empoisonnee.png");
 		}
 		else if(c.getClass().toString().equals(ChariotBug.class.toString())){
 			return  new Image("julien/images/effets/bug du chariot.png");
