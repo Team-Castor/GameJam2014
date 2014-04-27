@@ -74,7 +74,9 @@ public class BoardGame {
 		for(int i=0;i<citoyens.size();i++){
 			citoyens.get(i).update(delta);
 		}
-
+		for(int i=0;i<CitoyenDehors.liste_cit.size();i++){
+			CitoyenDehors.liste_cit.get(i).update(delta);
+		}
 
 	}
 
