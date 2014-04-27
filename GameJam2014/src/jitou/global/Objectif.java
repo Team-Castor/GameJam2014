@@ -88,13 +88,23 @@ public class Objectif {
 		}
 		else{
 			//Test nourriture
-			Refectoire r = Refectoire.listeRefectoire.get((int) (Math.random()*Refectoire.listeRefectoire.size()));
-			if(r.getQuantiteNourriture()<50 && ferDispo!=null && Math.random()<0.7){
-				seRendre 	= ferDispo;
-				type 		= ObjectifType.allerAUneFerme;
+			{
+				Refectoire r = Refectoire.listeRefectoire.get((int) (Math.random()*Refectoire.listeRefectoire.size()));
+
+				if(r.getQuantiteNourriture()<50 && ferDispo!=null && Math.random()<0.7){
+					seRendre 	= ferDispo;
+					type 		= ObjectifType.allerAUneFerme;
+				}
 			}
 			//Test electricite
-			
+			{
+				Generateur r = Generateur.listeGenerateurs.get((int) (Math.random()*Generateur.listeGenerateurs.size()));
+				if(r.getElectricite()<50 && puiDispo!=null && Math.random()<0.7){
+					seRendre 	= puiDispo;
+					type 		= ObjectifType.allerPuitPetrole;
+				}
+			}
+
 			int proba = (int) (Math.random()*100);
 			if(proba<20){
 				seRendre 	= ferDispo;
@@ -108,7 +118,7 @@ public class Objectif {
 				seRendre 	= puiDispo;
 				type 		= ObjectifType.allerPuitPetrole;
 			}
-			else if(proba<70 && Dortoir.listeDortoirs.size()*20>=game.getCitoyens().size()){
+			else if(proba<80 && Dortoir.listeDortoirs.size()*30>=game.getCitoyens().size()){
 				seRendre 	= sortie;
 				type 		= ObjectifType.allerVersSortie;
 			}

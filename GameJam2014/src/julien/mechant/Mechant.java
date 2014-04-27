@@ -44,13 +44,15 @@ public class Mechant {
 		Effet[] ef = {new Armagedon(),new Cannibalisme(), new JeuneFou(),
 				new PanneChaudiere(), new PetitePluieDeMeteroite(), new PluieDeMeteroite(),
 				new VolOutils(), new AttaqueTaupeZombie(), new Kamikaze(), 
-				new SabotageReserveExplosif(), new ReveilZombie()};
+				new SabotageReserveExplosif(), new ReveilZombie(), new VagueFanatique(), 
+				new Rat(), new Rhume(), new Grippe(), new FuiteRadiationGenerateur()};
 		
 		return ef[(int)(Math.random()*ef.length)];
 	}
 	public Effet piocherBonner(){
 		Effet[] ef = {new AvanceeMedicale(),new ChasseSorcieres(), new Rationnement(), 
-				 new SuperMacon(), new SuperBasket()};
+				 new SuperMacon(), new SuperBasket(), new CapsuleDeReparation(),
+				 new FilonDeFer()};
 		
 		return ef[(int)(Math.random()*ef.length)];
 	}

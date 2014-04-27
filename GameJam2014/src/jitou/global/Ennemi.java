@@ -9,11 +9,11 @@ public class Ennemi {
 	int x, y;
 	EnnemiType type;
 	public static ArrayList<Ennemi> ennemis= new ArrayList<Ennemi>();
-	
+
 	public enum EnnemiType{
 		tompeZombi, zombi;
 	}
-	
+
 	public Ennemi(int x, int y, EnnemiType type){
 		this.x = x;
 		this.y = y;
@@ -21,7 +21,7 @@ public class Ennemi {
 		ennemis.add(this);
 		Game.getInstance().nouvelEnnemi(this);
 	}
-	
+
 	public void update(int delta){
 		System.out.println("AttaqueTaupeZombie ");
 		for(int i=0;i<BoardGame.boardGame.getCitoyens().size();i++){
@@ -30,7 +30,9 @@ public class Ennemi {
 					meurt();
 				}
 				else{
-					BoardGame.boardGame.getCitoyens().get(i).tuer();
+					if(Math.random()<0.1){
+						BoardGame.boardGame.getCitoyens().get(i).tuer();
+					}
 				}
 				return;
 			}
@@ -50,7 +52,7 @@ public class Ennemi {
 			j=(j+1)%4;
 		}*/
 	}
-	
+
 	public void meurt(){
 		System.out.println("AttaqueTaupeZombie meurt");
 		Game.getInstance().ennemiCreve(this);
@@ -75,6 +77,6 @@ public class Ennemi {
 	public void setType(EnnemiType type) {
 		this.type = type;
 	}
-	
-	
+
+
 }

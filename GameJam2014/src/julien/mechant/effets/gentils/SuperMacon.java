@@ -3,6 +3,7 @@ package julien.mechant.effets.gentils;
 import java.util.ArrayList;
 
 import jitou.batiments.Atelier;
+import jitou.batiments.Batiment;
 import jitou.batiments.Hopital;
 import jitou.batiments.MineDeFer;
 import jitou.global.BoardGame;
@@ -14,8 +15,7 @@ import julien.mechant.TypeEffet;
 
 public class SuperMacon extends Effet{
 
-	double nbTour 	 = 500.0;
-	double puissance = 2.0;
+	int nbBatiment 	 = 1;
 
 	public SuperMacon() {
 		variationEnergie[0] = 0;
@@ -29,9 +29,12 @@ public class SuperMacon extends Effet{
 		super.appliquer();
 
 
-		ArrayList<MineDeFer> tmp = MineDeFer.listeMineDeFer;
-		for(int i=0;i<tmp.size();i++){
-			tmp.get(i).filonDeFer(nbTour, puissance);
+		ArrayList<Batiment> tmp = BoardGame.boardGame.getListeBatiments();
+		for(int i=0;i<tmp.size() && nbBatiment>0;i++){
+			if(tmp.get(i).getDommage()>0){
+				nbBatiment--;
+				tmp.get(i).setDommage(-1);
+			}
 		}
 
 	}

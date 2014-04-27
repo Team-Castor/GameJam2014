@@ -50,7 +50,7 @@ public class Batiment {
 	}
 
 	public void update(int delta){
-		
+
 	}
 
 	public final Point getPos() {
@@ -65,7 +65,7 @@ public class Batiment {
 			}
 		}
 	}
-	
+
 
 
 	public TypeBatiment getType() {
@@ -86,11 +86,11 @@ public class Batiment {
 		else if(type.getValue()==ObjectifType.faireSemblant.getValue()){
 			citoyen.setWorkingTime(200);
 		}
-		
+
 		citoyen.setWorkingTime(citoyen.getWorkingTime()+2.0);
 
-			
-			
+
+
 	}
 
 	private void killEnnemiCase(Batiment batiment) {
@@ -116,9 +116,16 @@ public class Batiment {
 		if(c.getObjectif().getType().getValue()==ObjectifType.allerVersSortie.getValue()){
 			c.visible = true;
 			CitoyenDehors.removeWith(c);
-			if(Math.random()*100<2.0 && Dortoir.listeDortoirs.size()*20>=BoardGame.boardGame.getCitoyens().size()) BoardGame.boardGame.getCitoyens().add(
-					new Citoyen(
-							(Point) BoardGame.boardGame.getListeBatiments().get((int)(Math.random()*BoardGame.boardGame.getListeBatiments().size())).getPos().clone()));
+			if(  Dortoir.listeDortoirs.size()*20>=BoardGame.boardGame.getCitoyens().size()) {
+				if(Math.random()*100<5.0)BoardGame.boardGame.getCitoyens().add(
+						new Citoyen(
+								(Point) BoardGame.boardGame.getListeBatiments().get((int)(Math.random()*BoardGame.boardGame.getListeBatiments().size())).getPos().clone()));
+			}else if(Math.random()*100<0.01){
+				BoardGame.boardGame.getCitoyens().add(
+						new Citoyen(
+								(Point) BoardGame.boardGame.getListeBatiments().get((int)(Math.random()*BoardGame.boardGame.getListeBatiments().size())).getPos().clone()));
+
+			}
 		}
 
 		c.getObjectif().reset();
