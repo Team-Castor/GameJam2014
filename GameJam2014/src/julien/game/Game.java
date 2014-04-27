@@ -199,7 +199,8 @@ public class Game  extends BasicGame{
 		
 		for (FX f : fx) {
 			g.drawAnimation(f.getAnim(), f.getX(), f.getY());
-			System.out.println(f.getAnim().getFrameCount());		
+			System.out.println(f.getAnim().getFrameCount());
+			//f.getAnim().
 		}
 		
 		for (GCarte carte : gCartes) {
