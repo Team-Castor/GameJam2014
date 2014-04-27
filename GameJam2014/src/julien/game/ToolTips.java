@@ -32,7 +32,7 @@ public class ToolTips{
 
 		font = new Font("Verdana", Font.BOLD, 20);
 		trueTypeFont = new TrueTypeFont(font, true);
-	    trueTypeFont.drawString(20.0f, 20.0f, "Slick displaying True Type Fonts", Color.green);
+	   // trueTypeFont.drawString(20.0f, 20.0f, "Slick displaying True Type Fonts", Color.green);
 
 	}
 

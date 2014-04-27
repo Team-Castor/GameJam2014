@@ -172,22 +172,22 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Armageddon.png");
 		}
 		else if(c.getClass().toString().equals(AvanceeMedicale.class.toString())){
-			return  new Image("julien/images/effets/Progrès médical.png");
+			return  new Image("julien/images/effets/Progres medical.png");
 		}
 		else if(c.getClass().toString().equals(CapsuleDeSurvivant.class.toString())){
 			return  new Image("julien/images/effets/Capsule de survivor.png");
 		}
 		else if(c.getClass().toString().equals(ChasseSorcieres.class.toString())){
-			return  new Image("julien/images/effets/Chasse aux sorcières.png");
+			return  new Image("julien/images/effets/Chasse aux sorcieres.png");
 		}
 		else if(c.getClass().toString().equals(EscouadeDeReparation.class.toString())){
-			return  new Image("julien/images/effets/escouade de réparation.png");
+			return  new Image("julien/images/effets/escouade de reparation.png");
 		}
 		else if(c.getClass().toString().equals(FilonDeFer.class.toString())){
 			return  new Image("julien/images/effets/Veine de fer.png");
 		}
 		else if(c.getClass().toString().equals(FilonDePetrole.class.toString())){
-			return  new Image("julien/images/effets/gisement de pétrole.png");
+			return  new Image("julien/images/effets/gisement de petrole.png");
 		}
 		else if(c.getClass().toString().equals(Rationnement.class.toString())){
 			return  new Image("julien/images/effets/Rationnement.png");
@@ -196,7 +196,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Super chaussures.png");
 		}
 		else if(c.getClass().toString().equals(SuperMacon.class.toString())){
-			return  new Image("julien/images/effets/Maçon strike.png");
+			return  new Image("julien/images/effets/Macon strike.png");
 		}
 		else if(c.getClass().toString().equals(AttaqueTaupeZombie.class.toString())){
 			return  new Image("julien/images/effets/Attaque de Top.png");
@@ -220,16 +220,16 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Kammikaze.png");
 		}
 		else if(c.getClass().toString().equals(PanneChaudiere.class.toString())){
-			return  new Image("julien/images/effets/panne de chaudière.png");
+			return  new Image("julien/images/effets/panne de chaudiere.png");
 		}
 		else if(c.getClass().toString().equals(PetitePluieDeMeteroite.class.toString())){
-			return  new Image("julien/images/effets/Petite pluie de météorites.png");
+			return  new Image("julien/images/effets/Petite pluie de meteorites.png");
 		}
 		else if(c.getClass().toString().equals(Rat.class.toString())){
 			return  new Image("julien/images/effets/Invasion de rats.png");
 		}
 		else if(c.getClass().toString().equals(PluieDeMeteroite.class.toString())){
-			return  new Image("julien/images/effets/Pluie de météorites.png");
+			return  new Image("julien/images/effets/Pluie de meteorites.png");
 		}
 		else if(c.getClass().toString().equals(ReveilZombie.class.toString())){
 			return  new Image("julien/images/effets/Zombification.png");
@@ -238,7 +238,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Sabotage des explosifs.png");
 		}
 		else if(c.getClass().toString().equals(VolOutils.class.toString())){
-			return  new Image("julien/images/effets/vol d'outils.png");
+			return  new Image("julien/images/effets/vol doutils.png");
 		}
 		else if(c.getClass().toString().equals(Mouton.class.toString())){
 			return  new Image("julien/images/effets/mouton.png");
@@ -250,19 +250,19 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Troupeau de mouton.png");
 		}
 		else if(c.getClass().toString().equals(IndendiePetrole.class.toString())){
-			return  new Image("julien/images/effets/incendie du pétrole.png");
+			return  new Image("julien/images/effets/incendie du petrole.png");
 		}
 		else if(c.getClass().toString().equals(RatCreve.class.toString())){
-			return  new Image("julien/images/effets/rat crevé.png");
+			return  new Image("julien/images/effets/rat creve.png");
 		}
 		else if(c.getClass().toString().equals(NourritureEmpoisonnee.class.toString())){
-			return  new Image("julien/images/effets/nourriture empoisonnée.png");
+			return  new Image("julien/images/effets/nourriture empoisonneee.png");
 		}
 		else if(c.getClass().toString().equals(ChariotBug.class.toString())){
 			return  new Image("julien/images/effets/bug du chariot.png");
 		}
 		else if(c.getClass().toString().equals(NourritureAvarie.class.toString())){
-			return  new Image("julien/images/effets/nourriture avarié.png");
+			return  new Image("julien/images/effets/nourriture avarie.png");
 		}
 
 

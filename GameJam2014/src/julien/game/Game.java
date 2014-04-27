@@ -58,7 +58,7 @@ public class Game  extends BasicGame{
 	private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 	private ArrayList<FX> fx = new ArrayList<FX>();
 	
-	
+	private PresentationDebut presentation = null;
 	private ToolTips toolTip = null;
 	FX maladie;
 
@@ -93,6 +93,7 @@ public class Game  extends BasicGame{
 		maladie.getAnim().stopAt(-1);
 		
 		toolTip = new ToolTips(container);
+		presentation = new PresentationDebut(container);
 	}
 
 
@@ -237,6 +238,7 @@ public class Game  extends BasicGame{
 
 		drawJauges(container , g);
 		toolTip.draw(container);
+		presentation.draw(container);
 
 	}
 
@@ -270,6 +272,7 @@ public class Game  extends BasicGame{
 	public void update(GameContainer container, int delta) throws SlickException {
 		board.update(delta);
 		toolTip.update(delta);
+		presentation.update(delta);
 		containerH = container.getHeight();
 		containerW = container.getWidth();
 
