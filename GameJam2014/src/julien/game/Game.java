@@ -234,6 +234,10 @@ public class Game  extends BasicGame{
 
 		containerH = container.getHeight();
 		containerW = container.getWidth();
+		
+		for (int i = 0 ; i < spritesHumains.size() ; i++) {
+			spritesHumains.get(i).changeState();
+		}
 
 	}
 

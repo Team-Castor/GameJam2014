@@ -22,6 +22,8 @@ public class SpriteHumain extends Sprite {
 	private static ArrayList<Image> imagesGauche = new ArrayList<Image>();
 	private static ArrayList<Image> imagesDroite = new ArrayList<Image>();
 	private static ArrayList<Image> imagesGaucheFanatique = new ArrayList<Image>();
+	private static ArrayList<Image> imagesTravail = new ArrayList<Image>();
+	private boolean etaitActif = false;
 
 	public SpriteHumain (Citoyen c) {
 		super(0,0,dimensionX,dimensionY);
@@ -48,22 +50,29 @@ public class SpriteHumain extends Sprite {
 		// TODO Auto-generated constructor stub
 	}
 
-	private void initAnimation() {
+	public void initAnimation() {
 
 		if (!(c instanceof Fanatique)) {
 			anim = new Animation();
 			anim.setAutoUpdate(true);
-		for (int i = 0; i < 3; i++){
+		for (int i = 0; i < 4; i++){
 			anim.addFrame(imagesGauche.get(i),100);
 			}
         }
+		else if (c.estActif()) {
+    		anim = new Animation();
+    		anim.setAutoUpdate(true);
+            for (int i = 0; i < 1; i++){
+            	anim.addFrame(imagesTravail.get(i),100);
+            }
+		}
         else {
     		anim = new Animation();
     		anim.setAutoUpdate(true);
-            for (int i = 0; i < 3; i++){
+            for (int i = 0; i < 4; i++){
             	anim.addFrame(imagesGaucheFanatique.get(i),100);
             }
-        }
+        } 
 	}
 
 
@@ -126,6 +135,8 @@ public class SpriteHumain extends Sprite {
 		imagesDroite.get(1).getFlippedCopy(true, false);
 		imagesDroite.get(2).getFlippedCopy(true, false);
 		imagesDroite.get(3).getFlippedCopy(true, false);
+		imagesTravail.add(new Image("julien/images/perso face.png"));
+
 
 	}
 
@@ -151,6 +162,17 @@ public class SpriteHumain extends Sprite {
 			return true;
 		}
 		return false;
+	}
+
+	public void changeState() {
+		if (etaitActif && !c.estActif()) {
+			etaitActif = true;
+			initAnimation();
+		} else if (!etaitActif && c.estActif()){
+			etaitActif = false;
+			initAnimation();
+		}
+		
 	}
 
 	
