@@ -18,9 +18,9 @@ public class IndendiePetrole extends Effet{
 	double dommageSecondaire=2000.0;
 	
 	public IndendiePetrole() {
-		variationEnergie[0] = 2;
-		variationEnergie[1] = 10;
-		variationEnergie[2] = 5;
+		variationEnergie[0] = -2;
+		variationEnergie[1] = -10;
+		variationEnergie[2] = -5;
 		
 		type = TypeEffet.mal;
 	}
@@ -37,7 +37,7 @@ public class IndendiePetrole extends Effet{
 			julien.game.Game.addFX(f, FXtype.explosion);
 			
 		}
-		return "Le pétrole s'enflamme et explose et provoquant des dégats collatéraux";
+		return "Le eetrole s'enflamme et explose et provoquant des degats collateraux";
 	}
 	
 }

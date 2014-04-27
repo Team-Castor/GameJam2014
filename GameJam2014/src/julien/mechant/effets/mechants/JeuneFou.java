@@ -9,9 +9,9 @@ import julien.mechant.TypeEffet;
 public class JeuneFou extends Effet{
 	
 	public JeuneFou() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 0;
-		variationEnergie[2] = 0;
+		variationEnergie[0] = -0;
+		variationEnergie[1] = -0;
+		variationEnergie[2] = -0;
 		
 		type = TypeEffet.mal;
 	}

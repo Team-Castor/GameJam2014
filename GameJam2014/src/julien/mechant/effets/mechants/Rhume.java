@@ -20,7 +20,7 @@ public class Rhume extends Effet{
 	public Rhume() {
 		variationEnergie[0] = 0;
 		variationEnergie[1] = 0;
-		variationEnergie[2] = 2;
+		variationEnergie[2] = -2;
 		
 		type = TypeEffet.mal;
 	}

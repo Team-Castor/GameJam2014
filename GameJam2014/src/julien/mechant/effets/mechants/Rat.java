@@ -12,8 +12,8 @@ public class Rat extends Effet {
 
 	public Rat() {
 		variationEnergie[0] = 0;
-		variationEnergie[1] = 3;
-		variationEnergie[2] = 3;
+		variationEnergie[1] = -3;
+		variationEnergie[2] = -3;
 		
 		type = TypeEffet.mal;
 	}
@@ -23,7 +23,7 @@ public class Rat extends Effet {
 		Refectoire c = Refectoire.listeRefectoire.get((int) (Math.random()*Refectoire.listeRefectoire.size()));
 		c.rat(nbTourRat, puissanceRat);
 		
-		return "Des rats dévorent la nourriture";
+		return "Des rats devorent la nourriture";
 
 	}
 	

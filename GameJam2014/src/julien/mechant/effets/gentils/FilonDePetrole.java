@@ -34,7 +34,7 @@ public class FilonDePetrole extends Effet{
 			tmp.get(i).filon(nbTour, puissance);
 		}
 		
-		return tmp.size()+" puits de pétrole produiront "+puissance+" de fuel en plus pendant "+nbTour+" tours";
+		return tmp.size()+" puits de petrole produiront "+puissance+" de fuel en plus pendant "+nbTour+" tours";
 
 
 	}

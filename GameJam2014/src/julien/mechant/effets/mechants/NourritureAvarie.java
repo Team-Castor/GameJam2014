@@ -19,9 +19,9 @@ public class NourritureAvarie extends Effet{
 	double gain 	 = 10.0+Math.random()*20.0;
 
 	public NourritureAvarie() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 4;
-		variationEnergie[2] = 1;
+		variationEnergie[0] = -0;
+		variationEnergie[1] = -4;
+		variationEnergie[2] = -1;
 
 		type = TypeEffet.mal;
 	}
@@ -33,6 +33,6 @@ public class NourritureAvarie extends Effet{
 		int n = (int) (Math.random()*tmp.size());
 		tmp.get(n).setQuantiteNourriture(tmp.get(n).getQuantiteNourriture()-gain);
 
-		return "La nourriture avariée fait perdre "+gain+" nourriture.";
+		return "La nourriture avarieee fait perdre "+gain+" nourriture.";
 	}
 }

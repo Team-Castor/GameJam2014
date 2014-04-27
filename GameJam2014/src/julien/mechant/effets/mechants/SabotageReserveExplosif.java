@@ -17,9 +17,9 @@ public class SabotageReserveExplosif extends Effet{
 	double dommageSecondaire=2000.0;
 	
 	public SabotageReserveExplosif() {
-		variationEnergie[0] = 2;
-		variationEnergie[1] = 10;
-		variationEnergie[2] = 5;
+		variationEnergie[0] = -2;
+		variationEnergie[1] = -10;
+		variationEnergie[2] = -5;
 		
 		type = TypeEffet.mal;
 	}
@@ -36,7 +36,7 @@ public class SabotageReserveExplosif extends Effet{
 			julien.game.Game.addFX(f, FXtype.explosion);
 			
 		}
-		return "Une mine de fer explose et provoque des dégats collatéraux";
+		return "Une mine de fer explose et provoque des degats collateraux";
 	}
 	
 }

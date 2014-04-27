@@ -15,9 +15,9 @@ public class FuiteRadiationGenerateur extends Effet{
 
 
 	public FuiteRadiationGenerateur() {
-		variationEnergie[0] = 2;
-		variationEnergie[1] = 10;
-		variationEnergie[2] = 5;
+		variationEnergie[0] = -2;
+		variationEnergie[1] = -10;
+		variationEnergie[2] = -5;
 
 		type = TypeEffet.mal;
 	}
@@ -33,7 +33,7 @@ public class FuiteRadiationGenerateur extends Effet{
 
 		}
 		
-		return " Un générateur explose";
+		return " Un generateur explose";
 
 
 	}

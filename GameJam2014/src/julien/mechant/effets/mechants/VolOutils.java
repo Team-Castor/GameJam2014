@@ -13,7 +13,7 @@ public class VolOutils extends Effet{
 	
 	public VolOutils() {
 		variationEnergie[0] = 0;
-		variationEnergie[1] = 3;
+		variationEnergie[1] = -3;
 		variationEnergie[2] = 0;
 		
 		type = TypeEffet.mal;

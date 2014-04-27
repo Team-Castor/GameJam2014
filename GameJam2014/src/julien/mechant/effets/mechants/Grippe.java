@@ -18,9 +18,9 @@ public class Grippe extends Effet{
 	
 	private Maladie mal = new Maladie(malusVitesse, malusTempsTravail, malusFatigue, perteChaleur);
 	public Grippe() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 3;
-		variationEnergie[2] = 0;
+		variationEnergie[0] = -0;
+		variationEnergie[1] = -3;
+		variationEnergie[2] = -0;
 		
 		type = TypeEffet.mal;
 	}

@@ -18,8 +18,8 @@ public class ReveilZombie extends Effet{
 	
 	public ReveilZombie() {
 		variationEnergie[0] = 0;
-		variationEnergie[1] = 6;
-		variationEnergie[2] = 0;
+		variationEnergie[1] = -6;
+		variationEnergie[2] = -0;
 		
 		type = TypeEffet.mal;
 	}

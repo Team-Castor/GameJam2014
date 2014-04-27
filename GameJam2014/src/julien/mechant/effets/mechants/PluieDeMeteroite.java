@@ -9,8 +9,8 @@ public class PluieDeMeteroite extends Effet{
 	double pourcentage = 0.7;
 
 	public PluieDeMeteroite() {
-		variationEnergie[0] = 1;
-		variationEnergie[1] = 5;
+		variationEnergie[0] = -1;
+		variationEnergie[1] = -5;
 		variationEnergie[2] = 0;
 
 		type = TypeEffet.mal;
@@ -28,7 +28,7 @@ public class PluieDeMeteroite extends Effet{
 			//CitoyenDehors.liste_cit.remove(i);
 		}
 
-		return n+" citoyens sont tués pendant la pluie de météroites";
+		return n+" citoyens sont tues pendant la pluie de meteroites";
 
 	}
 

@@ -13,9 +13,9 @@ public class NourritureEmpoisonnee extends Effet{
 	double poucentage = 0.1;
 
 	public NourritureEmpoisonnee() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 3;
-		variationEnergie[2] = 0;
+		variationEnergie[0] = -0;
+		variationEnergie[1] = -3;
+		variationEnergie[2] = -0;
 
 		type = TypeEffet.mal;
 	}

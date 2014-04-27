@@ -13,9 +13,9 @@ public class Cannibalisme extends Effet{
 	
 	
 	public Cannibalisme() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 3;
-		variationEnergie[2] = 0;
+		variationEnergie[0] = -0;
+		variationEnergie[1] = -3;
+		variationEnergie[2] = -0;
 		
 		type = TypeEffet.mal;
 	}
@@ -30,7 +30,7 @@ public class Cannibalisme extends Effet{
 			c.tuer();
 		}
 		
-		return x+" citoyens sont retrouvés dévorés";
+		return x+" citoyens sont retrouves devores";
 
 	}
 	

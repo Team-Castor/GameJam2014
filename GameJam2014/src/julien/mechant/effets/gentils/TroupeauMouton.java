@@ -33,6 +33,6 @@ public class TroupeauMouton extends Effet{
 		for(int i=0;i<tmp.size();i++){
 			tmp.get(i).setQuantiteNourriture(tmp.get(i).getQuantiteNourriture()+gain);
 		}
-		return "Le mouton rapporte "+gain+" nourriture à tous les réfrectoires";
+		return "Le mouton rapporte "+gain+" nourriture e tous les refrectoires";
 	}
 }

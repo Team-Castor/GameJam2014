@@ -20,9 +20,9 @@ public class Mechant {
 	
 	public Mechant() {
 		instance = this;
-		energies[0] = new EnergieMal(TypeEnergie.foi,100);
-		energies[1] = new EnergieMal(TypeEnergie.joie,100);
-		energies[2] = new EnergieMal(TypeEnergie.espoir,100);
+		energies[0] = new EnergieMal(TypeEnergie.foi,10);
+		energies[1] = new EnergieMal(TypeEnergie.joie,10);
+		energies[2] = new EnergieMal(TypeEnergie.espoir,10);
 	}
 	
 	public void premierePioche() {

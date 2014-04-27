@@ -10,7 +10,7 @@ public class PetitePluieDeMeteroite extends Effet{
 	
 	public PetitePluieDeMeteroite() {
 		variationEnergie[0] = 0;
-		variationEnergie[1] = 2;
+		variationEnergie[1] = -2;
 		variationEnergie[2] = 0;
 		
 		type = TypeEffet.mal;
@@ -27,7 +27,7 @@ public class PetitePluieDeMeteroite extends Effet{
 			}
 			//CitoyenDehors.liste_cit.remove(i);
 		}
-		return n+" citoyens sont tués pendant la petite pluie de météroites";
+		return n+" citoyens sont tues pendant la petite pluie de meteroites";
 
 	}
 	

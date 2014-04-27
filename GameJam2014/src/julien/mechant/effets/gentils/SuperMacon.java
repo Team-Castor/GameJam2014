@@ -33,6 +33,6 @@ public class SuperMacon extends Effet{
 			tmp.get(i).superMacon(nbTour, puissance);
 		}
 	
-		return "Vos ateliers ont besoins de moins de matériaux pour construire";
+		return "Vos ateliers ont besoins de moins de materiaux pour construire";
 	}
 }

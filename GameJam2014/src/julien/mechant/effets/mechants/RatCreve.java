@@ -19,8 +19,8 @@ public class RatCreve extends Effet{
 	private Maladie mal = new Maladie(malusVitesse, malusTempsTravail, malusFatigue, perteChaleur);
 	public RatCreve() {
 		variationEnergie[0] = 0;
-		variationEnergie[1] = 1;
-		variationEnergie[2] = 2;
+		variationEnergie[1] = -1;
+		variationEnergie[2] = -2;
 		
 		type = TypeEffet.mal;
 	}
@@ -35,7 +35,7 @@ public class RatCreve extends Effet{
 			nb++;}
 		}
 		
-		return nb+" citoyens tombent malade à cause d'un rat crevé.";
+		return nb+" citoyens tombent malade a cause d'un rat creve.";
 
 	}
 	

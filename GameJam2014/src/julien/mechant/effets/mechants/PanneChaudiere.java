@@ -10,9 +10,9 @@ public class PanneChaudiere extends Effet {
 	public double nbDelta = 0.5;
 
 	public PanneChaudiere() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 3;
-		variationEnergie[2] = 3;
+		variationEnergie[0] = -0;
+		variationEnergie[1] = -3;
+		variationEnergie[2] = -3;
 		
 		type = TypeEffet.mal;
 	}
@@ -22,7 +22,7 @@ public class PanneChaudiere extends Effet {
 		Chaudiere c = Chaudiere.listeChaudieres.get((int) (Math.random()*Chaudiere.listeChaudieres.size()));
 		c.infligerPenalite(this);
 		
-		return "La chaudière est en panne, il faudra bien "+nbTour+" tours pour la réparer";
+		return "La chaudieere est en panne, il faudra bien "+nbTour+" tours pour la reparer";
 
 	}
 	

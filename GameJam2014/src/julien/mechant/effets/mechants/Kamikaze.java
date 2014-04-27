@@ -15,9 +15,9 @@ public class Kamikaze extends Effet{
 	double dommage = 7000.0;
 	
 	public Kamikaze() {
-		variationEnergie[0] = 5;
-		variationEnergie[1] = 4;
-		variationEnergie[2] = 0;
+		variationEnergie[0] = -5;
+		variationEnergie[1] = -4;
+		variationEnergie[2] = -0;
 		
 		type = TypeEffet.mal;
 	}

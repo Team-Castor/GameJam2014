@@ -17,9 +17,9 @@ public class ChariotBug extends Effet{
 	double ratio = 0.5;
 	
 	public ChariotBug() {
-		variationEnergie[0] = 2;
-		variationEnergie[1] = 10;
-		variationEnergie[2] = 5;
+		variationEnergie[0] = -2;
+		variationEnergie[1] = -10;
+		variationEnergie[2] = -5;
 		
 		type = TypeEffet.mal;
 	}
@@ -33,7 +33,7 @@ public class ChariotBug extends Effet{
 			MineDeFer f =  MineDeFer.listeMineDeFer.get((int) (Math.random()*nb));
 			f.setRatioMalus(temps, ratio);
 		}
-		return "Une mine de fer pruoduit désormais "+ratio+" moins vite";
+		return "Une mine de fer pruoduit desormais "+ratio+" moins vite";
 	}
 	
 }

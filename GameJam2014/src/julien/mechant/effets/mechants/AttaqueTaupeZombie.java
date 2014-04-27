@@ -14,9 +14,9 @@ public class AttaqueTaupeZombie extends Effet{
 	
 	
 	public AttaqueTaupeZombie() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 6;
-		variationEnergie[2] = 0;
+		variationEnergie[0] = -0;
+		variationEnergie[1] = -6;
+		variationEnergie[2] = -0;
 		
 		type = TypeEffet.mal;
 	}
