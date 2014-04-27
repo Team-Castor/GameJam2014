@@ -14,7 +14,7 @@ public class Ferme extends Batiment{
 
 	int nb_occupant = 0;
 	int nb_occupant_max = 5;
-	double workingTime=1000.0;
+	double workingTime=1050.0;
 	
 	
 	public Ferme(Point pos) {

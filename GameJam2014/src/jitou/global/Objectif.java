@@ -107,19 +107,19 @@ public class Objectif {
 		
 
 			int proba = (int) (Math.random()*100);
-			if(proba<20){
+			if(proba<25){
 				seRendre 	= ferDispo;
 				type 		= ObjectifType.allerAUneFerme;
 			}
-			else if(proba<40){
+			else if(proba<55){
 				seRendre 	= minDispo;
 				type 		= ObjectifType.allerAUneMineDeFer;
 			}
-			else if(proba<60){
+			else if(proba<80){
 				seRendre 	= puiDispo;
 				type 		= ObjectifType.allerPuitPetrole;
 			}
-			else if(proba<80 && Dortoir.listeDortoirs.size()*30>=game.getCitoyens().size()){
+			else if(proba<100 && Dortoir.listeDortoirs.size()*30>=game.getCitoyens().size()){
 				seRendre 	= sortie;
 				type 		= ObjectifType.allerVersSortie;
 			}

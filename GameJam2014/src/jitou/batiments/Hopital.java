@@ -11,10 +11,10 @@ import jitou.ressources.RessourceType;
 public class Hopital extends Batiment{
 
 	public static ArrayList<Hopital> listeHopitaux= new ArrayList<Hopital>();
-	private static double workingTime= 1000.0;
+	private static double workingTime= 1200.0;
 
 	int nb_occupant = 0;
-	int nb_occupant_max = 20;
+	int nb_occupant_max = 2;
 
 	public Hopital(Point pos) {
 		super(pos, TypeBatiment.Hopital);

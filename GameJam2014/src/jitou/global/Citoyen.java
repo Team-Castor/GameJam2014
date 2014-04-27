@@ -30,14 +30,10 @@ public class Citoyen {
 	protected ArrayList<Batiment> pathfinder = null;
 	protected double nbTourRationnement=-1, puissanceRationnement;
 
+	protected double puissanceBasket=0.0;
+	protected double tempsReveilZombie;
 
-
-	private double puissanceBasket=0.0;
-
-
-
-	private double tempsReveilZombie;
-
+	
 	public Citoyen(Point pos){
 		this(pos, 4000f, 32.5f, (float) (1000+Math.random()*3000));
 	}
@@ -84,7 +80,7 @@ public class Citoyen {
 		Batiment salle = BoardGame.boardGame.getBatiment(posX, posY);
 		
 		if(maladie!=null){
-			if(delta/1000.>Math.random()){
+			if(delta/1400.>Math.random()){
 				System.out.println("Transmission maladie");
 				Citoyen c =salle.getCitoyenRandom();
 				if(c.estMalade()==false) c.setMaladie(new Maladie(this.maladie));
