@@ -70,6 +70,8 @@ public class Citoyen {
 		double malusPerteChaleur=0.0;
 		if(maladie!= null) malusPerteChaleur = maladie.getPerteChaleur();
 
+
+		
 		if(nbTourRationnement>0){
 			nbTourRationnement-=delta;
 		}
@@ -80,13 +82,23 @@ public class Citoyen {
 
 		final  double facteurDiv = 200.0+malusVitesse-puissanceBasket;
 		Batiment salle = BoardGame.boardGame.getBatiment(posX, posY);
+		
+		if(maladie!=null){
+			if(delta/1000.>Math.random()){
+				System.out.println("Transmission maladie");
+				Citoyen c =salle.getCitoyenRandom();
+				if(c.estMalade()==false) c.setMaladie(new Maladie(this.maladie));
+
+			}
+		}
+		
 		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.999+salle.getTemperatureSalle()*0.001)-malusPerteChaleur);
 		nourritureRestante		-= (double)Math.max(0.1, delta-puissanceRationnement)/10.0;
 		fatigue 				-= (delta+malusFatigue-Math.min(-10+temperatureCorporelle, 0.0))/12.0;
 
 		if(salle.estEndommage()){
 			salle.setDommage(salle.getDommage()-delta/2.0);
-			System.out.println("Reparation...");
+			//System.out.println("Reparation...");
 		}else{
 
 			if(workingTime>=0.0){

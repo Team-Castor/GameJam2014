@@ -21,7 +21,7 @@ public class PluieDeMeteroite extends Effet{
 		int nb = (int) Math.ceil(CitoyenDehors.liste_cit.size()*pourcentage);
 		for(int i=0;i<nb;i++){
 			CitoyenDehors.liste_cit.get(i).getCitoyen().tuer();
-			CitoyenDehors.liste_cit.remove(i);
+			//CitoyenDehors.liste_cit.remove(i);
 		}
 	}
 	

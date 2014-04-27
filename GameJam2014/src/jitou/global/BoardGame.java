@@ -36,7 +36,7 @@ public class BoardGame {
 	}
 
 	public void update(int delta){
-		
+		delta = (int) (delta/1.5);
 		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1),new Point(0, 0)};
 		for(int i = 0;i<this.liste_batiments.size();i++){
 			int x = liste_batiments.get(i).getPos().x;

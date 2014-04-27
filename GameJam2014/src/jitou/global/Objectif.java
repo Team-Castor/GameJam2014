@@ -104,6 +104,7 @@ public class Objectif {
 					type 		= ObjectifType.allerPuitPetrole;
 				}
 			}
+		
 
 			int proba = (int) (Math.random()*100);
 			if(proba<20){

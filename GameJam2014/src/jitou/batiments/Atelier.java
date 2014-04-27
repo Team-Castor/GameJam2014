@@ -101,6 +101,8 @@ public class Atelier extends Batiment{
 			val = TypeBatiment.Arsenal.getValue();
 		}else  if(Hopital.listeHopitaux.size()==0 && Math.random()<0.5){
 			val = TypeBatiment.Hopital.getValue();
+		}else  if(Dortoir.listeDortoirs.size()*15<BoardGame.boardGame.getCitoyens().size() && Math.random()<0.5){
+			val = TypeBatiment.Dortoir.getValue();
 		}
 
 	

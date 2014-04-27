@@ -117,10 +117,10 @@ public class Batiment {
 			c.visible = true;
 			CitoyenDehors.removeWith(c);
 			if(  Dortoir.listeDortoirs.size()*20>=BoardGame.boardGame.getCitoyens().size()) {
-				if(Math.random()*100<5.0)BoardGame.boardGame.getCitoyens().add(
+				if(Math.random()*100<10.0)BoardGame.boardGame.getCitoyens().add(
 						new Citoyen(
 								(Point) BoardGame.boardGame.getListeBatiments().get((int)(Math.random()*BoardGame.boardGame.getListeBatiments().size())).getPos().clone()));
-			}else if(Math.random()*100<0.01){
+			}else if(Math.random()*100<0.05){
 				BoardGame.boardGame.getCitoyens().add(
 						new Citoyen(
 								(Point) BoardGame.boardGame.getListeBatiments().get((int)(Math.random()*BoardGame.boardGame.getListeBatiments().size())).getPos().clone()));
@@ -158,6 +158,18 @@ public class Batiment {
 
 	public void setDommage(double dommage) {
 		this.dommage = dommage;
+	}
+
+	public Citoyen getCitoyenRandom() {
+		ArrayList<Citoyen> cits=BoardGame.boardGame.getCitoyens();
+		ArrayList<Citoyen> citss=new ArrayList<Citoyen>();
+
+		for(int i=0;i<cits.size();i++){
+			if(cits.get(i).getPos().equals(this.getPos())){
+				citss.add(cits.get(i));
+			}
+		}
+		return citss.get((int) (Math.random()%citss.size()));
 	}
 
 
