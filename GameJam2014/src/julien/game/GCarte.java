@@ -150,7 +150,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Veine de fer.png");
 		}
 		else if(c.getClass().toString().equals(FilonDePetrole.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/gisement de pétrole.png");
 		}
 		else if(c.getClass().toString().equals(Rationnement.class.toString())){
 			return  new Image("julien/images/effets/Rationnement.png");
@@ -171,10 +171,10 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/sabotage des réacteurs.png");
 		}
 		else if(c.getClass().toString().equals(Grippe.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Grippe.png");
 		}
 		else if(c.getClass().toString().equals(JeuneFou.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Jeune fou.png");
 		}
 		else if(c.getClass().toString().equals(Rhume.class.toString())){
 			return  new Image("julien/images/effets/Rhum.png");
@@ -189,7 +189,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Petite pluie de météorites.png");
 		}
 		else if(c.getClass().toString().equals(Rat.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Invasion de rats.png");
 		}
 		else if(c.getClass().toString().equals(PluieDeMeteroite.class.toString())){
 			return  new Image("julien/images/effets/Pluie de météorites.png");
@@ -199,9 +199,6 @@ public class GCarte extends Sprite{
 		}
 		else if(c.getClass().toString().equals(SabotageReserveExplosif.class.toString())){
 			return  new Image("julien/images/effets/Sabotage des explosifs.png");
-		}
-		else if(c.getClass().toString().equals(VagueFanatique.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
 		}
 		else if(c.getClass().toString().equals(VolOutils.class.toString())){
 			return  new Image("julien/images/effets/vol d'outils.png");
@@ -228,7 +225,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/bug du chariot.png");
 		}
 		else if(c.getClass().toString().equals(NourritureAvarie.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/nourriture avarié.png");
 		}
 		
 		
