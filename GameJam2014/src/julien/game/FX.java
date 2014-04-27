@@ -62,7 +62,7 @@ public class FX extends Sprite{
 			exploFrames.add(new Image("julien/images/explosion01_04.png"));
 			exploFrames.add(new Image("julien/images/explosion01_05.png"));
 			exploFrames.add(new Image("julien/images/explosion01_07.png"));
-			exploFrames.add(new Image("julien/images/explosion01_08png"));
+			exploFrames.add(new Image("julien/images/explosion01_08.png"));
 
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
