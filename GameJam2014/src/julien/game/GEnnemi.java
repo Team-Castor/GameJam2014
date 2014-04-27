@@ -49,6 +49,9 @@ public class GEnnemi extends Sprite{
 	            for (int i = 0; i < 5; i++){
 	            	anim.addFrame(frames.get(i),100);
 	            }
+	    		w = anim.getImage(0).getWidth();
+	    		h = anim.getImage(0).getHeight();
+
 	}
 	
 	
@@ -67,8 +70,8 @@ public class GEnnemi extends Sprite{
 	//	float tempY = y;
 		
 	
-		x = (float) ((ennemi.getX()*Case.getDimensionX()) + (Case.getDimensionX()/2)-game.getOffsetX()) ;
-		y = (float) (((ennemi.getY()*Case.getDimensionY()) + (Case.getDimensionY()/2)-game.getOffsetY() - container.getHeight()) * -1) ;
+		x = (float) ((ennemi.getX()*Case.getDimensionX()) + (Case.getDimensionX()/2)-game.getOffsetX() - (0.5 * w)) ;
+		y = (float) (((ennemi.getY()*Case.getDimensionY()) + (Case.getDimensionY()/2)-game.getOffsetY() - container.getHeight()) - (0.5 * h) * -1) ;
 		//initAnimation();
 		
 	/*	Orientation newdir = null;
