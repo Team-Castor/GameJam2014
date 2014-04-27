@@ -499,7 +499,7 @@ public class Game  extends BasicGame{
 	}
 
 	public void ennemiCreve(Ennemi e) {
-		
+		gEnnemis.remove(e);
 		
 	}
 
