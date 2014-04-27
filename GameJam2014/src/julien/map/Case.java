@@ -16,12 +16,13 @@ public class Case extends Sprite{
 	static private int dimensionY = 175;
 	public int xcor, ycor;
 	public Batiment batiment;
+	private int typeDeSol;
 	
 	public Case (int x , int y, int xcor, int ycor) {
 		super(x,y,dimensionX,dimensionY);
 		this.xcor = xcor;
 		this.ycor = ycor;
-		
+		typeDeSol = (int) (Math.random() * 5);
 		redraw();
 		
 	}
@@ -126,7 +127,25 @@ public class Case extends Sprite{
 			
 		} else {
 			try {
-				img = new Image("julien/images/Terre00.png");
+				switch (typeDeSol) {
+				case 0 :
+					img = new Image("julien/images/Terre00.png");
+					break;
+				case 1 :
+					img = new Image("julien/images/Terre01.png");
+					break;
+				case 2 :
+					img = new Image("julien/images/Terre02.png");
+					break;
+				case 3 :
+					img = new Image("julien/images/Terre03.png");
+					break;
+				case 4 :
+					img = new Image("julien/images/Terre04.png");
+					break;
+				
+				}
+				
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
