@@ -103,23 +103,22 @@ public class Case extends Sprite{
 				
 				//Dessin des couloirs
 				if (batiment != null) {
-					if (batiment.getVoisin(Orientation.sud) != null) {
+					if (batiment.getVoisin(Orientation.nord) != null) {
 						Image couloir = new Image("julien/images/couloir_bas.png");
-						img.getGraphics().drawImage(couloir,61,131 + couloir.getHeight());
+						img.getGraphics().drawImage(couloir,(dimensionX - (couloir.getWidth()))/2,dimensionY - couloir.getHeight());
 					}
 					if (batiment.getVoisin(Orientation.ouest) != null) {
 						Image couloir = new Image("julien/images/couloir_gauche.png");
-						img.getGraphics().drawImage(couloir,0,95 + couloir.getHeight());
+						img.getGraphics().drawImage(couloir,0,dimensionY/2);
 					}
-					if (batiment.getVoisin(Orientation.nord) != null) {
+					if (batiment.getVoisin(Orientation.sud) != null) {
 						Image couloir = new Image("julien/images/couloir_haut.png");
-						img.getGraphics().drawImage(couloir,61,00);
+						img.getGraphics().drawImage(couloir,(dimensionX - (couloir.getWidth()))/2,0);
 					}
-				/*	if (batiment.getVoisin(Orientation.est) != null) {
+					if (batiment.getVoisin(Orientation.est) != null) {
 						Image couloir = new Image("julien/images/couloir_droit.png");
-						img.getGraphics().drawImage(couloir,134,93 + couloir.getHeight());
-					}*/
-				}
+						img.getGraphics().drawImage(couloir,dimensionX - (couloir.getWidth()),dimensionY/2);
+				}}
 				
 			} catch (SlickException e) {
 				e.printStackTrace();
