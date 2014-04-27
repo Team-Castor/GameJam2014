@@ -58,6 +58,8 @@ public class Game  extends BasicGame{
 	private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 	private ArrayList<FX> fx = new ArrayList<FX>();
 	
+	
+	private ToolTips toolTip = null;
 	FX maladie;
 
 	public Game(String titre) {
@@ -89,12 +91,14 @@ public class Game  extends BasicGame{
 		maladie = new FX(FXtype.maladie,0,0);
 		maladie.initAnimation();
 		maladie.getAnim().stopAt(-1);
+		
+		toolTip = new ToolTips(container);
 	}
 
 
 	public void keyPressed(int key, char c) {
 		super.keyPressed(key, c);
-		System.out.println("Id : "+key+" , char : "+c);
+		//System.out.println("Id : "+key+" , char : "+c);
 
 		pressedKey = key;
 
@@ -137,7 +141,13 @@ public class Game  extends BasicGame{
 		super.mouseClicked(button, x, y, clickCount);
 		
 		for(int i=0;i<this.gCartes.size();i++){
-			gCartes.get(i).collision(x, y);
+			boolean ok =gCartes.get(i).collision(x, y);
+			if(ok){
+				System.out.println("MAJ "+gCartes.get(i).getLog());
+				toolTip.set(gCartes.get(i).getLog());
+				System.out.println("MAJ "+gCartes.get(i).getLog());
+
+			}
 		}
 
 	}
@@ -156,6 +166,7 @@ public class Game  extends BasicGame{
 			gCartes.get(i).survolDecalage(input.getMouseX(),input.getMouseY());
 		}
 
+		
 		for (Citoyen c : citoyenSansSprite) {
 			this.spritesHumains.add(new SpriteHumain(c));
 		}
@@ -222,7 +233,8 @@ public class Game  extends BasicGame{
 
 
 		drawJauges(container , g);
-		
+		toolTip.draw(container);
+
 	}
 
 	private void drawJauges(GameContainer container2, Graphics g) {
@@ -254,11 +266,11 @@ public class Game  extends BasicGame{
 
 	public void update(GameContainer container, int delta) throws SlickException {
 		board.update(delta);
-
+		toolTip.update(delta);
 		containerH = container.getHeight();
 		containerW = container.getWidth();
 
-
+		
 	}
 
 	private void computeCaseADessiner() {

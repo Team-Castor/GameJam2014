@@ -26,7 +26,7 @@ public abstract class Effet {
 		Mechant.getInstance().changerRessource(TypeEnergie.joie,variationEnergie[1]);
 		Mechant.getInstance().changerRessource(TypeEnergie.espoir,variationEnergie[2]);
 		
-		return "";
+		return "non";
 	}
 	
 	

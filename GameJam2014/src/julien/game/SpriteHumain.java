@@ -283,7 +283,7 @@ public class SpriteHumain extends Sprite {
 		} else if (x < oldX){
 			newdir = Orientation.ouest;
 		} else if (y != oldY){
-			System.out.println("nord");
+			//System.out.println("nord");
 			newdir = Orientation.nord;
 		} else {
 			newdir = Orientation.ouest;

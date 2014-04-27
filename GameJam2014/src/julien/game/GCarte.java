@@ -25,6 +25,8 @@ public class GCarte extends Sprite{
 	private int decalage = decalageMin;
 	public int xcor, ycor;
 	public Batiment batiment;
+	private String log="";
+	
 	Carte carte;
 	
 	public GCarte(Carte carte, int i, GameContainer container) {
@@ -56,6 +58,10 @@ public class GCarte extends Sprite{
 		dimensionX = dimensionX;
 	}
 
+	public String getLog() {
+		return log;
+	}
+	
 	public static int getDimensionY() {
 		return dimensionY;
 	}
@@ -82,12 +88,15 @@ public class GCarte extends Sprite{
 
 	public boolean collision(int x, int y){
 		if (x>this.x && x<this.x+w &&  y>this.y && y<this.y+h) {
-			System.out.println("Carte cliquée");
 			if (y<(this.y)+(h/2)) {
 				carte.selectionMal();
 			} else {
 				carte.selectionBien();
 			}
+			this.log = new String(carte.getLog() );
+			System.out.println(log+" Ici : "+carte.getLog());
+			System.out.println(log+" Ici : "+this.log);
+
 		}
 		return x>this.x && x<this.x+w &&  y>this.y && y<this.y+h;
 	}

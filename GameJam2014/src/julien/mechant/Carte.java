@@ -4,6 +4,7 @@ public class Carte {
 	
 	Effet effetBien;
 	Effet effetMal;
+	String log = "";
 	
 	public Carte(Effet effetBien, Effet effetMal) {
 		super();
@@ -24,7 +25,7 @@ public class Carte {
 	public boolean selectionMal() {
 		System.out.println("Selection du mal");
 		if (effetMal.estJouable()) {
-			System.out.println("Jouable!");
+			//System.out.println("Jouable!");
 			jouer(effetMal);
 			return true;
 		} else {
@@ -34,7 +35,11 @@ public class Carte {
 	
 	public void jouer(Effet e) {
 		Mechant.getInstance().defausser(this);
-		e.appliquer();
+		log=e.appliquer();
+	}
+	
+	public String getLog() {
+		return log;
 	}
 
 	public Effet getEffetBien() {
