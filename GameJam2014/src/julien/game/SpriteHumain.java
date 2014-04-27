@@ -260,6 +260,9 @@ public class SpriteHumain extends Sprite {
 		float tempX = x;
 		float tempY = y;
 		
+		float centreX = 0.0f;//-7;
+		float centreY = 0.0f;//-20;
+		
 		CitoyenDehors dehors = null;
 		if (!c.visible) {
 			for (CitoyenDehors cit : CitoyenDehors.liste_cit) {
@@ -269,12 +272,12 @@ public class SpriteHumain extends Sprite {
 				}
 			}
 				
-				x = (float)((-1*(dehors.getX() * Case.getDimensionX()))+(Case.getDimensionX() * BoardGame.boardGame.getDimensionworldx())/2-game.getOffsetX());
+				x = (float)( Case.getDimensionX()/2.0+(-1*(dehors.getX() * Case.getDimensionX()))+(Case.getDimensionX() * BoardGame.boardGame.getDimensionworldx())/2-game.getOffsetX());
 				y = (float)(-1000 + game.getOffsetY())-20;
 		}
 		else {
-			x = (float) ((c.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + c.getPosInside().getX()*(Case.getDimensionX()/2))-game.getOffsetX());
-			y = (float)(((c.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + c.getPosInside().getY()*(Case.getDimensionY()/2)))-game.getOffsetY() - container.getHeight()) * -1;
+			x = centreX+(float) ((c.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + c.getPosInside().getX()*(Case.getDimensionX()/2))-game.getOffsetX());
+			y = centreY+(float)(((c.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + c.getPosInside().getY()*(Case.getDimensionY()/2)))-game.getOffsetY() - container.getHeight()) * -1;
 		}
 		
 		Orientation newdir = null;

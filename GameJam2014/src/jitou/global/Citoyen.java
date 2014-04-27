@@ -104,7 +104,6 @@ public class Citoyen {
 				if(workingTime<0.0){
 					pathfinder = null;
 					objectif.getSeRendre().back(this);
-					posInsideF.setLocation(Math.random()-0.5,Math.random()-0.5);
 
 				}	
 
@@ -112,7 +111,7 @@ public class Citoyen {
 			else{
 				if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 					pathfinder = null;
-					objectif.trouverNouvelObjectif();
+					this.nouvelObjectif();
 				}else{
 
 					if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
@@ -155,8 +154,8 @@ public class Citoyen {
 								}
 								else{
 
-									if((posInside.distance(posInsideF)<0.1 && pathfinder.size()<=1 )|| 
-											(posInside.distance(0.0,0.0)<0.1 && pathfinder.size()>1 )){
+									if((posInside.distance(posInsideF.getX(), posInsideF.getY())<0.08 && pathfinder.size()<=1 )|| 
+											(posInside.distance(0.0,0.0)<0.08 && pathfinder.size()>1 )){
 										pathfinder.remove(0);
 										if(pathfinder.size()>0){
 										}
@@ -166,40 +165,40 @@ public class Citoyen {
 										}
 									}else{
 										if(pathfinder.size()<=1){
-											if(Math.signum(posInside.getX())<posInsideF.getX()){
+											if((posInside.getX())<posInsideF.getX()){
 												posInside.setLocation(Math.min(posInsideF.getX(),
 														posInside.getX()+delta/facteurDiv),
 														posInside.getY());
-											}else if(Math.signum(posInside.getX())>posInsideF.getX()){
+											}else if((posInside.getX())>posInsideF.getX()){
 												posInside.setLocation(Math.max(posInsideF.getX(),
 														posInside.getX()-delta/facteurDiv),
 														posInside.getY());
 											}
-											if(Math.signum(posInside.getY())<posInsideF.getY()){
+											if((posInside.getY())<posInsideF.getY()){
 												posInside.setLocation(
 														posInside.getX(),
 														Math.min(posInsideF.getY(),posInside.getY()+delta/facteurDiv));
-											}else if(Math.signum(posInside.getY())>posInsideF.getY()){
+											}else if((posInside.getY())>posInsideF.getY()){
 												posInside.setLocation(
 														posInside.getX(),
 														Math.max(posInsideF.getY(),posInside.getY()-delta/facteurDiv));
 											}
 										}
 										else{
-											if(Math.signum(posInside.getX())<0.0){
+											if((posInside.getX())<0.0){
 												posInside.setLocation(Math.min(0.0,
 														posInside.getX()+delta/facteurDiv),
 														posInside.getY());
-											}else if(Math.signum(posInside.getX())>0.0){
+											}else if((posInside.getX())>0.0){
 												posInside.setLocation(Math.max(0.0,
 														posInside.getX()-delta/facteurDiv),
 														posInside.getY());
 											}
-											if(Math.signum(posInside.getY())<0.0){
+											if((posInside.getY())<0.0){
 												posInside.setLocation(
 														posInside.getX(),
 														Math.min(0.0,posInside.getY()+delta/facteurDiv));
-											}else if(Math.signum(posInside.getY())>0.0){
+											}else if((posInside.getY())>0.0){
 												posInside.setLocation(
 														posInside.getX(),
 														Math.max(0.0,posInside.getY()-delta/facteurDiv));
@@ -227,7 +226,14 @@ public class Citoyen {
 
 
 	protected void nouvelObjectif() {
-		objectif.trouverNouvelObjectif();		
+		objectif.trouverNouvelObjectif();	
+		if(objectif.getType().getValue()==ObjectifType.allerVersSortie.getValue()){
+			posInsideF.setLocation(0.0,-0.95);
+
+		}
+		else{
+			posInsideF.setLocation(Math.random()-0.5,Math.random()-0.5);
+		}
 	}
 
 	public void testSurvie(){

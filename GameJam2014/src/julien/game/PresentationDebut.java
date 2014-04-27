@@ -62,7 +62,6 @@ public class PresentationDebut{
 		break;
 		}
 		
-		System.out.println(progressBar);
 	}
 
 	public void update(int delta) {
