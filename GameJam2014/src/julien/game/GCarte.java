@@ -1,5 +1,8 @@
 package julien.game;
 
+
+import java.awt.Font;
+
 import jitou.batiments.Batiment;
 import jitou.batiments.TypeBatiment;
 import jitou.global.BoardGame;
@@ -9,6 +12,7 @@ import julien.mechant.Effet;
 import julien.mechant.effets.gentils.*;
 import julien.mechant.effets.mechants.*;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -22,21 +26,21 @@ public class GCarte extends Sprite{
 	static private int decalX = 40;
 	static private int decalY = 15;
 	static private int vitesseDecalage = 18;
-	static private int decalageMin = 20;
+	static private int decalageMin = 30;
 	static private int decalageMax = 300;
-	
+
 	private int decalage = decalageMin;
 	public int xcor, ycor;
 	public Batiment batiment;
 	private String log="";
 	private Image imgMal, imgBonne;
 	Carte carte;
-	
+
 	public GCarte(Carte carte, int i, GameContainer container) {
 		super(0,0,dimensionX,dimensionY);
 		this.carte = carte;
 		redraw(i, container);
-		
+
 	}
 
 	public void decaler() {
@@ -45,14 +49,14 @@ public class GCarte extends Sprite{
 			this.y = - getDimensionY() + decalage;
 		}
 	}
-	
+
 	public void recaler() {
 		if (decalage > decalageMin) {
 			decalage -= vitesseDecalage;
 			this.y = - getDimensionY() + decalage;
 		}
 	}
-	
+
 	public static int getDimensionX() {
 		return dimensionX;
 	}
@@ -64,7 +68,7 @@ public class GCarte extends Sprite{
 	public String getLog() {
 		return log;
 	}
-	
+
 	public static int getDimensionY() {
 		return dimensionY;
 	}
@@ -90,7 +94,7 @@ public class GCarte extends Sprite{
 	}
 
 	public String collisionCarte(int x, int y){
-	//	String obj=null;
+		//	String obj=null;
 		if (x>this.x && x<this.x+w &&  y>this.y && y<this.y+h) {
 			if (y<(this.y)+(h/2)) {
 				carte.selectionMal();
@@ -101,7 +105,7 @@ public class GCarte extends Sprite{
 		}
 		return (carte.getLog());//x>this.x && x<this.x+w &&  y>this.y && y<this.y+h;
 	}
-	
+
 	public void survolDecalage(int x, int y){
 		if (x>this.x && x<this.x+w &&  y>this.y && y<this.y+h) {
 			decaler();
@@ -111,28 +115,58 @@ public class GCarte extends Sprite{
 	}
 
 	public void redraw(int i, GameContainer container) {
-		
+
 		this.x = (decalX * (i + 1)) + (dimensionX * i);
 		this.y = - getDimensionY() + decalageMin;//container.getHeight() - getDimensionY();;
-		
+
 		try {
 			img = new Image("julien/images/carte2.png");
-			img.getGraphics().drawString(this.carte.getEffetMal().getClass().getSimpleName(), 10, 10);
-			
-			carte.getEffetBien();
-			
-			
+			//img.getGraphics().drawString(this.carte.getEffetMal().getClass().getSimpleName(), 10, 10);
+
 			imgMal = getImage(this.carte.getEffetMal());
 			imgBonne = getImage(this.carte.getEffetBien());
+
+
+			img.getGraphics().setColor(Color.cyan);
+			img.getGraphics().drawString(
+					new Integer(carte.getEffetMal().getVariationEnergie()[0]).toString()
+					, 100,125);
+			img.getGraphics().setColor(Color.blue);
+
+			img.getGraphics().drawString(
+					new Integer(carte.getEffetMal().getVariationEnergie()[1]).toString()
+					, 128,125);
+			img.getGraphics().setColor(Color.red);
+
+			img.getGraphics().drawString(
+					new Integer(carte.getEffetMal().getVariationEnergie()[2]).toString()
+					, 156,125);
+
+
+			img.getGraphics().setColor(Color.cyan);
+
+			img.getGraphics().drawString(
+					new Integer(carte.getEffetBien().getVariationEnergie()[0]).toString()
+					, 100,128+h/2-10);
+			img.getGraphics().setColor(Color.blue);
+
+			img.getGraphics().drawString(
+					new Integer(carte.getEffetBien().getVariationEnergie()[1]).toString()
+					, 128,128+h/2-10);
+			img.getGraphics().setColor(Color.red);
+
+			img.getGraphics().drawString(
+					new Integer(carte.getEffetBien().getVariationEnergie()[2]).toString()
+					, 156,128+h/2-10);
 
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-					
+
 	}
-	
-	
+
+
 	private Image getImage(Effet c) throws SlickException{
 		if(c.getClass().toString().equals(Armagedon.class.toString())){
 			return  new Image("julien/images/effets/Armageddon.png");
@@ -230,8 +264,8 @@ public class GCarte extends Sprite{
 		else if(c.getClass().toString().equals(NourritureAvarie.class.toString())){
 			return  new Image("julien/images/effets/nourriture avarié.png");
 		}
-		
-		
+
+
 		System.out.println("Pas fait : "+c);
 		return  null;
 
@@ -243,8 +277,8 @@ public class GCarte extends Sprite{
 	public Image getImageEffetBonne() {
 		return imgBonne;
 	}
-	
-	
-	
-	
+
+
+
+
 }
