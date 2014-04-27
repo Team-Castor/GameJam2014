@@ -2,7 +2,7 @@ package julien.game;
 
 public enum FXtype {
 
-	sang(32,32),explosion(170,117);
+	sang(32,32),explosion(170,117), maladie(18,15);
 
 	private final int x;
 	private final int y;

@@ -26,6 +26,7 @@ public class SpriteHumain extends Sprite {
 	
 	Citoyen c;
 	Animation anim;
+	Animation fxMalade;
 	Orientation dir = Orientation.est;
 	
 	private static ArrayList<Image> imagesGauche = new ArrayList<Image>();
@@ -303,6 +304,8 @@ public class SpriteHumain extends Sprite {
 			etaitActif = true;
 			initAnimation();
 		}
+		
+
 		
 		
 	}

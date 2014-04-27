@@ -57,6 +57,8 @@ public class Game  extends BasicGame{
 	private ArrayList<GEnnemi> gEnnemis = new ArrayList<GEnnemi>();
 	private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 	private ArrayList<FX> fx = new ArrayList<FX>();
+	
+	FX maladie;
 
 	public Game(String titre) {
 		super(titre);
@@ -84,6 +86,9 @@ public class Game  extends BasicGame{
 			}
 		}
 		computeCaseADessiner();
+		maladie = new FX(FXtype.maladie,0,0);
+		maladie.initAnimation();
+		maladie.getAnim().stopAt(-1);
 	}
 
 
@@ -183,6 +188,9 @@ public class Game  extends BasicGame{
 		for(SpriteHumain cit : spritesHumains){
 			
 			g.drawAnimation(cit.getAnim(), cit.x, cit.y);
+			if (cit.getC().estMalade()) {
+				g.drawAnimation(maladie.getAnim(), cit.x, cit.y);
+			}
 			
 			//	g.drawImage(new SpriteHumain(null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
 			//			(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
