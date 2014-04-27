@@ -81,7 +81,7 @@ public class Citoyen {
 		
 		if(maladie!=null){
 			if(delta/1400.>Math.random()){
-				System.out.println("Transmission maladie");
+				//System.out.println("Transmission maladie");
 				Citoyen c =salle.getCitoyenRandom();
 				if(c.estMalade()==false) c.setMaladie(new Maladie(this.maladie));
 

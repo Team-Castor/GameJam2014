@@ -212,7 +212,8 @@ public class Game  extends BasicGame{
 		//g.drawString("Score : "+points, 100,50);
 		for (GEnnemi e : gEnnemis) {
 			e.changeState(container, this);
-			g.drawAnimation(e.getAnim(), e.getX(), e.getY());	
+			g.drawAnimation(e.getAnim(), e.getX()-e.w/2, e.getY()-e.h/2);	
+			//System.out.println(			e.getAnim().isStopped());
 		}
 		
 		ArrayList<FX> fxToRemove = new ArrayList<FX>();

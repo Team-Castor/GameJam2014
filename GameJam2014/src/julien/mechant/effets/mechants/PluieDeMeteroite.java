@@ -7,25 +7,29 @@ import julien.mechant.TypeEffet;
 public class PluieDeMeteroite extends Effet{
 
 	double pourcentage = 0.7;
-	
+
 	public PluieDeMeteroite() {
 		variationEnergie[0] = 1;
 		variationEnergie[1] = 5;
 		variationEnergie[2] = 0;
-		
+
 		type = TypeEffet.mal;
 	}
-	
+
 	public String appliquer() {//Pas d'effet gentil !
 		super.appliquer();
-		int nb = (int) Math.ceil(CitoyenDehors.liste_cit.size()*pourcentage);
+		int nb =(CitoyenDehors.liste_cit.size());
+		int n=0;
 		for(int i=0;i<nb;i++){
-			CitoyenDehors.liste_cit.get(i).getCitoyen().tuer();
+			if(Math.random()<pourcentage){
+				CitoyenDehors.liste_cit.get(i).getCitoyen().tuer();
+				n++;
+			}
 			//CitoyenDehors.liste_cit.remove(i);
 		}
-		
-		return nb+" citoyens sont tués pendant la pluie de météroites";
+
+		return n+" citoyens sont tués pendant la pluie de météroites";
 
 	}
-	
+
 }

@@ -14,7 +14,7 @@ import julien.mechant.TypeEffet;
 
 public class ReveilZombie extends Effet{
 	
-	double temps = 1200.0;
+	double temps = 8000.0;
 	
 	public ReveilZombie() {
 		variationEnergie[0] = 0;

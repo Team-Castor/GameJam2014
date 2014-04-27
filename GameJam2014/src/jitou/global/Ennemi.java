@@ -1,6 +1,7 @@
 package jitou.global;
 
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import julien.game.FXtype;
@@ -31,54 +32,105 @@ public class Ennemi {
 	}
 
 	public void update(int delta){
-		if(Math.random()<0.5){
-			double tmp = py;
-			int yy=y;
-			py = py+vy*delta;
-			if(py<-0.98){
-				py = 0.98;
-				y--;
-			}
-			else if(py>0.98){
-				py = -0.98;
-				y++;
-			}
-			if(BoardGame.boardGame.getBatiment(x, y)==null){
-				vy = -vy;
-				py  = tmp+vy;
-				y=yy;
+		vx+= (Math.random()-0.5)/200;
+		vy+= (Math.random()-0.5)/200;
+		double norme = Math.abs(vx)+Math.abs(vy);
+		norme*=200;
+		vx/=norme;
+		vy/=norme;
+		
+		
+		if(type.equals(EnnemiType.tompeZombi)){
+			double bord = 0.98;
+			if(Math.random()<0.5){
+				double tmp = py;
+				int yy=y;
+				py = py+vy*delta;
+				if(py<-bord){
+					py = bord;
+					y--;
+				}
+				else if(py>bord){
+					py = -bord;
+					y++;
+				}
+				if(BoardGame.boardGame.getBatiment(x, y)==null){
+					vy = -vy;
+					py  = tmp+vy;
+					y=yy;
+				}
+				else
+				{
+					if(BoardGame.boardGame.getBatiment((int) (x), (int) (Math.signum(vy)+y))==null){
+						if((vy<0 && py<-0.6) || (vy>0 && py>0.6) )vy=-vy;
+					}
+				}
+			}else{
 
-			}
+				double tmp= px;
+				int xx = x;
+				px = px+vx*delta;
+				if(px<-bord){
+					px = bord;
+					x--;
+				}
+				else if(px>bord){
+					px = -bord;
+					x++;
+				}
+				
+			//	System.out.println(x+"  "+y+"V "+vx+"  "+vy);
 
+				
+				if(BoardGame.boardGame.getBatiment(x, y)==null){
+					vx = -vx;
+					px = tmp+vx;
+					x =xx;
+				}
+				else
+				{
+					if(BoardGame.boardGame.getBatiment((int) (Math.signum(vx)+x), y)==null){
+						if((vx<0 && px<-0.6) || (vx>0 && px>0.6) )vx=-vx;
+					}
+			
+				}
+			}
 		}else{
-			double tmp= px;
-			int xx = x;
+			double bord = 0.70;
+			py = py+vy*delta;
+			if(py<-bord || py>bord){
+				vy=-vy;
+				py += vy*delta*2;
+			}
+
 			px = px+vx*delta;
-			if(px<-0.98){
-				px = 0.98;
-				x--;
+			if(px<-bord || px>bord){
+				vx=-vx;
+				px += vx*delta*2;
 			}
-			else if(x>0.98){
-				px = -0.98;
-				x++;
-			}
-			if(BoardGame.boardGame.getBatiment(x, y)==null){
-				vx = -vx;
-				px = tmp+vx;
-				x =xx;
-			}
+
+
+
 		}
+		//vx+=(Math.random()-0.5)/200.0;
+		//vy+=(Math.random()-0.5)/200.0;
+
 
 		//System.out.println("AttaqueTaupeZombie "+vx+"  "+vy);
 		for(int i=0;i<BoardGame.boardGame.getCitoyens().size();i++){
 			if(BoardGame.boardGame.getCitoyens().get(i).getPos().equals(new Point(x, y))){
 				if(BoardGame.boardGame.getCitoyens().get(i).aUneArme()){
-					meurt();
+					if(Math.random()<0.1){
+						julien.game.Game.addFX(BoardGame.boardGame.getCitoyens().get(i), FXtype.sang);
+						BoardGame.boardGame.getCitoyens().get(i).tuer();	
+					}
+					else {
+						meurt();
+					}
 				}
 				else{
 					if(Math.random()<0.05){
 						julien.game.Game.addFX(BoardGame.boardGame.getCitoyens().get(i), FXtype.sang);
-
 						BoardGame.boardGame.getCitoyens().get(i).tuer();
 
 					}
@@ -116,7 +168,7 @@ public class Ennemi {
 	public int getY() {
 		return y;
 	}
-	
+
 	public double getXReel() {
 		return px;
 	}
@@ -134,5 +186,11 @@ public class Ennemi {
 		this.type = type;
 	}
 
+	public Point getPos() {
+		return new Point(x, y);
+	}
+	public Point2D getPosInside() {
+		return new Point2D.Double(px, py);
+	}
 
 }

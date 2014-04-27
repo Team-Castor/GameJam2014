@@ -135,28 +135,28 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Armageddon.png");
 		}
 		else if(c.getClass().toString().equals(AvanceeMedicale.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Progrès médical.png");
 		}
 		else if(c.getClass().toString().equals(CapsuleDeSurvivant.class.toString())){
 			return  new Image("julien/images/effets/Capsule de survivor.png");
 		}
 		else if(c.getClass().toString().equals(ChasseSorcieres.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Chasse aux sorcières.png");
 		}
 		else if(c.getClass().toString().equals(EscouadeDeReparation.class.toString())){
 			return  new Image("julien/images/effets/escouade de réparation.png");
 		}
 		else if(c.getClass().toString().equals(FilonDeFer.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Veine de fer.png");
 		}
 		else if(c.getClass().toString().equals(FilonDePetrole.class.toString())){
 			return  new Image("julien/images/effets/Armageddon.png");
 		}
 		else if(c.getClass().toString().equals(Rationnement.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Rationnement.png");
 		}
 		else if(c.getClass().toString().equals(SuperBasket.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Super chaussures.png");
 		}
 		else if(c.getClass().toString().equals(SuperMacon.class.toString())){
 			return  new Image("julien/images/effets/Maçon strike.png");
@@ -195,10 +195,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Pluie de météorites.png");
 		}
 		else if(c.getClass().toString().equals(ReveilZombie.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
-		}
-		else if(c.getClass().toString().equals(Rhume.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Zombification.png");
 		}
 		else if(c.getClass().toString().equals(SabotageReserveExplosif.class.toString())){
 			return  new Image("julien/images/effets/Sabotage des explosifs.png");
@@ -230,7 +227,9 @@ public class GCarte extends Sprite{
 		else if(c.getClass().toString().equals(ChariotBug.class.toString())){
 			return  new Image("julien/images/effets/bug du chariot.png");
 		}
-		
+		else if(c.getClass().toString().equals(NourritureAvarie.class.toString())){
+			return  new Image("julien/images/effets/Armageddon.png");
+		}
 		
 		
 		System.out.println("Pas fait : "+c);
