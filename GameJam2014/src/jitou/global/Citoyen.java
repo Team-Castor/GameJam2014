@@ -166,12 +166,12 @@ public class Citoyen {
 									}else{
 										if(pathfinder.size()<=1){
 											if((posInside.getX())<posInsideF.getX()){
-												posInside.setLocation(Math.min(posInsideF.getX(),
-														posInside.getX()+delta/facteurDiv),
+												posInside.setLocation(
+														Math.min(posInsideF.getX(),posInside.getX()+delta/facteurDiv),
 														posInside.getY());
 											}else if((posInside.getX())>posInsideF.getX()){
-												posInside.setLocation(Math.max(posInsideF.getX(),
-														posInside.getX()-delta/facteurDiv),
+												posInside.setLocation(
+														Math.max(posInsideF.getX(),posInside.getX()-delta/facteurDiv),
 														posInside.getY());
 											}
 											if((posInside.getY())<posInsideF.getY()){
@@ -228,7 +228,7 @@ public class Citoyen {
 	protected void nouvelObjectif() {
 		objectif.trouverNouvelObjectif();	
 		if(objectif.getType().getValue()==ObjectifType.allerVersSortie.getValue()){
-			posInsideF.setLocation(0.0,-0.95);
+			posInsideF.setLocation(0.0,+1.2);
 
 		}
 		else{
