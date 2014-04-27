@@ -9,7 +9,7 @@ import jitou.global.ObjectifType;
 
 public class Generateur extends Batiment {
 	public static ArrayList<Generateur> listeGenerateurs =  new ArrayList<Generateur>();
-	private final double ratioPetrolToElec = 0.6;
+	private final double ratioPetrolToElec = 0.5;
 	private double electricite = 50;
 	private double workingTime = 600;
 	
@@ -20,12 +20,15 @@ public class Generateur extends Batiment {
 
 	
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		super.effet(citoyen, type);
 
 		if(type.getValue() == ObjectifType.rapporterGenerateur.getValue()){
 			electricite+=citoyen.getRessourceTransporte().getQuantite()*ratioPetrolToElec;
 			citoyen.setRessourceTransporte(null);
 			citoyen.setWorkingTime(workingTime);
+		}
+		else{
+			super.effet(citoyen, type);
+
 		}
 	}
 	

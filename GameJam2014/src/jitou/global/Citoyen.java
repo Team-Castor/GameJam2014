@@ -228,7 +228,7 @@ public class Citoyen {
 	protected void nouvelObjectif() {
 		objectif.trouverNouvelObjectif();	
 		if(objectif.getType().getValue()==ObjectifType.allerVersSortie.getValue()){
-			posInsideF.setLocation(0.0,+1.2);
+			posInsideF.setLocation(0.0,1.2);
 
 		}
 		else{

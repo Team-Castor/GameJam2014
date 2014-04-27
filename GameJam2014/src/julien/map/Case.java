@@ -67,59 +67,60 @@ public class Case extends Sprite{
 	public void redraw() {
 		if (BoardGame.boardGame.getBatiment(xcor, ycor) != null) {
 			try {
-				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Refectoire) {
+				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.Refectoire.getValue()) {
 					img = new Image("julien/images/Salle_refectoire.png");
 					img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 					batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 				} else
-					if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Hopital) {
+					if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.Hopital.getValue()) {
 						img = new Image("julien/images/Salle_hopital.png");
 						img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 						batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 					} 
 					else
-						if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.PuitPetrol) {
+						if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.PuitPetrol.getValue()) {
 							img = new Image("julien/images/Salle_petrol.png");
 							img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 							batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 						}
 						else
-							if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.MineDeFer) {
+							if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.MineDeFer.getValue()) {
 								img = new Image("julien/images/Salle_mine de fer.png");
 								img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 								batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 							} 
 							else
-								if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Generateur) {
+								if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.Generateur.getValue()) {
 									img = new Image("julien/images/Salle_Generateur.png");
+
 									img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 									batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 								}
 								else
-									if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Arsenal) {
+									if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.Arsenal.getValue()) {
 										img = new Image("julien/images/Salle_Armement.png");
 										img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 										batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 									}
 									else
-										if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Atelier) {
+										if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.Atelier.getValue()) {
 											img = new Image("julien/images/Salle_Atelier.png");
 											img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 											batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 										} 
 			 else
-				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Chaudiere) {
+				if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.Chaudiere.getValue()) {
 					img = new Image("julien/images/Salle_Chaudiere.png");
 					img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 					batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 				} 
 		 else
-			if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.Dortoir) {
+			if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.Dortoir.getValue()) {
 				img = new Image("julien/images/Salle_dortoir.png");
 				img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 				batiment = BoardGame.boardGame.getBatiment(xcor, ycor);
 			} 
-	 else if (BoardGame.boardGame.getBatiment(xcor, ycor).getType() == TypeBatiment.FermeHydroponique) {
+	 else if (BoardGame.boardGame.getBatiment(xcor, ycor).getType().getValue() == TypeBatiment.FermeHydroponique.getValue()) {
 			img = new Image("julien/images/Salle_ferme.png");
 			img.getGraphics().drawString(BoardGame.boardGame.getBatiment(xcor, ycor).getType().toString(), xcor, ycor);
 			batiment = BoardGame.boardGame.getBatiment(xcor, ycor);

@@ -61,7 +61,7 @@ public class Game  extends BasicGame{
 	private PresentationDebut presentation = null;
 	private ToolTips toolTip = null;
 	FX maladie;
-
+	int kit=0;
 	public Game(String titre) {
 		super(titre);
 	}
@@ -94,6 +94,8 @@ public class Game  extends BasicGame{
 		
 		toolTip = new ToolTips(container);
 		presentation = new PresentationDebut(container);
+
+
 	}
 
 
@@ -157,6 +159,9 @@ public class Game  extends BasicGame{
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		checkKey();
+		kit=(kit+1)%casesADessiner.size();
+
+		casesADessiner.get(kit).redraw();
 		
 		
 		g.drawString("Population : "+BoardGame.boardGame.getCitoyens().size(), 50, 50);
@@ -180,7 +185,10 @@ public class Game  extends BasicGame{
 						casesADessiner.get(i).getY()+julien.map.Case.getDimensionY()-25);
 			//	System.out.println(casesADessiner.get(i).batiment.getTemperatureSalle());
 			}
+			
+
 		}
+
 		/*
 		for(int k=0;k<jitou.global.CitoyenDehors.liste_cit.size();k++){
 			g.drawRect((float) jitou.global.CitoyenDehors.liste_cit.get(k).getX()*Case.getDimensionX(),  
@@ -275,7 +283,7 @@ public class Game  extends BasicGame{
 		presentation.update(delta);
 		containerH = container.getHeight();
 		containerW = container.getWidth();
-
+		
 		
 	}
 
@@ -334,6 +342,8 @@ public class Game  extends BasicGame{
 	
 	public void changementCase(int x, int y) {
 		//TODO : 
+		
+		
 		for (Case c : casesADessiner) {
 			c.redraw();
 		}
