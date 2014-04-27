@@ -10,14 +10,17 @@ import julien.game.Game;
 
 public class Citoyen {
 	//private Point  	pos;
-	private int posX, posY;
-	private boolean estMort = false;
 	public boolean visible=true;
-	private Point2D posInside;
-	private float nourritureRestante, temperatureCorporelle, fatigue;
-	private Ressource ressourceTransporte;
-	private Objectif objectif=null;
-	private Maladie maladie = null;
+
+	
+	
+	protected int posX, posY;
+	protected boolean estMort = false;
+	protected Point2D posInside;
+	protected float nourritureRestante, temperatureCorporelle, fatigue;
+	protected Ressource ressourceTransporte;
+	protected Objectif objectif=null;
+	protected Maladie maladie = null;
 	
 
 	private double workingTime;
@@ -25,7 +28,7 @@ public class Citoyen {
 
 
 	public Citoyen(Point pos){
-		this(pos, 4000f, 32.5f, (float) (1000+Math.random()*5000));
+		this(pos, 4000f, 32.5f, (float) (1000+Math.random()*3000));
 	}
 
 	public Citoyen(Point pos, float nourritureRestante, float temperatureCorporelle, float fatigue){
@@ -42,6 +45,7 @@ public class Citoyen {
 		setWorkingTime(-1.0);
 		Game.getInstance();
 		Game.addSpriteCitoyen(this);
+
 	}
 
 
@@ -65,6 +69,7 @@ public class Citoyen {
 			
 		}
 		else{
+			System.out.println(this+"o : "+objectif);
 			if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 				pathfinder = null;
 				objectif.trouverNouvelObjectif();
@@ -144,7 +149,7 @@ public class Citoyen {
 							}
 						}
 					}else{
-						objectif.trouverNouvelObjectif();
+						nouvelObjectif();
 
 					}
 				}
@@ -159,6 +164,10 @@ public class Citoyen {
 	}
 	
 	
+	protected void nouvelObjectif() {
+		objectif.trouverNouvelObjectif();		
+	}
+
 	public void testSurvie(){
 		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<0){
 			tuer();

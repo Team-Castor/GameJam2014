@@ -201,6 +201,7 @@ public class BoardGame {
 		for(int i=0;i<15;i++){
 			citoyens.add(new Citoyen(positionPossible[(int) (Math.random()*positionPossible.length)]));
 		}
+		citoyens.add(new Fanatique(positionPossible[(int) (Math.random()*positionPossible.length)]));
 	}
 
 	public void addBatiment(Point p, Batiment bat){

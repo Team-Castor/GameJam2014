@@ -6,15 +6,15 @@ import jitou.batiments.Generateur;
 import jitou.batiments.Refectoire;
 
 public class Objectif {
-	private Citoyen citoyen;
+	protected Citoyen citoyen;
 
-	private double SEUIL_FAMINE 			= 1000.0;
-	private double SEUIL_FAMINE_CRITIQUE    = 150.0;
-	private double SEUIL_FATIGUE 			= 1000.0;
-	private double SEUIL_FATIGUE_CRITIQUE   = 150.0;
+	protected double SEUIL_FAMINE 			= 1000.0;
+	protected double SEUIL_FAMINE_CRITIQUE    = 150.0;
+	protected double SEUIL_FATIGUE 			= 1000.0;
+	protected double SEUIL_FATIGUE_CRITIQUE   = 150.0;
 
-	public Batiment		seRendre = null;
-	public ObjectifType type = null;
+	protected Batiment		seRendre = null;
+	protected ObjectifType type = null;
 
 
 
@@ -156,6 +156,62 @@ public class Objectif {
 
 	public String toString(){
 		return this.getSeRendre()+" "+this.type.getValue();
+	}
+
+	public void trouverNouvelObjectifFanatique() {
+		BoardGame game = BoardGame.boardGame;
+		/*
+		 * - Nourrire Critique
+		 * - Se reposer Critique
+		 * - malade -> se soigner
+		 * - si attaque :
+		 * ---- si arme allezattaque
+		 * ---- sinon allez chercher arme
+		 * - Nourrire
+		 * - Se reposer
+		 * - si pas attaque une arme -> allez la ramener 
+		 * 
+		 * random : 
+		 * 
+		 * - mine de fer -> atelier
+		 * - puit de petrol ->  generateur
+		 * - ferme nourriture 
+		 * - exterieur
+		 */
+
+		Batiment refDispo = game.nourritureDisponible();
+		Batiment dorDispo = game.dortoirDisponible();
+
+		Batiment hopDispo = game.hopitalDisponible();
+;
+
+
+		if(citoyen.getNourritureRestante()<SEUIL_FAMINE_CRITIQUE && refDispo!=null){
+			// Allez chercher de la nourriture
+			seRendre 	= refDispo;
+			type 		= ObjectifType.manger;
+		}
+		else if(citoyen.getFatigue()<SEUIL_FATIGUE_CRITIQUE  && dorDispo!=null){
+			// Allez se reposer
+			seRendre 	= dorDispo;
+			type 		= ObjectifType.se_reposer;
+		}
+		else if(citoyen.estMalade() && hopDispo!=null){
+			//Allez se soigner
+		}
+		else if(citoyen.getNourritureRestante()<SEUIL_FAMINE && refDispo!=null){
+			// Allez chercher de la nourriture
+			seRendre 	= refDispo;
+			type 		= ObjectifType.manger;
+		}
+		else if(citoyen.getFatigue()<SEUIL_FATIGUE  && dorDispo!=null){
+			// Allez se reposer
+			seRendre 	= dorDispo;
+			type 		= ObjectifType.se_reposer;
+		}
+		else{
+
+		}		
 	}
 
 
