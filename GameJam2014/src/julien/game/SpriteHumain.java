@@ -52,21 +52,24 @@ public class SpriteHumain extends Sprite {
 
 	public void initAnimation() {
 
-		if (!(c instanceof Fanatique)) {
+		 if (c.estActif()) {
+			// System.out.println("est actif");
+			 System.out.println("est actif");
+	    		anim = new Animation();
+	    		anim.setAutoUpdate(true);
+	            for (int i = 0; i < 1; i++){
+	            	anim.addFrame(imagesTravail.get(i),100);
+	            }
+			} 
+		 else if (!(c instanceof Fanatique)) {
+	        	System.out.println("est inactif");
 			anim = new Animation();
 			anim.setAutoUpdate(true);
-		for (int i = 0; i < 4; i++){
-			anim.addFrame(imagesGauche.get(i),100);
+			for (int i = 0; i < 4; i++){
+				anim.addFrame(imagesGauche.get(i),100);
 			}
         }
-		else if (c.estActif()) {
-    		anim = new Animation();
-    		anim.setAutoUpdate(true);
-            for (int i = 0; i < 1; i++){
-            	anim.addFrame(imagesTravail.get(i),100);
-            }
-		}
-        else {
+        else{
     		anim = new Animation();
     		anim.setAutoUpdate(true);
             for (int i = 0; i < 4; i++){
@@ -166,10 +169,10 @@ public class SpriteHumain extends Sprite {
 
 	public void changeState() {
 		if (etaitActif && !c.estActif()) {
-			etaitActif = true;
+			etaitActif = false;
 			initAnimation();
 		} else if (!etaitActif && c.estActif()){
-			etaitActif = false;
+			etaitActif = true;
 			initAnimation();
 		}
 		
