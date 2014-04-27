@@ -162,7 +162,7 @@ public class GCarte extends Sprite{
 			return  new Image("julien/images/effets/Maçon strike.png");
 		}
 		else if(c.getClass().toString().equals(AttaqueTaupeZombie.class.toString())){
-			return  new Image("julien/images/effets/Armageddon.png");
+			return  new Image("julien/images/effets/Attaque de Top.png");
 		}
 		else if(c.getClass().toString().equals(Cannibalisme.class.toString())){
 			return  new Image("julien/images/effets/Canibalism.png");
