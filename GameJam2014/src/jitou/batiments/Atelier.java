@@ -52,21 +52,25 @@ public class Atelier extends Batiment{
 		this.fer = fer;
 	}
 
-	public void updade(int delta){
+	public void update(int delta){
 		if(nbTour>0){
 			nbTour-=delta;
 		}
 		else{
 			puissance=1.0;
 		}
+		
 		double prix = BoardGame.boardGame.getListeBatiments().size()*15+50-Atelier.listeAtelier.size()*20;
 		prix=prix*puissance;
+
 		if(getFer()>prix){
 			constructionSalle();
 			setFer(getFer()-prix);
 		}
 
 	}
+	
+	
 
 	private void constructionSalle() {
 		final TypeBatiment bats[] = {

@@ -43,7 +43,7 @@ public class Citoyen {
 		//this.pos = pos;
 		posX = pos.x;
 		posY = pos.y;
-
+ 
 		posInside = new Point2D.Double(0.0,0.0);
 		this.nourritureRestante = nourritureRestante;
 		this.temperatureCorporelle = temperatureCorporelle;
@@ -74,7 +74,7 @@ public class Citoyen {
 			puissanceRationnement=0.0;
 		}
 		tempsReveilZombie-=delta;
-		
+
 		final  double facteurDiv = 200.0+malusVitesse-puissanceBasket;
 		Batiment salle = BoardGame.boardGame.getBatiment(posX, posY);
 		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.999+salle.getTemperatureSalle()*0.001)-malusPerteChaleur);
@@ -296,7 +296,7 @@ public class Citoyen {
 		BoardGame.boardGame.killCitoyen(this);
 		Fanatique.liste_fanatiques.remove(this);
 		estMort=true;		
-		
+
 		if(tempsReveilZombie>0.0){
 			new Ennemi(posX, posY, Ennemi.EnnemiType.zombi);
 		}
@@ -326,6 +326,8 @@ public class Citoyen {
 	public void reveilZombie(double temps) {
 		tempsReveilZombie = temps;
 	}
+
+	
 
 
 }

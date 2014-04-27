@@ -48,9 +48,9 @@ public class Batiment {
 		return voisins[n.getValue()];
 	}
 
-public void update(int delta){
-	
-}
+	public void update(int delta){
+		
+	}
 
 	public final Point getPos() {
 		return new Point(x, y);
