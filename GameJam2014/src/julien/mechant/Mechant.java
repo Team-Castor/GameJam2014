@@ -43,12 +43,15 @@ public class Mechant {
 	public Effet piocherMauvaise(){
 		Effet[] ef = {new Armagedon(),new Cannibalisme(), new JeuneFou(),
 				new PanneChaudiere(), new PetitePluieDeMeteroite(), new PluieDeMeteroite(),
-				new VolOutils(), new AttaqueTaupeZombie() };
+				new VolOutils(), new AttaqueTaupeZombie(), new Kamikaze(), 
+				new SabotageReserveExplosif(), new ReveilZombie()};
+		
 		return ef[(int)(Math.random()*ef.length)];
 	}
 	public Effet piocherBonner(){
 		Effet[] ef = {new AvanceeMedicale(),new ChasseSorcieres(), new Rationnement(), 
 				 new SuperMacon(), new SuperBasket()};
+		
 		return ef[(int)(Math.random()*ef.length)];
 	}
 	

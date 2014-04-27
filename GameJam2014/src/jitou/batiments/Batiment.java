@@ -14,7 +14,7 @@ public class Batiment {
 	private Batiment voisins[] = new Batiment[4];
 
 	private double temperatureSalle = 30.0;
-
+	private double dommage = 0.0;
 
 
 	Batiment(Point pos, TypeBatiment type){
@@ -36,7 +36,9 @@ public class Batiment {
 
 	}
 
-
+	public boolean estEndommage(){
+		return this.dommage>0.0;
+	}
 
 
 	public void setVoisin(Batiment batiment, Orientation nord) {
@@ -70,6 +72,9 @@ public void update(int delta){
 		else if(type.getValue()==ObjectifType.allezAuCombat.getValue()){
 			this.killEnnemiCase(this);
 			citoyen.getObjectif().allerDefendre();
+		}
+		else if(type.getValue()==ObjectifType.faireSemblant.getValue()){
+			citoyen.setWorkingTime(200);
 		}
 			
 			
@@ -119,6 +124,20 @@ public void update(int delta){
 
 	public String info() {
 		return "nothing";
+	}
+
+
+
+
+	public double getDommage() {
+		return dommage;
+	}
+
+
+
+
+	public void setDommage(double dommage) {
+		this.dommage = dommage;
 	}
 
 

@@ -31,7 +31,7 @@ public class Fanatique extends Citoyen{
 			objectif.trouverNouvelObjectifFanatique();	
 		}
 		
-		//System.out.println("Ordre fanatique "+ objectif);
+		System.out.println("Ordre fanatique "+ objectif);
 
 	}
 

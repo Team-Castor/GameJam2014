@@ -9,7 +9,7 @@ public class Ennemi {
 	public static ArrayList<Ennemi> ennemis= new ArrayList<Ennemi>();
 	
 	public enum EnnemiType{
-		tompeZombi;
+		tompeZombi, zombi;
 	}
 	
 	public Ennemi(int x, int y, EnnemiType type){
@@ -32,7 +32,8 @@ public class Ennemi {
 				return;
 			}
 		}
-		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
+		//Ne se deplace pas?
+		/*Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
 		int j=(int) (Math.random()*4);
 		for(int i=0;i<4;i++){
 			if(x+listePts[j].x>=0 && x+listePts[j].x<BoardGame.getDimensionworldx() &&
@@ -44,7 +45,7 @@ public class Ennemi {
 				}
 			}
 			j=(j+1)%4;
-		}
+		}*/
 	}
 	
 	public void meurt(){

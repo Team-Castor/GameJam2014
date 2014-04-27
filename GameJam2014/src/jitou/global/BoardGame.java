@@ -36,6 +36,7 @@ public class BoardGame {
 	}
 
 	public void update(int delta){
+		
 		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1),new Point(0, 0)};
 		for(int i = 0;i<this.liste_batiments.size();i++){
 			int x = liste_batiments.get(i).getPos().x;
@@ -371,5 +372,16 @@ public class BoardGame {
 
 	public Batiment randomSalle() {
 		return boardGame.getListeBatiments().get((int) (Math.random()* boardGame.getListeBatiments().size()));
+	}
+
+	public Batiment getBatimentAdjacent(Point pos) {
+		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
+		ArrayList<Batiment> choix = new ArrayList<Batiment>();
+		for(int j=0;j<listePts.length;j++){
+			if(boardGame.getBatiment(pos.x+listePts[j].x, pos.y+listePts[j].y)!=null){
+				choix.add(boardGame.getBatiment(pos.x+listePts[j].x, pos.y+listePts[j].y));
+			}
+		}
+		return choix.get((int) (Math.random()*choix.size()));
 	}
 }
