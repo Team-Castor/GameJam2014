@@ -5,6 +5,8 @@ import java.awt.Point;
 import jitou.global.BoardGame;
 import jitou.global.CitoyenDehors;
 import jitou.global.Fanatique;
+import julien.game.FXtype;
+import julien.game.Game;
 import julien.mechant.Effet;
 import julien.mechant.TypeEffet;
 
@@ -28,6 +30,7 @@ public class Kamikaze extends Effet{
 			Point p = f.getPos();
 			BoardGame.boardGame.getBatiment(p.x, p.y).setDommage(dommage);
 			f.tuer();
+			Game.getInstance().addFX(p.x, p.y, FXtype.explosion);
 		}
 
 	}

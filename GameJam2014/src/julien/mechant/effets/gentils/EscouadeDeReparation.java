@@ -12,12 +12,12 @@ import jitou.global.Fanatique;
 import julien.mechant.Effet;
 import julien.mechant.TypeEffet;
 
-public class CapsuleDeReparation extends Effet{
+public class EscouadeDeReparation extends Effet{
 
 	double nbTour 	 = 500.0;
 	double puissance = 2.0;
 
-	public CapsuleDeReparation() {
+	public EscouadeDeReparation() {
 		variationEnergie[0] = 0;
 		variationEnergie[1] = 4;
 		variationEnergie[2] = 1;
@@ -28,10 +28,9 @@ public class CapsuleDeReparation extends Effet{
 	public void appliquer() {
 		super.appliquer();
 
-
-		ArrayList<MineDeFer> tmp = MineDeFer.listeMineDeFer;
+		ArrayList<Atelier> tmp = Atelier.listeAtelier;
 		for(int i=0;i<tmp.size();i++){
-			tmp.get(i).filonDeFer(nbTour, puissance);
+			tmp.get(i).superMacon(nbTour, puissance);
 		}
 
 	}

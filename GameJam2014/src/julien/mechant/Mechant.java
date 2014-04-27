@@ -51,14 +51,14 @@ public class Mechant {
 	}
 	public Effet piocherBonner(){
 		Effet[] ef = {new AvanceeMedicale(),new ChasseSorcieres(), new Rationnement(), 
-				 new SuperMacon(), new SuperBasket(), new CapsuleDeReparation(),
+				 new SuperMacon(), new SuperBasket(), new EscouadeDeReparation(),
 				 new FilonDeFer()};
 		
 		return ef[(int)(Math.random()*ef.length)];
 	}
 	
 	public void piocher() {
-		//cartes.add(new Carte(piocherBonner() ,  new AttaqueTaupeZombie() ));
+		cartes.add(new Carte(piocherBonner() ,  new Kamikaze() ));
 
 		cartes.add(new Carte(piocherBonner() , piocherMauvaise() ));
 		Game.getInstance().redefinirLesCartes();

@@ -11,7 +11,7 @@ public class Ennemi {
 	double vx, vy;
 	EnnemiType type;
 	public static ArrayList<Ennemi> ennemis= new ArrayList<Ennemi>();
-	
+
 	public enum EnnemiType{
 		tompeZombi, zombi;
 	}
@@ -21,7 +21,7 @@ public class Ennemi {
 		py=0.0;
 		vx = (Math.random()-0.5)/100.0;
 		vy = (Math.random()-0.5)/100.0;
-		
+
 		this.x = x;
 		this.y = y;
 		this.type = type;
@@ -30,66 +30,52 @@ public class Ennemi {
 	}
 
 	public void update(int delta){
-		
-		px = px+vx;
-		py = py+vy;
-		if(py<-0.98){
-			py = 0.98;
-			y--;
-		}
-		else if(py>0.98){
-			py = -0.98;
-			y++;
-		}
-		if(px<-0.98){
-			px = 0.98;
-			x--;
-		}
-		else if(x>0.98){
-			px = -0.98;
-			x++;
-		}
-		
-		if(BoardGame.boardGame.getBatiment(x, y)==null){
-				vx = -vx;
+		if(Math.random()<0.5){
+			double tmp = py;
+			int yy=y;
+			py = py+vy*delta;
+			if(py<-0.98){
+				py = 0.98;
+				y--;
+			}
+			else if(py>0.98){
+				py = -0.98;
+				y++;
+			}
+			if(BoardGame.boardGame.getBatiment(x, y)==null){
 				vy = -vy;
-				
-				px +=vx;
-				px = px+vx;
-	
-				if(px<-0.98){
-					px = 0.98;
-					x--;
-				}
-				else if(x>0.98){
-					px = -0.98;
-					x++;
-				}
-		
-			
-				py +=vy;
-				py = py+vy;
+				py  = tmp+vy;
+				y=yy;
 
-				if(py<-0.98){
-					py = 0.98;
-					y--;
-				}
-				else if(py>0.98){
-					py = -0.98;
-					y++;
-				}
+			}
+
+		}else{
+			double tmp= px;
+			int xx = x;
+			px = px+vx*delta;
+			if(px<-0.98){
+				px = 0.98;
+				x--;
+			}
+			else if(x>0.98){
+				px = -0.98;
+				x++;
+			}
+			if(BoardGame.boardGame.getBatiment(x, y)==null){
+				vx = -vx;
+				px = tmp+vx;
+				x =xx;
+			}
 		}
-		
-		
-		
-		System.out.println("AttaqueTaupeZombie ");
+
+		//System.out.println("AttaqueTaupeZombie "+vx+"  "+vy);
 		for(int i=0;i<BoardGame.boardGame.getCitoyens().size();i++){
 			if(BoardGame.boardGame.getCitoyens().get(i).getPos().equals(new Point(x, y))){
 				if(BoardGame.boardGame.getCitoyens().get(i).aUneArme()){
 					meurt();
 				}
 				else{
-					if(Math.random()<0.1){
+					if(Math.random()<0.05){
 						BoardGame.boardGame.getCitoyens().get(i).tuer();
 					}
 				}
@@ -123,9 +109,16 @@ public class Ennemi {
 		return x;
 	}
 
-
 	public int getY() {
 		return y;
+	}
+	
+	public double getXReel() {
+		return px;
+	}
+
+	public double getYReel() {
+		return py;
 	}
 
 

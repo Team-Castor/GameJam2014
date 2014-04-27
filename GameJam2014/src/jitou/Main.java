@@ -11,7 +11,7 @@ public class Main {
 
 
 	public static void main(String[] args)  {
-
+		
 		new Mechant();
 		BoardGame.boardGame.initialisation();
 
@@ -21,7 +21,6 @@ public class Main {
 		} catch (SlickException e) {
 			System.err.println("Probleme creation de AppGame\n"+e.getMessage());
 		}
-
 
 
 

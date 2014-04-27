@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import jitou.batiments.Atelier;
 import jitou.batiments.Hopital;
+import jitou.batiments.MineDeFer;
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import jitou.global.CitoyenDehors;
@@ -28,10 +29,9 @@ public class FilonDeFer extends Effet{
 		super.appliquer();
 
 
-		ArrayList<Atelier> tmp = Atelier.listeAtelier;
+		ArrayList<MineDeFer> tmp = MineDeFer.listeMineDeFer;
 		for(int i=0;i<tmp.size();i++){
-			tmp.get(i).superMacon(nbTour, puissance);
+			tmp.get(i).filonDeFer(nbTour, puissance);
 		}
-
 	}
 }

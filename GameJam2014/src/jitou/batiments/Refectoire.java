@@ -62,7 +62,7 @@ public class Refectoire extends Batiment{
 		if(nbTourRat>0) nbTourRat-=delta;
 		else puissanceRat=0.0;
 		
-		quantiteNourriture -= delta/2000.0 - puissanceRat*delta;
+		quantiteNourriture -= delta/2000.0 + puissanceRat*delta;
 		quantiteNourriture = Math.max(0, quantiteNourriture);
 	}
 	

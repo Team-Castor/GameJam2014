@@ -15,7 +15,10 @@ public class PuitPetrol extends Batiment{
 	int nb_occupant = 0;
 	int nb_occupant_max = 3;
 	double workingTime = 1200;
-
+	double nbTour=-1;
+	double puissance=0.0;
+	
+	
 	public PuitPetrol(Point pos) {
 		super(pos, TypeBatiment.PuitPetrol);
 		listePuitsPetrols.add(this);
@@ -39,7 +42,7 @@ public class PuitPetrol extends Batiment{
 	public void back(Citoyen c) {
 		if( c.getObjectif().getType().getValue()==ObjectifType.allerPuitPetrole.getValue()){
 			nb_occupant--;
-			c.setRessourceTransporte(new Ressource( RessourceType.petrole, 4.0));
+			c.setRessourceTransporte(new Ressource( RessourceType.petrole, 4.0+puissance));
 			c.getObjectif().rapporterPetrole();
 			nb_occupant = Math.max(nb_occupant, 0);
 
@@ -50,5 +53,20 @@ public class PuitPetrol extends Batiment{
 
 	public String info() {
 		return nb_occupant+" / "+nb_occupant_max;
+	}
+
+	public void update(int delta){
+		if(nbTour>0){
+			nbTour-=delta;
+		}
+		else{
+			puissance=0.0;
+		}
+	}
+	
+	public void filon(double nbTour, double puissance) {
+		this.nbTour=nbTour;
+		this.puissance = puissance;
+		
 	}
 }
