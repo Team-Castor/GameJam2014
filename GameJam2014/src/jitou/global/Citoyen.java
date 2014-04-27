@@ -23,8 +23,8 @@ public class Citoyen {
 	protected Maladie maladie = null;
 	
 
-	private double workingTime;
-	private ArrayList<Batiment> pathfinder = null;
+	protected double workingTime;
+	protected ArrayList<Batiment> pathfinder = null;
 
 
 	public Citoyen(Point pos){
@@ -50,16 +50,23 @@ public class Citoyen {
 
 
 	public void update(int delta){
-		final  double facteurDiv = 200.0;
-		//System.out.println(BoardGame.boardGame.getListeBatiments());
-
-		//System.out.println(this+"  "+posX+" "+this.posInside+"  "+delta/200.+" "+workingTime+"  "+pathfinder);
-		temperatureCorporelle = (float) (temperatureCorporelle*0.99*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.01*delta/50.0);
+		double malusVitesse=0.0;
+		if(maladie!= null) malusVitesse = maladie.getMalusVitesse();
+		double malusFatigue=0.0;
+		if(maladie!= null) malusFatigue = maladie.getMalusFatigue();
+		double malusTempsDeTravail=0.0;
+		if(maladie!= null) malusTempsDeTravail = maladie.getMalusTempsTravail();
+		double malusPerteChaleur=0.0;
+		if(maladie!= null) malusPerteChaleur = maladie.getPerteChaleur();
+		
+		final  double facteurDiv = 200.0+malusVitesse;
+		
+		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.99*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.01*delta/50.0)-malusPerteChaleur);
 		nourritureRestante		-= delta/10.0;
-		fatigue 				-= delta/12.0;
-
+		fatigue 				-= (delta+malusFatigue)/12.0;
+		
 		if(workingTime>=0.0){
-			workingTime = workingTime - delta;
+			workingTime = workingTime - Math.max(0.2, (delta-malusTempsDeTravail));
 			
 
 			if(workingTime<0.0){
@@ -69,7 +76,6 @@ public class Citoyen {
 			
 		}
 		else{
-			System.out.println(this+"o : "+objectif);
 			if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 				pathfinder = null;
 				objectif.trouverNouvelObjectif();
@@ -149,7 +155,7 @@ public class Citoyen {
 							}
 						}
 					}else{
-						nouvelObjectif();
+						this.nouvelObjectif();
 
 					}
 				}
@@ -242,6 +248,14 @@ public class Citoyen {
 
 	public boolean estMalade() {
 		return maladie!=null;
+	}
+
+	public Maladie getMaladie() {
+		return maladie;
+	}
+
+	public void setMaladie(Maladie maladie) {
+		this.maladie = maladie;
 	}
 
 	public double getWorkingTime() {

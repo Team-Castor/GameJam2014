@@ -62,11 +62,11 @@ public class BoardGame {
 			c.chauffe();
 		}
 
-		for(Atelier a : Atelier.listeAtelier){
+		for(int a=0 ; a<Atelier.listeAtelier.size();a++){
 			double prix = this.liste_batiments.size()*10+100;
-			if(a.getFer()>prix){
+			if(Atelier.listeAtelier.get(a).getFer()>prix){
 				constructionSalle();
-				a.setFer(a.getFer()-prix);
+				Atelier.listeAtelier.get(a).setFer(Atelier.listeAtelier.get(a).getFer()-prix);
 			}
 		}
 
