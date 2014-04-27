@@ -9,14 +9,19 @@ import jitou.global.Fanatique;
 import julien.map.Case;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+
+import de.matthiasmann.twl.Container;
 
 public class SpriteHumain extends Sprite {
 
 	static private int dimensionX = 15;
 	static private int dimensionY = 32;
 	public int xcor, ycor;
+	public int oldX, oldY;
+	
 	Citoyen c;
 	Animation anim;
 	private static ArrayList<Image> imagesGauche = new ArrayList<Image>();
@@ -54,7 +59,6 @@ public class SpriteHumain extends Sprite {
 
 		 if (c.estActif()) {
 			// System.out.println("est actif");
-			 System.out.println("est actif");
 	    		anim = new Animation();
 	    		anim.setAutoUpdate(true);
 	            for (int i = 0; i < 1; i++){
@@ -62,7 +66,6 @@ public class SpriteHumain extends Sprite {
 	            }
 			} 
 		 else if (!(c instanceof Fanatique)) {
-	        	System.out.println("est inactif");
 			anim = new Animation();
 			anim.setAutoUpdate(true);
 			for (int i = 0; i < 4; i++){
@@ -167,15 +170,15 @@ public class SpriteHumain extends Sprite {
 		return false;
 	}
 
-	public void changeState() {
+	public void changeState(GameContainer container) {
 		if (etaitActif && !c.estActif()) {
 			etaitActif = false;
 			initAnimation();
-			//dsdq
 		} else if (!etaitActif && c.estActif()){
 			etaitActif = true;
 			initAnimation();
 		}
+		
 		
 	}
 

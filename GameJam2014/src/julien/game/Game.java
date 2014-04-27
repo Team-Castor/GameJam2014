@@ -169,7 +169,7 @@ public class Game  extends BasicGame{
 
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
 		for (int i = 0 ; i < spritesHumains.size() ; i++) {
-			spritesHumains.get(i).changeState();
+			spritesHumains.get(i).changeState(container);
 			if (spritesHumains.get(i).actualiser(this)) i--;
 			
 		}
