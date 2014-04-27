@@ -18,10 +18,13 @@ public class Rat extends Effet {
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		Refectoire c = Refectoire.listeRefectoire.get((int) (Math.random()*Refectoire.listeRefectoire.size()));
 		c.rat(nbTourRat, puissanceRat);
+		
+		return "Des rats dévorent la nourriture";
+
 	}
 	
 }

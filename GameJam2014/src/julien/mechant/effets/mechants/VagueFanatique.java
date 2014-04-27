@@ -19,7 +19,7 @@ public class VagueFanatique extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		
 		for(int i=0;i<x;i++){
@@ -28,6 +28,7 @@ public class VagueFanatique extends Effet{
 			BoardGame.boardGame.getCitoyens().add(new Fanatique(c.getPos()));
 
 		}
+		return x+" citoyens rejoingne votre cause";
 	}
 	
 }

@@ -24,7 +24,7 @@ public class ReveilZombie extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 
 		ArrayList<Citoyen> tmp = BoardGame.boardGame.getCitoyens();
@@ -32,7 +32,8 @@ public class ReveilZombie extends Effet{
 			tmp.get(i).reveilZombie(temps);
 		}
 
-		
+		return "La mort reigne...";
+
 	}
 	
 }

@@ -26,19 +26,23 @@ public class Hopital extends Batiment{
 	}
 
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		super.effet(citoyen, type);
 
 		if(placeDisponible() && type.getValue()==ObjectifType.se_soigner.getValue()){
 			nb_occupant++;			
 			citoyen.setWorkingTime(workingTime);
 			citoyen.setMaladie(null);
 		}
+		else{
+			super.effet(citoyen, type);
+
+		}
 	}
 
 	public void back(Citoyen c) {
 		if(c.getObjectif().getType().getValue()==ObjectifType.se_soigner.getValue()){
 			nb_occupant--;
-
+			nb_occupant = Math.max(nb_occupant, 0);
+			c.getObjectif().reset();
 		}
 		else{
 			super.back(c);

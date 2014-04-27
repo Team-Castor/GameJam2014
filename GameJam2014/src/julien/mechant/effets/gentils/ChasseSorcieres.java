@@ -18,15 +18,17 @@ public class ChasseSorcieres extends Effet{
 		type = TypeEffet.bien;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		int nb = Fanatique.liste_fanatiques.size();
 		if(nb>0){
 			int v = (int) (Math.random()*nb);
 			Fanatique.liste_fanatiques.get(v).tuer();
 			julien.game.Game.addFX(Fanatique.liste_fanatiques.get(v), FXtype.sang);
-
+			return "Un fanatique est trouvé!";
 		}
+		return "Il n'y a pas de fanatique!";
+
 	}
 	
 }

@@ -25,7 +25,7 @@ public class FilonDeFer extends Effet{
 		type = TypeEffet.bien;
 	}
 
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 
 
@@ -33,5 +33,7 @@ public class FilonDeFer extends Effet{
 		for(int i=0;i<tmp.size();i++){
 			tmp.get(i).filonDeFer(nbTour, puissance);
 		}
+		
+return tmp.size()+" mines de fer produiront "+puissance+" métaux en plus pendant "+nbTour+" tours";
 	}
 }

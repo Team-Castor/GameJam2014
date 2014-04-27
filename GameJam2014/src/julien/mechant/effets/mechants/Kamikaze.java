@@ -22,7 +22,7 @@ public class Kamikaze extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		int nb = Fanatique.liste_fanatiques.size();
 		if(nb>0){
@@ -31,7 +31,12 @@ public class Kamikaze extends Effet{
 			BoardGame.boardGame.getBatiment(p.x, p.y).setDommage(dommage);
 			f.tuer();
 			Game.getInstance().addFX(BoardGame.boardGame.getBatiment(p.x, p.y), FXtype.explosion);
+			return "Un fanatique explose";
+
 		}
+		
+		return "Aucun fanatique de disponible";
+
 
 	}
 	

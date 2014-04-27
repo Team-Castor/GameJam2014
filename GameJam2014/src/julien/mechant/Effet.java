@@ -21,10 +21,12 @@ public abstract class Effet {
 		return false;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		Mechant.getInstance().changerRessource(TypeEnergie.foi,variationEnergie[0]);
 		Mechant.getInstance().changerRessource(TypeEnergie.joie,variationEnergie[1]);
 		Mechant.getInstance().changerRessource(TypeEnergie.espoir,variationEnergie[2]);
+		
+		return "";
 	}
 	
 	

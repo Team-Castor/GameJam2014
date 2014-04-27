@@ -50,6 +50,7 @@ public class MineDeFer extends Batiment{
 			nb_occupant = Math.max(nb_occupant, 0);
 			c.setRessourceTransporte(new Ressource( RessourceType.fer, 5+puissance));
 			c.getObjectif().rapporterFer();
+
 		}
 		else{
 			super.back(c);

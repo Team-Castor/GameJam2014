@@ -17,7 +17,7 @@ public class Fanatique extends Citoyen{
 	}
 
 
-	protected void nouvelObjectif() {
+	protected void trouverNouvelObjectif() {
 		if(listeMaitre.size()>0){
 			ObjectifType t = listeMaitre.get(0);
 			listeMaitre.remove(0);
@@ -94,7 +94,8 @@ public class Fanatique extends Citoyen{
 			else{
 				if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 					pathfinder = null;
-					objectif.trouverNouvelObjectif();
+					trouverNouvelObjectif();
+					//objectif.trouverNouvelObjectif();
 				}else{
 
 					if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
@@ -193,7 +194,7 @@ public class Fanatique extends Citoyen{
 								}
 							}
 						}else{
-							this.nouvelObjectif();
+							trouverNouvelObjectif();
 
 						}
 					}

@@ -17,10 +17,13 @@ public class PanneChaudiere extends Effet {
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		Chaudiere c = Chaudiere.listeChaudieres.get((int) (Math.random()*Chaudiere.listeChaudieres.size()));
 		c.infligerPenalite(this);
+		
+		return "La chaudière est en panne, il faudra bien "+nbTour+" tours pour la réparer";
+
 	}
 	
 }

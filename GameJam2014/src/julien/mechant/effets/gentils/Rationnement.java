@@ -22,12 +22,15 @@ public class Rationnement extends Effet{
 		type = TypeEffet.bien;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		ArrayList<Citoyen> tmp = BoardGame.boardGame.getCitoyens();
 		for(int i=0;i<tmp.size();i++){
 			tmp.get(i).rationnement(nbTourRationnement, puissanceRationnement);
 		}
+		
+		return" Les citoyens concommeront  "+puissanceRationnement+" nourriture en moins pendant "+nbTourRationnement+" tours";
+
 	}
 	
 }

@@ -22,7 +22,6 @@ public class Arsenal extends Batiment{
 	}
 	
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		super.effet(citoyen, type);
 		if(getArmeDisponible()>0 && type.getValue() == ObjectifType.allerChercherArme.getValue()){
 			citoyen.setArme(true);
 			arme_disponible--;
@@ -32,13 +31,19 @@ public class Arsenal extends Batiment{
 			arme_disponible++;
 			citoyen.setWorkingTime(10);
 		}
+		else{
+			super.effet(citoyen, type);
+
+		}
 	}
 	
 	public void back(Citoyen citoyen) {
-		super.back(citoyen);
+		
 
 		if(citoyen.aUneArme() && citoyen.getObjectif().getType().getValue() == ObjectifType.allerChercherArme.getValue()){
 			citoyen.getObjectif().allerDefendre();
+		}else{
+			super.back(citoyen);
 		}
 		
 	}

@@ -21,12 +21,15 @@ public class SuperBasket extends Effet{
 		type = TypeEffet.bien;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		ArrayList<Citoyen> tmp = BoardGame.boardGame.getCitoyens();
 		for(int i=0;i<tmp.size();i++){
 			tmp.get(i).puissanceBasket(tmp.get(i).getPuissanceBasket()+puissanceBasket);
 		}
+		
+		return" Les citoyens se déplaceront  x"+puissanceBasket+" plus vite";
+
 	}
 	
 }

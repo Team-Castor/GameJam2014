@@ -46,6 +46,7 @@ public class PuitPetrol extends Batiment{
 			c.getObjectif().rapporterPetrole();
 			nb_occupant = Math.max(nb_occupant, 0);
 
+
 		}
 		else 		super.back(c);
 

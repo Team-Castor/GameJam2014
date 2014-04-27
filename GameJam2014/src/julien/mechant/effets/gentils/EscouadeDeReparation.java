@@ -3,6 +3,7 @@ package julien.mechant.effets.gentils;
 import java.util.ArrayList;
 
 import jitou.batiments.Atelier;
+import jitou.batiments.Batiment;
 import jitou.batiments.Hopital;
 import jitou.batiments.MineDeFer;
 import jitou.global.BoardGame;
@@ -14,8 +15,7 @@ import julien.mechant.TypeEffet;
 
 public class EscouadeDeReparation extends Effet{
 
-	double nbTour 	 = 500.0;
-	double puissance = 2.0;
+	int nbBatiment 	 = 1;
 
 	public EscouadeDeReparation() {
 		variationEnergie[0] = 0;
@@ -25,13 +25,19 @@ public class EscouadeDeReparation extends Effet{
 		type = TypeEffet.bien;
 	}
 
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
-
-		ArrayList<Atelier> tmp = Atelier.listeAtelier;
-		for(int i=0;i<tmp.size();i++){
-			tmp.get(i).superMacon(nbTour, puissance);
+		
+		int nb = 0;
+		ArrayList<Batiment> tmp = BoardGame.boardGame.getListeBatiments();
+		for(int i=0;i<tmp.size() && nbBatiment>0;i++){
+			if(tmp.get(i).getDommage()>0){
+				nbBatiment--;
+				tmp.get(i).setDommage(-1);
+				nb++;
+			}
 		}
-
+		
+		return "Reparation de "+nb+" batiments";
 	}
 }

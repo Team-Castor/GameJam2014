@@ -25,15 +25,20 @@ public class Grippe extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 
 		ArrayList<Citoyen> tmp = BoardGame.boardGame.getCitoyens();
+		
+		int nb=0;
 		for(int i=0;i<tmp.size();i++){
-			if(Math.random()<contamination)
+			if(Math.random()<contamination){
 			tmp.get(i).setMaladie(new Maladie(mal));
-			
+			nb++;}
 		}
+		
+		return nb+" citoyens tombent malade";
+
 	}
 	
 }

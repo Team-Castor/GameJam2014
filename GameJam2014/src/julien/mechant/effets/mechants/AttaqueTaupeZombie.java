@@ -21,13 +21,14 @@ public class AttaqueTaupeZombie extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 
 		Batiment p = BoardGame.boardGame.randomSalle();
 		new Ennemi(p.getPos().x, p.getPos().y, Ennemi.EnnemiType.tompeZombi);
 
-		
+		return " Une tombe zombie attaque!";
+
 	}
 	
 }

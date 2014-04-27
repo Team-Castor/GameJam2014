@@ -20,7 +20,7 @@ public class Cannibalisme extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		int x = Fanatique.liste_fanatiques.size();
 
@@ -29,6 +29,9 @@ public class Cannibalisme extends Effet{
 			Game.addFX(c,FXtype.sang);
 			c.tuer();
 		}
+		
+		return x+" citoyens sont retrouvés dévorés";
+
 	}
 	
 }

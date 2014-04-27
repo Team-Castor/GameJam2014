@@ -16,13 +16,16 @@ public class PetitePluieDeMeteroite extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		int nb = (int) Math.ceil(CitoyenDehors.liste_cit.size()*pourcentage);
 		for(int i=0;i<nb;i++){
 			CitoyenDehors.liste_cit.get(i).getCitoyen().tuer();
 			//CitoyenDehors.liste_cit.remove(i);
 		}
+		
+		return nb+" citoyens sont tués pendant la petite pluie de météroites";
+
 	}
 	
 }

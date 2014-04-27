@@ -15,8 +15,8 @@ import julien.mechant.TypeEffet;
 
 public class SuperMacon extends Effet{
 
-	int nbBatiment 	 = 1;
-
+	double nbTour 	 = 500.0;
+	double puissance = 2.0;
 	public SuperMacon() {
 		variationEnergie[0] = 0;
 		variationEnergie[1] = 4;
@@ -25,17 +25,14 @@ public class SuperMacon extends Effet{
 		type = TypeEffet.bien;
 	}
 
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 
-
-		ArrayList<Batiment> tmp = BoardGame.boardGame.getListeBatiments();
-		for(int i=0;i<tmp.size() && nbBatiment>0;i++){
-			if(tmp.get(i).getDommage()>0){
-				nbBatiment--;
-				tmp.get(i).setDommage(-1);
-			}
+		ArrayList<Atelier> tmp = Atelier.listeAtelier;
+		for(int i=0;i<tmp.size();i++){
+			tmp.get(i).superMacon(nbTour, puissance);
 		}
-
+	
+		return "Vos ateliers ont besoins de moins de matériaux pour construire";
 	}
 }

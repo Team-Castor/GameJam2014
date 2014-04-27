@@ -16,9 +16,12 @@ public class JeuneFou extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		BoardGame.boardGame.getCitoyens().add(new Fanatique(BoardGame.boardGame.trouverSortie().getPos()));
+		
+		return "Un fanatique arrive";
+
 	}
 	
 }

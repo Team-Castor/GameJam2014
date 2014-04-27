@@ -19,13 +19,16 @@ public class VolOutils extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		int x = Fanatique.liste_fanatiques.size();
 
 		for(int i=0;i<x;i++){
 			 Fanatique.liste_fanatiques.get(i).ordonner(ObjectifType.allerVolerOutils);
 		}
+		
+		return x+" de vos serviteurs vont aller voler des outils";
+
 	}
 	
 }

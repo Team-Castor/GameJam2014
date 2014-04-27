@@ -23,9 +23,11 @@ public class AvanceeMedicale extends Effet{
 		type = TypeEffet.bien;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 		Hopital.setWorkingTime(Hopital.getWorkingTime()/1.5);
+		
+		return "Bonus permanent hopitaux";
 	}
 	
 }

@@ -25,7 +25,6 @@ public class Atelier extends Batiment{
 
 
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		super.effet(citoyen, type);
 		if(type.getValue() == ObjectifType.rapporterferAtelier.getValue()){
 			fer+=citoyen.getRessourceTransporte().getQuantite();
 			citoyen.setRessourceTransporte(null);
@@ -35,6 +34,9 @@ public class Atelier extends Batiment{
 		}else 	if(type.getValue() == ObjectifType.allerVolerOutils.getValue()){
 			fer=Math.max(0.0, fer-10.0);
 			citoyen.setWorkingTime(45);
+		}else{
+			super.effet(citoyen, type);
+
 		}
 	}
 

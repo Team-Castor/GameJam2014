@@ -22,7 +22,7 @@ public class FuiteRadiationGenerateur extends Effet{
 		type = TypeEffet.mal;
 	}
 
-	public void appliquer() {
+	public String appliquer() {
 		super.appliquer();
 
 		int nb = Generateur.listeGenerateurs.size();
@@ -32,6 +32,9 @@ public class FuiteRadiationGenerateur extends Effet{
 			julien.game.Game.addFX(f, FXtype.explosion);
 
 		}
+		
+		return " Un générateur explose";
+
 
 	}
 }

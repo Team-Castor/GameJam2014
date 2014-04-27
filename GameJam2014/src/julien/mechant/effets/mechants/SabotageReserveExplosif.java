@@ -24,7 +24,7 @@ public class SabotageReserveExplosif extends Effet{
 		type = TypeEffet.mal;
 	}
 	
-	public void appliquer() {
+	public String appliquer() {
 
 		
 		super.appliquer();
@@ -34,9 +34,9 @@ public class SabotageReserveExplosif extends Effet{
 			f.setDommage(dommage);
 			BoardGame.boardGame.getBatimentAdjacent(f.getPos()).setDommage(dommageSecondaire);
 			julien.game.Game.addFX(f, FXtype.explosion);
-
+			
 		}
-
+		return "Une mine de fer explose et provoque des dégats collatéraux";
 	}
 	
 }

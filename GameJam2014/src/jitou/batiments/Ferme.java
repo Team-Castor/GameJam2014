@@ -43,6 +43,7 @@ public class Ferme extends Batiment{
 
 		c.setRessourceTransporte(new Ressource( RessourceType.nourriture, 5));
 		c.getObjectif().rapporterNourriture();
+		
 	}
 	else{
 		super.back(c);
