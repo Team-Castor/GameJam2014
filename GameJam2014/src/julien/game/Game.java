@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import julien.map.Case;
+import julien.mechant.EnergieMal;
 import julien.mechant.Mechant;
 
 import org.lwjgl.LWJGLException;
@@ -23,6 +24,11 @@ public class Game  extends BasicGame{
 
 	private static Game instance;
 	private final int defilement = -10;
+	private int jaugesMaxH = 200;
+	private int jaugesW = 20;
+	private int facteurJauge = 1;
+	private int espaceJauge = 9;
+	private int baseJauge = 500;
 
 	private Sprite[] liste;
 	private int points=0;
@@ -171,8 +177,23 @@ public class Game  extends BasicGame{
 			g.drawImage(carte.getImage(), carte.getX(), carte.getY());	
 		}
 
+		drawJauges(container , g);
+		
 	}
 
+	private void drawJauges(GameContainer container2, Graphics g) {
+		EnergieMal[] ener = Mechant.getInstance().getEnergies();
+		g.setColor(Color.blue);
+		g.fillRect(espaceJauge*2, baseJauge, this.jaugesW, -1 * Math.min(jaugesMaxH, ener[0].getTotal()*facteurJauge));
+		g.fillRect(espaceJauge*3 + jaugesW, baseJauge, this.jaugesW, -1 * Math.min(jaugesMaxH, ener[0].getTotal()*facteurJauge));
+		g.fillRect(espaceJauge*4 + 2*jaugesW, baseJauge, this.jaugesW,-1 * Math.min(jaugesMaxH, ener[0].getTotal()*facteurJauge));
+
+	}
+
+	public void changeCitoyen(Citoyen c) {
+	//	for (int i = 0 ; i < spritesHumains.size() ; i++)
+	}
+	
 	public void redefinirLesCartes() {
 		gCartes.clear();
 		for (int i = 0 ; i < Mechant.getInstance().getCartes().size(); i++) {
