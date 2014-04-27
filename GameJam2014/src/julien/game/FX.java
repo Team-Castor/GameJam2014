@@ -36,10 +36,10 @@ public class FX extends Sprite{
 		if (type.equals(FXtype.explosion)) {
     		anim = new Animation();
     		anim.setAutoUpdate(true);
-            for (int i = 0; i < 9; i++){
+            for (int i = 0; i < 8; i++){
             	anim.addFrame(exploFrames.get(i),100);
             }
-            anim.stopAt(4);
+            anim.stopAt(7);
 		}
 
 	}
