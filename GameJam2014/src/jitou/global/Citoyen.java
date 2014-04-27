@@ -280,6 +280,10 @@ public class Citoyen {
 		return armee;
 	}
 
+	public void setArme(boolean i) {
+		armee = true;		
+	}
+
 
 
 }

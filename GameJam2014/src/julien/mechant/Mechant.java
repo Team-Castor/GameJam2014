@@ -39,7 +39,9 @@ public class Mechant {
 	}
 	
 	public Effet piocherMauvaise(){
-		Effet[] ef = {new Armagedon(),new Cannibalisme(), new JeuneFou(), new PanneChaudiere(), new PetitePluieDeMeteroite(), new PluieDeMeteroite(), new VolOutils() };
+		Effet[] ef = {new Armagedon(),new Cannibalisme(), new JeuneFou(),
+				new PanneChaudiere(), new PetitePluieDeMeteroite(), new PluieDeMeteroite(),
+				new VolOutils(), new AttaqueTaupeZombie() };
 		return ef[(int)(Math.random()*ef.length)];
 	}
 	

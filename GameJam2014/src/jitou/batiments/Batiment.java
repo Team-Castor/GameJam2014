@@ -5,6 +5,7 @@ import java.awt.Point;
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import jitou.global.CitoyenDehors;
+import jitou.global.Ennemi;
 import jitou.global.ObjectifType;
 
 public class Batiment {
@@ -67,7 +68,25 @@ public void update(int delta){
 			new CitoyenDehors(citoyen);
 			citoyen.setWorkingTime(500);
 		}
+		else if(type.getValue()==ObjectifType.allezAuCombat.getValue()){
+			this.killEnnemiCase(this);
+			citoyen.getObjectif().allerDefendre();
+		}
+			
+			
 	}
+
+	private void killEnnemiCase(Batiment batiment) {
+		for(int i=0;i<Ennemi.ennemis.size();i++){
+			if(Ennemi.ennemis.get(i).getX()==this.x && Ennemi.ennemis.get(i).getY()==this.y){
+				Ennemi.ennemis.get(i).meurt();
+				return;
+			}
+		}
+	}
+
+
+
 
 	public String toString(){
 		return getType().getNom()+"("+x+","+y+")";

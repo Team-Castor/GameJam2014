@@ -31,7 +31,7 @@ public class Fanatique extends Citoyen{
 			objectif.trouverNouvelObjectifFanatique();	
 		}
 		
-		System.out.println("Ordre fanatique "+ objectif);
+		//System.out.println("Ordre fanatique "+ objectif);
 
 	}
 
@@ -44,6 +44,8 @@ public class Fanatique extends Citoyen{
 	
 	
 	public void update(int delta){
+		//System.out.println("Ordre fanatique "+ objectif);
+
 		final  double facteurDiv = 200.0;
 
 		temperatureCorporelle = (float) (temperatureCorporelle*0.99*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.01*delta/50.0);
@@ -63,7 +65,7 @@ public class Fanatique extends Citoyen{
 		else{
 			if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
 				pathfinder = null;
-				objectif.trouverNouvelObjectif();
+				nouvelObjectif();
 			}else{
 
 				if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
@@ -140,7 +142,7 @@ public class Fanatique extends Citoyen{
 							}
 						}
 					}else{
-						this.nouvelObjectif();
+						nouvelObjectif();
 
 					}
 				}

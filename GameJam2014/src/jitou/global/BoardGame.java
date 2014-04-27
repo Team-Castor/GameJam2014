@@ -77,7 +77,9 @@ public class BoardGame {
 		for(int i=0;i<CitoyenDehors.liste_cit.size();i++){
 			CitoyenDehors.liste_cit.get(i).update(delta);
 		}
-
+		for(int i=0;i<Ennemi.ennemis.size();i++){
+			Ennemi.ennemis.get(i).update(delta);
+		}
 	}
 
 	private void constructionSalle() {
@@ -204,6 +206,9 @@ public class BoardGame {
 			citoyens.add(new Citoyen(positionPossible[(int) (Math.random()*positionPossible.length)]));
 		}
 		citoyens.add(new Fanatique(positionPossible[(int) (Math.random()*positionPossible.length)]));
+	
+	
+	
 	}
 
 	public void addBatiment(Point p, Batiment bat){
@@ -429,5 +434,9 @@ public class BoardGame {
 
 	public Batiment trouverSortie() {
 		return boardGame.getBatiment(this.dimensionWorldX/2,this.dimensionWorldY-1);
+	}
+
+	public Batiment randomSalle() {
+		return boardGame.getListeBatiments().get((int) (Math.random()* boardGame.getListeBatiments().size()));
 	}
 }

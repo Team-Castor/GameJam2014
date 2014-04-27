@@ -20,6 +20,7 @@ public class Ennemi {
 	}
 	
 	public void update(int delta){
+		System.out.println("AttaqueTaupeZombie");
 		for(int i=0;i<BoardGame.boardGame.getCitoyens().size();i++){
 			if(BoardGame.boardGame.getCitoyens().get(i).getPos().equals(new Point(x, y))){
 				if(BoardGame.boardGame.getCitoyens().get(i).aUneArme()){
@@ -47,6 +48,8 @@ public class Ennemi {
 	}
 	
 	public void meurt(){
+		System.out.println("AttaqueTaupeZombie meurt");
+
 		ennemis.remove(this);
 	}
 

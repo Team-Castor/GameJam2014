@@ -68,9 +68,12 @@ public class Objectif {
 		}
 		else if(game.estAttaquer() && arsDispo!=null){
 			//Allez defendre ville
+			seRendre 	= arsDispo;
+			type 		= ObjectifType.allerChercherArme;
 		}
 		else if(citoyen.estMalade() && hopDispo!=null){
-			//Allez se soigner
+			seRendre 	= hopDispo;
+			type 		= ObjectifType.se_soigner;
 		}
 		else if(citoyen.getNourritureRestante()<SEUIL_FAMINE && refDispo!=null){
 			// Allez chercher de la nourriture
@@ -96,7 +99,7 @@ public class Objectif {
 				seRendre 	= puiDispo;
 				type 		= ObjectifType.allerPuitPetrole;
 			}
-			else if(proba<80){
+			else if(proba<65){
 				seRendre 	= sortie;
 				type 		= ObjectifType.allerVersSortie;
 			}
@@ -179,6 +182,8 @@ public class Objectif {
 		}
 		else if(citoyen.estMalade() && hopDispo!=null){
 			//Allez se soigner
+			seRendre 	= hopDispo;
+			type 		= ObjectifType.se_soigner;
 		}
 		else if(citoyen.getNourritureRestante()<SEUIL_FAMINE && refDispo!=null){
 			// Allez chercher de la nourriture
@@ -191,8 +196,22 @@ public class Objectif {
 			type 		= ObjectifType.se_reposer;
 		}
 		else{
-
+			type= ObjectifType.aucun;
 		}		
+	}
+
+	public void allerDefendre() {
+		if(Ennemi.ennemis.size()>0){
+			int i = (int) (Math.random()*Ennemi.ennemis.size());
+			int x = Ennemi.ennemis.get(i).getX();
+			int y = Ennemi.ennemis.get(i).getY();
+			seRendre = BoardGame.boardGame.getBatiment(x, y);
+			type= ObjectifType.allezAuCombat;
+		}else{
+			Batiment arsDispo = BoardGame.boardGame.armeDisponible();
+			seRendre = arsDispo;
+			type= ObjectifType.rendreArme;
+		}
 	}
 
 
