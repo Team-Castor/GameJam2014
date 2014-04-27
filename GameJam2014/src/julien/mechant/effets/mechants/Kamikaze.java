@@ -30,7 +30,7 @@ public class Kamikaze extends Effet{
 			Point p = f.getPos();
 			BoardGame.boardGame.getBatiment(p.x, p.y).setDommage(dommage);
 			f.tuer();
-			Game.getInstance().addFX(p.x, p.y, FXtype.explosion);
+			Game.getInstance().addFX(BoardGame.boardGame.getBatiment(p.x, p.y), FXtype.explosion);
 		}
 
 	}

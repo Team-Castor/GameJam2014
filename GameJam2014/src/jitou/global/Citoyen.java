@@ -17,6 +17,9 @@ public class Citoyen {
 	protected int posX, posY;
 	protected boolean estMort = false;
 	protected Point2D posInside;
+	protected Point2D posInsideF;
+
+	
 	protected float nourritureRestante, temperatureCorporelle, fatigue;
 	protected Ressource ressourceTransporte;
 	protected Objectif objectif=null;
@@ -43,7 +46,7 @@ public class Citoyen {
 		//this.pos = pos;
 		posX = pos.x;
 		posY = pos.y;
- 
+		posInsideF =new Point2D.Double(Math.random()-0.5,Math.random()-0.5);
 		posInside = new Point2D.Double(0.0,0.0);
 		this.nourritureRestante = nourritureRestante;
 		this.temperatureCorporelle = temperatureCorporelle;
