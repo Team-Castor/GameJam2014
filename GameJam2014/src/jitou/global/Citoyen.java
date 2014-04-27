@@ -96,6 +96,8 @@ public class Citoyen {
 				if(workingTime<0.0){
 					pathfinder = null;
 					objectif.getSeRendre().back(this);
+					posInsideF.setLocation(Math.random()-0.5,Math.random()-0.5);
+
 				}	
 
 			}
@@ -145,7 +147,7 @@ public class Citoyen {
 								}
 								else{
 
-									if(posInside.distance(0.0, 0.0)<0.2){
+									if(posInside.distance(posInsideF)<0.2){
 										pathfinder.remove(0);
 										if(pathfinder.size()>0){
 										}
@@ -154,23 +156,23 @@ public class Citoyen {
 											pathfinder=null;
 										}
 									}else{
-										if(Math.signum(posInside.getX())<0){
-											posInside.setLocation(Math.min(0.0,
+										if(Math.signum(posInside.getX())<posInsideF.getX()){
+											posInside.setLocation(Math.min(posInsideF.getX(),
 													posInside.getX()+delta/facteurDiv),
 													posInside.getY());
-										}else if(Math.signum(posInside.getX())>0){
-											posInside.setLocation(Math.max(0.0,
+										}else if(Math.signum(posInside.getX())>posInsideF.getX()){
+											posInside.setLocation(Math.max(posInsideF.getX(),
 													posInside.getX()-delta/facteurDiv),
 													posInside.getY());
 										}
-										if(Math.signum(posInside.getY())<0){
+										if(Math.signum(posInside.getY())<posInsideF.getY()){
 											posInside.setLocation(
 													posInside.getX(),
-													Math.min(0.,posInside.getY()+delta/facteurDiv));
-										}else if(Math.signum(posInside.getY())>0){
+													Math.min(posInsideF.getY(),posInside.getY()+delta/facteurDiv));
+										}else if(Math.signum(posInside.getY())>posInsideF.getY()){
 											posInside.setLocation(
 													posInside.getX(),
-													Math.max(0.,posInside.getY()-delta/facteurDiv));
+													Math.max(posInsideF.getY(),posInside.getY()-delta/facteurDiv));
 										}
 
 
