@@ -24,7 +24,7 @@ public class Chaudiere extends Batiment{
 
 			Generateur gen = BoardGame.boardGame.trouverGenerateurAvecElec();
 			if(gen !=null){
-				double consommation = (45-malus-this.getTemperatureSalle())*0.3;
+				double consommation = (45-malus-this.getTemperatureSalle())*0.25;
 				if(gen.getElectricite()>consommation){
 				this.setTemperatureSalle(45.0-malus);
 				gen.consommeElectricite(consommation);

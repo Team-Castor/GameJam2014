@@ -9,10 +9,10 @@ import jitou.batiments.Refectoire;
 public class Objectif {
 	protected Citoyen citoyen;
 
-	protected double SEUIL_FAMINE 				= 1500.0;
-	protected double SEUIL_FAMINE_CRITIQUE    	= 150.0;
+	protected double SEUIL_FAMINE 				= 2000.0;
+	protected double SEUIL_FAMINE_CRITIQUE    	= 500.0;
 	protected double SEUIL_FATIGUE 				= 1500.0;
-	protected double SEUIL_FATIGUE_CRITIQUE   	= 150.0;
+	protected double SEUIL_FATIGUE_CRITIQUE   	= 500.0;
 
 	protected Batiment		seRendre = null;
 	protected ObjectifType type = null;

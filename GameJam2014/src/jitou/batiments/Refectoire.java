@@ -1,6 +1,7 @@
 package jitou.batiments;
 
 import java.awt.Point;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import jitou.global.Citoyen;
@@ -51,8 +52,15 @@ public class Refectoire extends Batiment{
 		else{
 			//System.out.println("Refectoire type d'action non comprit...:s");
 		}
+		
+		citoyen.setWorkingTime(citoyen.getWorkingTime()+2.0);
 	}
 
+	public void update(int delta){
+		quantiteNourriture -= delta/1500.0;
+		
+	}
+	
 	public void back(Citoyen c) {
 		if( c.getObjectif().getType().getValue()==ObjectifType.rapporterNourritureRefectoir.getValue() ||
 				c.getObjectif().getType().getValue()==ObjectifType.manger.getValue()){
@@ -63,7 +71,9 @@ public class Refectoire extends Batiment{
 	}
 
 	public String info() {
-		return "Nourriture: "+quantiteNourriture;
+		DecimalFormat df = new DecimalFormat("000.0");
+
+		return "Nourriture: "+df.format(quantiteNourriture);
 	}
 
 }

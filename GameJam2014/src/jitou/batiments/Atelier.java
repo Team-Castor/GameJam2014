@@ -85,10 +85,25 @@ public class Atelier extends Batiment{
 				TypeBatiment.Arsenal, 
 				TypeBatiment.Hopital};
 
-
-
 		int nb = (int) (Math.random()*bats.length);
 		int val = bats[nb].getValue();
+		
+		if(BoardGame.boardGame.randomSalle().getTemperatureSalle()<14){
+			if(Generateur.listeGenerateurs.get((int) (Math.random()*Generateur.listeGenerateurs.size())).getElectricite()<15){
+				if(Math.random()<0.5)val = TypeBatiment.Generateur.getValue();
+				else val = TypeBatiment.PuitPetrol.getValue();
+			}
+			else{
+				val = TypeBatiment.Chaudiere.getValue();
+			}
+		}
+		else if(Arsenal.listeArsenals.size()==0 && Math.random()<0.5){
+			val = TypeBatiment.Arsenal.getValue();
+		}else  if(Hopital.listeHopitaux.size()==0 && Math.random()<0.5){
+			val = TypeBatiment.Hopital.getValue();
+		}
+
+	
 
 		ArrayList<Point> liste = new ArrayList<Point>();
 		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
