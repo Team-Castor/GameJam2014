@@ -96,7 +96,7 @@ public class Objectif {
 				seRendre 	= puiDispo;
 				type 		= ObjectifType.allerPuitPetrole;
 			}
-			else if(proba<61){
+			else if(proba<65){
 				seRendre 	= sortie;
 				type 		= ObjectifType.allerVersSortie;
 			}

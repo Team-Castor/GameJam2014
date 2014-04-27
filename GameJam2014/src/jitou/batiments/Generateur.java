@@ -1,6 +1,7 @@
 package jitou.batiments;
 
 import java.awt.Point;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import jitou.global.Citoyen;
@@ -29,7 +30,8 @@ public class Generateur extends Batiment {
 	}
 	
 	public String info() {
-		return "Elec : "+electricite;
+		DecimalFormat df = new DecimalFormat("00.0");
+		return "Elec : "+df.format(electricite);
 	}
 
 

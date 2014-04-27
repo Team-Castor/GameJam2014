@@ -153,6 +153,10 @@ public class Game  extends BasicGame{
 			}
 		}
 		
+		for(int k=0;k<jitou.global.CitoyenDehors.liste_cit.size();k++){
+			g.drawRect((float) jitou.global.CitoyenDehors.liste_cit.get(k).getX()*Case.getDimensionX(),  -20+0*Case.getDimensionY()-offsetY , 10, 10);
+		}
+		
 
 
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
