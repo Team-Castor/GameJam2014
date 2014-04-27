@@ -24,11 +24,14 @@ public class SabotageReserveExplosif extends Effet{
 	}
 	
 	public void appliquer() {
+
+		
 		super.appliquer();
-		int nb = Generateur.listeGenerateurs.size();
+		int nb = MineDeFer.listeMineDeFer.size();
 		if(nb>0){
-			Generateur f =  Generateur.listeGenerateurs.get((int) (Math.random()*nb));
-			f.setTuerPopulationSurPlace();
+			MineDeFer f =  MineDeFer.listeMineDeFer.get((int) (Math.random()*nb));
+			f.setDommage(dommage);
+			BoardGame.boardGame.getBatimentAdjacent(f.getPos()).setDommage(dommageSecondaire);
 		}
 
 	}
