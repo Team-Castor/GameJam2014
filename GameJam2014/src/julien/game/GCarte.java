@@ -106,7 +106,7 @@ public class GCarte extends Sprite{
 		this.y = - getDimensionY() + decalageMin;//container.getHeight() - getDimensionY();;
 		
 		try {
-			img = new Image("julien/images/carte.png");
+			img = new Image("julien/images/carte2.png");
 			img.getGraphics().drawString(this.carte.getEffetMal().getClass().getSimpleName(), 10, 10);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block

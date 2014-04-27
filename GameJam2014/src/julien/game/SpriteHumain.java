@@ -15,6 +15,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import de.matthiasmann.twl.Container;
+import de.matthiasmann.twl.Widget;
 
 public class SpriteHumain extends Sprite {
 
@@ -33,6 +34,7 @@ public class SpriteHumain extends Sprite {
 	private static ArrayList<Image> imagesDroiteFanatique = new ArrayList<Image>();
 	private static ArrayList<Image> imagesTravail = new ArrayList<Image>();
 	private boolean etaitActif = false;
+	private static ArrayList<Image> imagesTravailFanatique  = new ArrayList<Image>();;
 
 	public SpriteHumain (Citoyen c) {
 		super(0,0,dimensionX,dimensionY);
@@ -62,14 +64,21 @@ public class SpriteHumain extends Sprite {
 	public void initAnimation() {
 
 		if (dir.equals(Orientation.ouest))
-		 if (c.estActif()) {
+		 if (c.estActif() && !(c instanceof Fanatique)) {
 			// System.out.println("est actif");
 	    		anim = new Animation();
 	    		anim.setAutoUpdate(true);
 	            for (int i = 0; i < 1; i++){
 	            	anim.addFrame(imagesTravail.get(i),100);
 	            }
-			} 
+			}
+		 else if (c.estActif()){
+	    		anim = new Animation();
+	    		anim.setAutoUpdate(true);
+	            for (int i = 0; i < 1; i++){
+	            	anim.addFrame(imagesTravailFanatique.get(i),100);
+	            }
+		 }
 		 else if (!(c instanceof Fanatique)) {
 			anim = new Animation();
 			anim.setAutoUpdate(true);
@@ -85,7 +94,7 @@ public class SpriteHumain extends Sprite {
             }
         }
 		else if (dir.equals(Orientation.est)){
-			 if (c.estActif()) {
+			 if (c.estActif() && !(c instanceof Fanatique)) {
 					// System.out.println("est actif");
 			    		anim = new Animation();
 			    		anim.setAutoUpdate(true);
@@ -93,6 +102,13 @@ public class SpriteHumain extends Sprite {
 			            	anim.addFrame(imagesTravail.get(i),100);
 			            }
 					} 
+			 else if (c.estActif()){
+			    		anim = new Animation();
+			    		anim.setAutoUpdate(true);
+			            for (int i = 0; i < 1; i++){
+			            	anim.addFrame(imagesTravailFanatique.get(i),100);
+			            }
+				 }
 				 else if (!(c instanceof Fanatique)) {
 					anim = new Animation();
 					anim.setAutoUpdate(true);
@@ -156,26 +172,14 @@ public class SpriteHumain extends Sprite {
 		imagesGauche.add(new Image("julien/images/marche2.png"));
 		imagesGauche.add(new Image("julien/images/marche3.png"));
 		imagesGauche.add(new Image("julien/images/marche4.png"));
-		imagesGaucheFanatique.add(new Image("julien/images/marche1.png"));
-		imagesGaucheFanatique.add(new Image("julien/images/marche2.png"));
-		imagesGaucheFanatique.add(new Image("julien/images/marche3.png"));
-		imagesGaucheFanatique.add(new Image("julien/images/marche4.png"));
-		imagesGaucheFanatique.get(0).setImageColor(0.25f, 0.3f, 0.35f);
-		imagesGaucheFanatique.get(1).setImageColor(0.25f, 0.3f, 0.35f);
-		imagesGaucheFanatique.get(2).setImageColor(0.25f, 0.3f, 0.35f);
-		imagesGaucheFanatique.get(3).setImageColor(0.25f, 0.3f, 0.35f);
-		imagesDroiteFanatique.add(new Image("julien/images/marche1.png"));
-		imagesDroiteFanatique.add(new Image("julien/images/marche2.png"));
-		imagesDroiteFanatique.add(new Image("julien/images/marche3.png"));
-		imagesDroiteFanatique.add(new Image("julien/images/marche4.png"));
-		imagesDroiteFanatique.get(0).setImageColor(0.25f, 0.3f, 0.35f);
-		imagesDroiteFanatique.get(1).setImageColor(0.25f, 0.3f, 0.35f);
-		imagesDroiteFanatique.get(2).setImageColor(0.25f, 0.3f, 0.35f);
-		imagesDroiteFanatique.get(3).setImageColor(0.25f, 0.3f, 0.35f);
-		imagesDroiteFanatique.set(0 , imagesDroiteFanatique.get(0).getFlippedCopy(true, false));
-		imagesDroiteFanatique.set(1 , imagesDroiteFanatique.get(1).getFlippedCopy(true, false));
-		imagesDroiteFanatique.set(2 , imagesDroiteFanatique.get(2).getFlippedCopy(true, false));
-		imagesDroiteFanatique.set(3 , imagesDroiteFanatique.get(3).getFlippedCopy(true, false));
+		imagesGaucheFanatique.add(new Image("julien/images/fanatique_marche01.png"));
+		imagesGaucheFanatique.add(new Image("julien/images/fanatique_marche02.png"));
+		imagesGaucheFanatique.add(new Image("julien/images/fanatique_marche03.png"));
+		imagesGaucheFanatique.add(new Image("julien/images/fanatique_marche04.png"));
+		imagesDroiteFanatique.add(imagesGaucheFanatique.get(0).getFlippedCopy(true, false));
+		imagesDroiteFanatique.add(imagesGaucheFanatique.get(1).getFlippedCopy(true, false));
+		imagesDroiteFanatique.add(imagesGaucheFanatique.get(2).getFlippedCopy(true, false));
+		imagesDroiteFanatique.add(imagesGaucheFanatique.get(3).getFlippedCopy(true, false));
 		imagesDroite.add(new Image("julien/images/marche1.png"));
 		imagesDroite.add(new Image("julien/images/marche2.png"));
 		imagesDroite.add(new Image("julien/images/marche3.png"));
@@ -185,6 +189,8 @@ public class SpriteHumain extends Sprite {
 		imagesDroite.set(2 , imagesDroite.get(2).getFlippedCopy(true, false));
 		imagesDroite.set(3 , imagesDroite.get(3).getFlippedCopy(true, false));
 		imagesTravail.add(new Image("julien/images/perso face.png"));
+		imagesTravailFanatique.add(new Image("julien/images/fanatique_face.png"));
+
 	}
 
 	public Animation getAnim() {
