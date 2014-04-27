@@ -30,6 +30,9 @@ public class SpriteHumain extends Sprite {
 	
 	private static ArrayList<Image> imagesGauche = new ArrayList<Image>();
 	private static ArrayList<Image> imagesDroite = new ArrayList<Image>();
+	private static ArrayList<Image> imagesHautFanatique = new ArrayList<Image>();
+	private static ArrayList<Image> imagesHaut = new ArrayList<Image>();
+
 	private static ArrayList<Image> imagesGaucheFanatique = new ArrayList<Image>();
 	private static ArrayList<Image> imagesDroiteFanatique = new ArrayList<Image>();
 	private static ArrayList<Image> imagesTravail = new ArrayList<Image>();
@@ -125,6 +128,37 @@ public class SpriteHumain extends Sprite {
 		        }
 			 
 		}
+		else if (dir.equals(Orientation.nord)){
+			 if (c.estActif() && !(c instanceof Fanatique)) {
+			    		anim = new Animation();
+			    		anim.setAutoUpdate(true);
+			            for (int i = 0; i < 1; i++){
+			            	anim.addFrame(imagesTravail.get(i),100);
+			            }
+					} 
+			 else if (c.estActif()){
+			    		anim = new Animation();
+			    		anim.setAutoUpdate(true);
+			            for (int i = 0; i < 1; i++){
+			            	anim.addFrame(imagesTravailFanatique.get(i),100);
+			            }
+				 }
+				 else if (!(c instanceof Fanatique)) {
+					anim = new Animation();
+					anim.setAutoUpdate(true);
+					for (int i = 0; i < 2; i++){
+						anim.addFrame(imagesHaut.get(i),100);
+					}
+		        }
+		        else{
+		    		anim = new Animation();
+		    		anim.setAutoUpdate(true);
+		            for (int i = 0; i < 2; i++){
+		            	anim.addFrame(imagesHautFanatique.get(i),100);
+		            }
+		        }
+			 
+		}
 	}
 
 
@@ -190,7 +224,10 @@ public class SpriteHumain extends Sprite {
 		imagesDroite.set(3 , imagesDroite.get(3).getFlippedCopy(true, false));
 		imagesTravail.add(new Image("julien/images/perso face.png"));
 		imagesTravailFanatique.add(new Image("julien/images/fanatique_face.png"));
-
+		imagesHaut.add(new Image("julien/images/reacteur man00.png"));
+		imagesHaut.add(new Image("julien/images/reacteur man01.png"));
+		imagesHautFanatique.add(new Image("julien/images/reacteur_fanatique00.png"));
+		imagesHautFanatique.add(new Image("julien/images/reacteur_fanatique01.png"));
 	}
 
 	public Animation getAnim() {
@@ -242,7 +279,12 @@ public class SpriteHumain extends Sprite {
 		Orientation newdir = null;
 		if (x > oldX) {
 			newdir = Orientation.est;
-		} else if (x <= oldX){
+		} else if (x < oldX){
+			newdir = Orientation.ouest;
+		} else if (y != oldY){
+			System.out.println("nord");
+			newdir = Orientation.nord;
+		} else {
 			newdir = Orientation.ouest;
 		}
 		
