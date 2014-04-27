@@ -169,27 +169,15 @@ public class Game  extends BasicGame{
 
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
 		for (int i = 0 ; i < spritesHumains.size() ; i++) {
-			spritesHumains.get(i).changeState(container);
+			spritesHumains.get(i).changeState(container,this);
 			if (spritesHumains.get(i).actualiser(this)) i--;
 			
 		}
 
 		for(SpriteHumain cit : spritesHumains){
-			CitoyenDehors dehors = null;
-			if (!cit.getC().visible) {
-				
-				for (CitoyenDehors c : CitoyenDehors.liste_cit) {
-					if (c.getCitoyen() == cit.getC()) {
-						dehors = c;
-					}
-				}
-				g.drawAnimation(cit.getAnim(),
-						(float)((-1*(dehors.getX() * Case.getDimensionX()))+(Case.getDimensionX() * board.getDimensionworldx())/2-offsetX),
-						(float)(-1000 + offsetY));
-			} else {
-				g.drawAnimation(cit.getAnim(), (float)((cit.getC().getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getC().getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
-						(float)(((cit.getC().getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getC().getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1);
-			}
+			
+			g.drawAnimation(cit.getAnim(), cit.x, cit.y);
+			
 			//	g.drawImage(new SpriteHumain(null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
 			//			(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
 			//	);

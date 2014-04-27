@@ -2,6 +2,7 @@ package julien.game;
 
 import java.util.ArrayList;
 
+import jitou.batiments.Orientation;
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import jitou.global.CitoyenDehors;
@@ -20,13 +21,16 @@ public class SpriteHumain extends Sprite {
 	static private int dimensionX = 15;
 	static private int dimensionY = 32;
 	public int xcor, ycor;
-	public int oldX, oldY;
+	public float oldX, oldY;
 	
 	Citoyen c;
 	Animation anim;
+	Orientation dir = Orientation.est;
+	
 	private static ArrayList<Image> imagesGauche = new ArrayList<Image>();
 	private static ArrayList<Image> imagesDroite = new ArrayList<Image>();
 	private static ArrayList<Image> imagesGaucheFanatique = new ArrayList<Image>();
+	private static ArrayList<Image> imagesDroiteFanatique = new ArrayList<Image>();
 	private static ArrayList<Image> imagesTravail = new ArrayList<Image>();
 	private boolean etaitActif = false;
 
@@ -57,6 +61,7 @@ public class SpriteHumain extends Sprite {
 
 	public void initAnimation() {
 
+		if (dir.equals(Orientation.ouest))
 		 if (c.estActif()) {
 			// System.out.println("est actif");
 	    		anim = new Animation();
@@ -78,8 +83,34 @@ public class SpriteHumain extends Sprite {
             for (int i = 0; i < 4; i++){
             	anim.addFrame(imagesGaucheFanatique.get(i),100);
             }
-        } 
+        }
+		else if (dir.equals(Orientation.est)){
+			 if (c.estActif()) {
+					// System.out.println("est actif");
+			    		anim = new Animation();
+			    		anim.setAutoUpdate(true);
+			            for (int i = 0; i < 1; i++){
+			            	anim.addFrame(imagesTravail.get(i),100);
+			            }
+					} 
+				 else if (!(c instanceof Fanatique)) {
+					anim = new Animation();
+					anim.setAutoUpdate(true);
+					for (int i = 0; i < 4; i++){
+						anim.addFrame(imagesDroite.get(i),100);
+					}
+		        }
+		        else{
+		    		anim = new Animation();
+		    		anim.setAutoUpdate(true);
+		            for (int i = 0; i < 4; i++){
+		            	anim.addFrame(imagesDroiteFanatique.get(i),100);
+		            }
+		        }
+			 
+		}
 	}
+
 
 
 
@@ -133,14 +164,26 @@ public class SpriteHumain extends Sprite {
 		imagesGaucheFanatique.get(1).setImageColor(0.25f, 0.3f, 0.35f);
 		imagesGaucheFanatique.get(2).setImageColor(0.25f, 0.3f, 0.35f);
 		imagesGaucheFanatique.get(3).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesDroiteFanatique.add(new Image("julien/images/marche1.png"));
+		imagesDroiteFanatique.add(new Image("julien/images/marche2.png"));
+		imagesDroiteFanatique.add(new Image("julien/images/marche3.png"));
+		imagesDroiteFanatique.add(new Image("julien/images/marche4.png"));
+		imagesDroiteFanatique.get(0).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesDroiteFanatique.get(1).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesDroiteFanatique.get(2).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesDroiteFanatique.get(3).setImageColor(0.25f, 0.3f, 0.35f);
+		imagesDroiteFanatique.set(0 , imagesDroiteFanatique.get(0).getFlippedCopy(true, false));
+		imagesDroiteFanatique.set(1 , imagesDroiteFanatique.get(1).getFlippedCopy(true, false));
+		imagesDroiteFanatique.set(2 , imagesDroiteFanatique.get(2).getFlippedCopy(true, false));
+		imagesDroiteFanatique.set(3 , imagesDroiteFanatique.get(3).getFlippedCopy(true, false));
 		imagesDroite.add(new Image("julien/images/marche1.png"));
 		imagesDroite.add(new Image("julien/images/marche2.png"));
 		imagesDroite.add(new Image("julien/images/marche3.png"));
 		imagesDroite.add(new Image("julien/images/marche4.png"));
-		imagesDroite.get(0).getFlippedCopy(true, false);
-		imagesDroite.get(1).getFlippedCopy(true, false);
-		imagesDroite.get(2).getFlippedCopy(true, false);
-		imagesDroite.get(3).getFlippedCopy(true, false);
+		imagesDroite.set(0 , imagesDroite.get(0).getFlippedCopy(true, false));
+		imagesDroite.set(1 , imagesDroite.get(1).getFlippedCopy(true, false));
+		imagesDroite.set(2 , imagesDroite.get(2).getFlippedCopy(true, false));
+		imagesDroite.set(3 , imagesDroite.get(3).getFlippedCopy(true, false));
 		imagesTravail.add(new Image("julien/images/perso face.png"));
 
 
@@ -170,7 +213,44 @@ public class SpriteHumain extends Sprite {
 		return false;
 	}
 
-	public void changeState(GameContainer container) {
+	public void changeState(GameContainer container , Game game) {
+		
+		float tempX = x;
+		float tempY = y;
+		
+		CitoyenDehors dehors = null;
+		if (!c.visible) {
+			for (CitoyenDehors cit : CitoyenDehors.liste_cit) {
+				//Utilisons des méthodes simples pour les agents exterieurs
+				if (cit.getCitoyen() == c) {
+					dehors = cit;
+				}
+			}
+				
+				x = (float)((-1*(dehors.getX() * Case.getDimensionX()))+(Case.getDimensionX() * BoardGame.boardGame.getDimensionworldx())/2-game.getOffsetX());
+				y = (float)(-1000 + game.getOffsetY());
+		}
+		else {
+			x = (float) ((c.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + c.getPosInside().getX()*(Case.getDimensionX()/2))-game.getOffsetX());
+			y = (float)(((c.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + c.getPosInside().getY()*(Case.getDimensionY()/2)))-game.getOffsetY() - container.getHeight()) * -1;
+		}
+		
+		Orientation newdir = null;
+		if (x > oldX) {
+			newdir = Orientation.est;
+		} else if (x <= oldX){
+			newdir = Orientation.ouest;
+		}
+		
+		oldX = tempX;
+		oldY = tempY;
+
+		if (!newdir.equals(dir)) {
+			System.out.println("chaange dir");
+			dir = newdir;
+			initAnimation();
+		}
+		
 		if (etaitActif && !c.estActif()) {
 			etaitActif = false;
 			initAnimation();
