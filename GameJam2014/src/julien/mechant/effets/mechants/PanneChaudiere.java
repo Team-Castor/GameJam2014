@@ -1,4 +1,4 @@
-package julien.mechant.effets;
+package julien.mechant.effets.mechants;
 
 import jitou.batiments.Chaudiere;
 import jitou.global.CitoyenDehors;

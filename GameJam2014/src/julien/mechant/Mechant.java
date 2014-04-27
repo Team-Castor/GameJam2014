@@ -3,9 +3,15 @@ package julien.mechant;
 import java.util.ArrayList;
 
 import julien.game.Game;
-import julien.mechant.effets.BIEN_direBonjour;
 import julien.mechant.effets.*;
-import julien.mechant.effets.PetitePluieDeMeteroite;
+import julien.mechant.effets.mechants.Armagedon;
+import julien.mechant.effets.mechants.AttaqueTaupeZombie;
+import julien.mechant.effets.mechants.Cannibalisme;
+import julien.mechant.effets.mechants.JeuneFou;
+import julien.mechant.effets.mechants.PanneChaudiere;
+import julien.mechant.effets.mechants.PetitePluieDeMeteroite;
+import julien.mechant.effets.mechants.PluieDeMeteroite;
+import julien.mechant.effets.mechants.VolOutils;
 
 public class Mechant {
 

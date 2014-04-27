@@ -94,18 +94,11 @@ public class BoardGame {
 				TypeBatiment.Atelier, 
 				TypeBatiment.Arsenal, 
 				TypeBatiment.Hopital};
-		int[] gTmp = new int[bats.length];
-		for(int j=0;j<bats.length;j++){
-			gTmp[j] = 0;
-			for(int i=0;i<boardGame.getListeBatiments().size();i++){
-				if(boardGame.getListeBatiments().get(i).getType().getValue()==bats[j].getValue()) gTmp[j]++;
-			}
-		}
-		java.util.Arrays.sort(gTmp);
+	
 		
 		
-		//int nb = (int) (Math.random()*bats.length);
-		int val = bats[gTmp[(int) (Math.random()*3)]].getValue();
+		int nb = (int) (Math.random()*bats.length);
+		int val = bats[nb].getValue();
 
 		ArrayList<Point> liste = new ArrayList<Point>();
 		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};

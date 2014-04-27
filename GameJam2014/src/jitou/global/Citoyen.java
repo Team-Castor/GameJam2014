@@ -12,8 +12,8 @@ public class Citoyen {
 	//private Point  	pos;
 	public boolean visible=true;
 
-	
-	
+
+
 	protected int posX, posY;
 	protected boolean estMort = false;
 	protected Point2D posInside;
@@ -25,7 +25,7 @@ public class Citoyen {
 
 	protected double workingTime;
 	protected ArrayList<Batiment> pathfinder = null;
-
+	protected double nbTourRationnement=-1, puissanceRationnement;
 
 	public Citoyen(Point pos){
 		this(pos, 4000f, 32.5f, (float) (1000+Math.random()*3000));
@@ -35,7 +35,7 @@ public class Citoyen {
 		//this.pos = pos;
 		posX = pos.x;
 		posY = pos.y;
-		
+
 		posInside = new Point2D.Double(0.0,0.0);
 		this.nourritureRestante = nourritureRestante;
 		this.temperatureCorporelle = temperatureCorporelle;
@@ -58,22 +58,29 @@ public class Citoyen {
 		if(maladie!= null) malusTempsDeTravail = maladie.getMalusTempsTravail();
 		double malusPerteChaleur=0.0;
 		if(maladie!= null) malusPerteChaleur = maladie.getPerteChaleur();
-		
+
+		if(nbTourRationnement>0){
+			nbTourRationnement-=delta;
+		}
+		else{
+			puissanceRationnement=0.0;
+		}
+
 		final  double facteurDiv = 200.0+malusVitesse;
-		
+
 		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.999*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.001*delta/50.0)-malusPerteChaleur);
-		nourritureRestante		-= (double)delta/10.0;
+		nourritureRestante		-= (double)Math.max(0.1, delta-puissanceRationnement)/10.0;
 		fatigue 				-= (delta+malusFatigue-Math.min(-10+temperatureCorporelle, 0.0))/12.0;
-		
+
 		if(workingTime>=0.0){
 			workingTime = workingTime - Math.max(0.2, (delta-malusTempsDeTravail));
-			
+
 
 			if(workingTime<0.0){
 				pathfinder = null;
 				objectif.getSeRendre().back(this);
 			}	
-			
+
 		}
 		else{
 			if(objectif.getType().getValue()==ObjectifType.aucun.getValue()){
@@ -99,23 +106,23 @@ public class Citoyen {
 										posInside.getY()+dy*delta/facteurDiv);
 								if(posInside.getX()>=1){
 									posInside.setLocation(-0.98, posInside.getY());
-									 posX++;
+									posX++;
 								}
 								else if(posInside.getX()<=-1){
 									posInside.setLocation(0.98, posInside.getY());
-									 posX--;
+									posX--;
 								}
 								if(posInside.getY()>=1){
 									posInside.setLocation( posInside.getX(), -0.98);
-									 posY++;
+									posY++;
 
 								}
 								else if(posInside.getY()<=-1){
 									posInside.setLocation( posInside.getX(), 0.98);
-									 posY--;
+									posY--;
 
 								}
-								
+
 								//System.out.println(this+"  "+pos+" "+this.posInside+"  "+dx+"  "+dy);
 
 							}
@@ -148,9 +155,9 @@ public class Citoyen {
 												posInside.getX(),
 												Math.max(0.,posInside.getY()-delta/facteurDiv));
 									}
-									
 
-					
+
+
 								}
 							}
 						}
@@ -168,8 +175,8 @@ public class Citoyen {
 
 		testSurvie();
 	}
-	
-	
+
+
 	protected void nouvelObjectif() {
 		objectif.trouverNouvelObjectif();		
 	}
@@ -179,12 +186,12 @@ public class Citoyen {
 			tuer();
 		}
 	}
-	
+
 	public boolean getEstMort(){
 		return estMort;
 	}
-	
-	
+
+
 	public boolean estActif(){
 		return workingTime>0;
 	}
@@ -282,6 +289,12 @@ public class Citoyen {
 
 	public void setArme(boolean i) {
 		armee = true;		
+	}
+
+	public void rationnement(double nbTourRationnement,
+			double puissanceRationnement) {
+		this.nbTourRationnement+=nbTourRationnement;
+		this.puissanceRationnement = puissanceRationnement;
 	}
 
 

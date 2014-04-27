@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import jitou.global.BoardGame;
-import julien.mechant.effets.PanneChaudiere;
+import julien.mechant.effets.mechants.PanneChaudiere;
 
 public class Chaudiere extends Batiment{
 	public static ArrayList<Chaudiere> listeChaudieres = new ArrayList<Chaudiere>();

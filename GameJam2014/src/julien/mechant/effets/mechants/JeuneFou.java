@@ -1,4 +1,4 @@
-package julien.mechant.effets;
+package julien.mechant.effets.mechants;
 
 import jitou.global.BoardGame;
 import jitou.global.CitoyenDehors;
