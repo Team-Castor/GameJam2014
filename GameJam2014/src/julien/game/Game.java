@@ -3,9 +3,11 @@ package julien.game;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
+import jitou.global.CitoyenDehors;
 import julien.map.Case;
 import julien.mechant.EnergieMal;
 import julien.mechant.Mechant;
@@ -127,6 +129,8 @@ public class Game  extends BasicGame{
 		}
 
 	}
+	
+
 
 
 
@@ -165,8 +169,21 @@ public class Game  extends BasicGame{
 		}
 
 		for(SpriteHumain cit : spritesHumains){
-			g.drawAnimation(cit.getAnim(), (float)((cit.getC().getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getC().getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
-					(float)(((cit.getC().getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getC().getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1);
+			CitoyenDehors dehors = null;
+			if (!cit.getC().visible) {
+				
+				for (CitoyenDehors c : CitoyenDehors.liste_cit) {
+					if (c.getCitoyen() == cit.getC()) {
+						dehors = c;
+					}
+				}
+				g.drawAnimation(cit.getAnim(),
+						(float)((-1*(dehors.getX() * Case.getDimensionX()))+(Case.getDimensionX() * board.getDimensionworldx())/2-offsetX),
+						(float)(-1000 + offsetY));
+			} else {
+				g.drawAnimation(cit.getAnim(), (float)((cit.getC().getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getC().getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
+						(float)(((cit.getC().getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getC().getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1);
+			}
 			//	g.drawImage(new SpriteHumain(null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
 			//			(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
 			//	);

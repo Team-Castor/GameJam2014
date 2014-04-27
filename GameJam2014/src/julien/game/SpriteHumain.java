@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
+import jitou.global.CitoyenDehors;
 import jitou.global.Fanatique;
 import julien.map.Case;
 
@@ -43,6 +44,10 @@ public class SpriteHumain extends Sprite {
 
 	}
 	
+	public SpriteHumain(CitoyenDehors c2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	private void initAnimation() {
 
 		if (!(c instanceof Fanatique)) {
