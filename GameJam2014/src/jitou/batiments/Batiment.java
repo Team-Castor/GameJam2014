@@ -66,7 +66,6 @@ public void update(int delta){
 	public void effet(Citoyen citoyen, ObjectifType type) {
 		if(type.getValue()==ObjectifType.allerVersSortie.getValue()){
 			new CitoyenDehors(citoyen);
-			citoyen.setWorkingTime(500);
 		}
 		else if(type.getValue()==ObjectifType.allezAuCombat.getValue()){
 			this.killEnnemiCase(this);

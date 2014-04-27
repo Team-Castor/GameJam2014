@@ -61,9 +61,9 @@ public class Citoyen {
 		
 		final  double facteurDiv = 200.0+malusVitesse;
 		
-		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.99*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.01*delta/50.0)-malusPerteChaleur);
-		nourritureRestante		-= delta/10.0;
-		fatigue 				-= (delta+malusFatigue)/12.0;
+		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.999*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.001*delta/50.0)-malusPerteChaleur);
+		nourritureRestante		-= (double)delta/10.0;
+		fatigue 				-= (delta+malusFatigue-Math.min(-10+temperatureCorporelle, 0.0))/12.0;
 		
 		if(workingTime>=0.0){
 			workingTime = workingTime - Math.max(0.2, (delta-malusTempsDeTravail));
@@ -175,7 +175,7 @@ public class Citoyen {
 	}
 
 	public void testSurvie(){
-		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<0){
+		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<-8){
 			tuer();
 		}
 	}

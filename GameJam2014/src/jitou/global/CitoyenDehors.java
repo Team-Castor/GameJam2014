@@ -5,14 +5,16 @@ import java.util.ArrayList;
 public class CitoyenDehors {
 	private Citoyen citoyen;
 	public static ArrayList<CitoyenDehors> liste_cit = new ArrayList<CitoyenDehors> ();
-	
+
 	double x = 0.0;
 	double vx=(Math.random()-0.5)/100.0;
-	
+	double 	corkingTime =800.0;
 	public CitoyenDehors(Citoyen cit){
 		this.citoyen=cit;
 		this.citoyen.visible=false;
 		liste_cit.add(this);
+		cit.setWorkingTime(corkingTime);
+
 	}
 
 	public static void removeWith(Citoyen c) {
@@ -30,14 +32,17 @@ public class CitoyenDehors {
 	public void setCitoyen(Citoyen citoyen) {
 		this.citoyen = citoyen;
 	}
-	
+
 	public void update(int delta){
-		x+=vx*delta;
+		if(citoyen.getWorkingTime()<corkingTime/2)	x-=vx*delta;
+		else 		x+=vx*delta;
+
+
 	}
-	
+
 	public double getX(){
 		return x;
 	}
-	
-	
+
+
 }

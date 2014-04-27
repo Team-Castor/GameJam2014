@@ -53,7 +53,7 @@ public class BoardGame {
 				}
 			}
 			this.liste_batiments.get(i).setTemperatureSalle(
-					0.95*this.liste_batiments.get(i).getTemperatureSalle()+(0.05*somme/(double)nb)-delta/1100.);
+					0.96*this.liste_batiments.get(i).getTemperatureSalle()+(0.04*somme/(double)nb)-delta/1100.);
 			
 			this.liste_batiments.get(i).update(delta);
 		}
@@ -63,7 +63,7 @@ public class BoardGame {
 		}
 
 		for(int a=0 ; a<Atelier.listeAtelier.size();a++){
-			double prix = this.liste_batiments.size()*10+100;
+			double prix = this.liste_batiments.size()*15+50;
 			if(Atelier.listeAtelier.get(a).getFer()>prix){
 				constructionSalle();
 				Atelier.listeAtelier.get(a).setFer(Atelier.listeAtelier.get(a).getFer()-prix);
@@ -94,8 +94,18 @@ public class BoardGame {
 				TypeBatiment.Atelier, 
 				TypeBatiment.Arsenal, 
 				TypeBatiment.Hopital};
-		int nb = (int) (Math.random()*bats.length);
-		int val = bats[nb].getValue();
+		int[] gTmp = new int[bats.length];
+		for(int j=0;j<bats.length;j++){
+			gTmp[j] = 0;
+			for(int i=0;i<boardGame.getListeBatiments().size();i++){
+				if(boardGame.getListeBatiments().get(i).getType().getValue()==bats[j].getValue()) gTmp[j]++;
+			}
+		}
+		java.util.Arrays.sort(gTmp);
+		
+		
+		//int nb = (int) (Math.random()*bats.length);
+		int val = bats[gTmp[(int) (Math.random()*3)]].getValue();
 
 		ArrayList<Point> liste = new ArrayList<Point>();
 		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
@@ -145,9 +155,6 @@ public class BoardGame {
 	}
 
 	public void initialisation() {
-
-
-
 		TypeBatiment batimentDepart[] = {
 				TypeBatiment.Generateur, 
 				TypeBatiment.Refectoire, 
@@ -157,7 +164,6 @@ public class BoardGame {
 				TypeBatiment.PuitPetrol, 
 				TypeBatiment.FermeHydroponique, 
 				TypeBatiment.Atelier};
-
 		Point positionPossible[] = {
 				new Point(dimensionWorldX/2, dimensionWorldY-1), 
 				new Point(dimensionWorldX/2, dimensionWorldY-2),
@@ -168,6 +174,9 @@ public class BoardGame {
 				new Point(dimensionWorldX/2-1, dimensionWorldY-4),
 				new Point(dimensionWorldX/2+1, dimensionWorldY-4)};
 
+		
+		
+		
 		int j  = (int) (Math.random()*batimentDepart.length);
 		for(int i=0;i<batimentDepart.length;i++){
 			Batiment bat = null;

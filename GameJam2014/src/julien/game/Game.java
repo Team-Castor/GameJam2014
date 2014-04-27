@@ -65,6 +65,10 @@ public class Game  extends BasicGame{
 		board = BoardGame.boardGame;
 		containerH = container.getHeight();
 		containerW = container.getWidth();
+		
+		offsetX = (int) (board.getDimensionworldx() *Case.getDimensionX()/2.-3*Case.getDimensionX());
+		offsetY = (int) (board.getDimensionworldy() *Case.getDimensionY()/2.+Case.getDimensionY());
+		
 		instance = this;
 		Mechant.getInstance().premierePioche();
 

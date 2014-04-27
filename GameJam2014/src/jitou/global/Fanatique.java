@@ -44,16 +44,23 @@ public class Fanatique extends Citoyen{
 	
 	
 	public void update(int delta){
-		//System.out.println("Ordre fanatique "+ objectif);
-
-		final  double facteurDiv = 200.0;
-
-		temperatureCorporelle = (float) (temperatureCorporelle*0.99*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.01*delta/50.0);
-		nourritureRestante		-= delta/10.0;
-		fatigue 				-= delta/12.0;
-
+		double malusVitesse=0.0;
+		if(maladie!= null) malusVitesse = maladie.getMalusVitesse();
+		double malusFatigue=0.0;
+		if(maladie!= null) malusFatigue = maladie.getMalusFatigue();
+		double malusTempsDeTravail=0.0;
+		if(maladie!= null) malusTempsDeTravail = maladie.getMalusTempsTravail();
+		double malusPerteChaleur=0.0;
+		if(maladie!= null) malusPerteChaleur = maladie.getPerteChaleur();
+		
+		final  double facteurDiv = 200.0+malusVitesse;
+		
+		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.999*delta/50.0+BoardGame.boardGame.getBatiment(posX, posY).getTemperatureSalle()*0.001*delta/50.0)-malusPerteChaleur);
+		nourritureRestante		-= (double)delta/10.0;
+		fatigue 				-= (delta+malusFatigue-Math.min(-10+temperatureCorporelle, 0.0))/12.0;
+		
 		if(workingTime>=0.0){
-			workingTime = workingTime - delta;
+			workingTime = workingTime - Math.max(0.2, (delta-malusTempsDeTravail));
 			
 
 			if(workingTime<0.0){
@@ -161,7 +168,7 @@ public class Fanatique extends Citoyen{
 	}
 	
 	public void testSurvie(){
-		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<0){
+		if(this.nourritureRestante<0 || this.fatigue<0 || this.temperatureCorporelle<-8){
 			tuer();
 		}
 	}

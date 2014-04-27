@@ -33,7 +33,7 @@ public class Refectoire extends Batiment{
 
 		if(type.getValue()==ObjectifType.manger.getValue()){
 			if(quantiteNourriture>=1.0){
-				double q = Math.min(quantiteNourriture, 5.0);
+				double q = Math.min(quantiteNourriture, 10.0);
 				quantiteNourriture-=q;
 				citoyen.mange(q);
 				citoyen.setWorkingTime(tempsManger);
