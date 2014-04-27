@@ -27,7 +27,6 @@ public class Grippe extends Effet{
 	
 	public void appliquer() {
 		super.appliquer();
-		int x = Fanatique.liste_fanatiques.size();
 
 		ArrayList<Citoyen> tmp = BoardGame.boardGame.getCitoyens();
 		for(int i=0;i<tmp.size();i++){

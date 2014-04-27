@@ -44,5 +44,8 @@ public class Generateur extends Batiment {
 		electricite -=d;
 		
 	}
+
+
+	
 	
 }

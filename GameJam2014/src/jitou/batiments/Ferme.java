@@ -27,6 +27,8 @@ public class Ferme extends Batiment{
 	}
 	
 	public void effet(Citoyen citoyen, ObjectifType type) {
+		super.effet(citoyen, type);
+
 		if(getDisponible() && type.getValue()==ObjectifType.allerAUneFerme.getValue()){
 			nb_occupant++;			
 			citoyen.setWorkingTime(workingTime);

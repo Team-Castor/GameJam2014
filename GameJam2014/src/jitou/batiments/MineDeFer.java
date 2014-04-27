@@ -9,7 +9,7 @@ import jitou.ressources.Ressource;
 import jitou.ressources.RessourceType;
 
 public class MineDeFer extends Batiment{
-	
+
 	public static ArrayList<MineDeFer> listeMineDeFer= new ArrayList<MineDeFer>();
 
 	private int nb_occupant = 0;
@@ -17,8 +17,8 @@ public class MineDeFer extends Batiment{
 	private double workingTime = 1200;
 
 	private double nbTour=-1, puissance=0.0;
-	
-	
+
+
 	public MineDeFer(Point pos) {
 		super(pos, TypeBatiment.MineDeFer);
 		listeMineDeFer.add(this);
@@ -27,32 +27,35 @@ public class MineDeFer extends Batiment{
 	public boolean placeDisponible(){
 		return nb_occupant<nb_occupant_max;
 	}
-	
+
 	public boolean getDisponible(){
 		return nb_occupant<nb_occupant_max;
 	}
-	
+
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		super.effet(citoyen, type);
 
 		if(getDisponible() && type.getValue()==ObjectifType.allerAUneMineDeFer.getValue()){
 			nb_occupant++;			
 			citoyen.setWorkingTime(workingTime);
 		}
+		else{
+			super.effet(citoyen, type);
+
+		}
 	}
-	
+
 	public void back(Citoyen c) {
 		if(c.getObjectif().getType().getValue()==ObjectifType.allerAUneMineDeFer.getValue()){
-		nb_occupant--;
-		
-		c.setRessourceTransporte(new Ressource( RessourceType.fer, 5+puissance));
-		c.getObjectif().rapporterFer();
+			nb_occupant--;
+			nb_occupant = Math.max(nb_occupant, 0);
+			c.setRessourceTransporte(new Ressource( RessourceType.fer, 5+puissance));
+			c.getObjectif().rapporterFer();
 		}
 		else{
 			super.back(c);
 		}
 	}
-	
+
 	public void update(int delta){
 		if(nbTour>0){
 			nbTour-=delta;
@@ -61,13 +64,13 @@ public class MineDeFer extends Batiment{
 			puissance=0.0;
 		}
 	}
-	
+
 	public String info() {
 		return nb_occupant+" / "+nb_occupant_max;
 	}
 
 	public void filonDeFer(double nbTour, double puissance) {
-this.nbTour+=nbTour;
-this.puissance=puissance;
+		this.nbTour+=nbTour;
+		this.puissance=puissance;
 	}
 }

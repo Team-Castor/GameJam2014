@@ -2,6 +2,7 @@ package julien.mechant.effets.mechants;
 
 import java.awt.Point;
 
+import jitou.batiments.Generateur;
 import jitou.batiments.MineDeFer;
 import jitou.global.BoardGame;
 import jitou.global.CitoyenDehors;
@@ -24,11 +25,10 @@ public class SabotageReserveExplosif extends Effet{
 	
 	public void appliquer() {
 		super.appliquer();
-		int nb = MineDeFer.listeMineDeFer.size();
+		int nb = Generateur.listeGenerateurs.size();
 		if(nb>0){
-			MineDeFer f =  MineDeFer.listeMineDeFer.get((int) (Math.random()*nb));
-			f.setDommage(dommage);
-			BoardGame.boardGame.getBatimentAdjacent(f.getPos()).setDommage(dommageSecondaire);
+			Generateur f =  Generateur.listeGenerateurs.get((int) (Math.random()*nb));
+			f.setTuerPopulationSurPlace();
 		}
 
 	}

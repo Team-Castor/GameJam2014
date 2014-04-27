@@ -87,6 +87,12 @@ public class Objectif {
 			type 		= ObjectifType.se_reposer;
 		}
 		else{
+			//Test nourriture
+			Refectoire r = Refectoire.listeRefectoire.get((int) (Math.random()*Refectoire.listeRefectoire.size()));
+			if(r.getQuantiteNourriture()<10 && ferDispo!=null ){
+				
+			}
+			
 			int proba = (int) (Math.random()*100);
 			if(proba<20){
 				seRendre 	= ferDispo;
@@ -100,7 +106,7 @@ public class Objectif {
 				seRendre 	= puiDispo;
 				type 		= ObjectifType.allerPuitPetrole;
 			}
-			else if(proba<62 && Dortoir.listeDortoirs.size()*15<game.getCitoyens().size()){
+			else if(proba<70 && Dortoir.listeDortoirs.size()*20>=game.getCitoyens().size()){
 				seRendre 	= sortie;
 				type 		= ObjectifType.allerVersSortie;
 			}

@@ -246,7 +246,6 @@ public class SpriteHumain extends Sprite {
 		oldY = tempY;
 
 		if (!newdir.equals(dir)) {
-			System.out.println("chaange dir");
 			dir = newdir;
 			initAnimation();
 		}

@@ -14,6 +14,9 @@ public class Refectoire extends Batiment{
 	private double tempsManger = 60.0;
 	private double tempsRangerNourriture = 200.0;
 
+	private double puissanceRat  = 0.0;
+	private double nbTourRat = 0.0;
+
 
 	public Refectoire(Point pos) {
 		super(pos, TypeBatiment.Refectoire);
@@ -53,12 +56,14 @@ public class Refectoire extends Batiment{
 			//System.out.println("Refectoire type d'action non comprit...:s");
 		}
 		
-		citoyen.setWorkingTime(citoyen.getWorkingTime()+2.0);
 	}
 
 	public void update(int delta){
-		quantiteNourriture -= delta/1500.0;
+		if(nbTourRat>0) nbTourRat-=delta;
+		else puissanceRat=0.0;
 		
+		quantiteNourriture -= delta/2000.0 - puissanceRat*delta;
+		quantiteNourriture = Math.max(0, quantiteNourriture);
 	}
 	
 	public void back(Citoyen c) {
@@ -74,6 +79,12 @@ public class Refectoire extends Batiment{
 		DecimalFormat df = new DecimalFormat("000.0");
 
 		return "Nourriture: "+df.format(quantiteNourriture);
+	}
+
+	public void rat(double nbTourRat, double puissanceRat) {
+		this.nbTourRat = nbTourRat;
+		this.puissanceRat = puissanceRat;
+
 	}
 
 }

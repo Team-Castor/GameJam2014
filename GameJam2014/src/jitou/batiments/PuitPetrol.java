@@ -26,11 +26,13 @@ public class PuitPetrol extends Batiment{
 	}
 
 	public void effet(Citoyen citoyen, ObjectifType type) {
-		super.effet(citoyen, type);
 
 		if(placeDisponible() && type.getValue()==ObjectifType.allerPuitPetrole.getValue()){
 			nb_occupant++;			
 			citoyen.setWorkingTime(workingTime);
+		}else{
+			super.effet(citoyen, type);
+
 		}
 	}
 
@@ -39,6 +41,8 @@ public class PuitPetrol extends Batiment{
 			nb_occupant--;
 			c.setRessourceTransporte(new Ressource( RessourceType.petrole, 4.0));
 			c.getObjectif().rapporterPetrole();
+			nb_occupant = Math.max(nb_occupant, 0);
+
 		}
 		else 		super.back(c);
 

@@ -1,6 +1,7 @@
 package jitou.batiments;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
@@ -56,6 +57,15 @@ public class Batiment {
 		return new Point(x, y);
 	}
 
+	public void setTuerPopulationSurPlace() {
+		ArrayList<Citoyen> cits=BoardGame.boardGame.getCitoyens();
+		for(int i=0;i<cits.size();i++){
+			if(cits.get(i).getPos().equals(this.getPos())){
+				cits.get(i).tuer();
+			}
+		}
+	}
+	
 
 
 	public TypeBatiment getType() {
@@ -76,6 +86,9 @@ public class Batiment {
 		else if(type.getValue()==ObjectifType.faireSemblant.getValue()){
 			citoyen.setWorkingTime(200);
 		}
+		
+		citoyen.setWorkingTime(citoyen.getWorkingTime()+2.0);
+
 			
 			
 	}
@@ -103,7 +116,7 @@ public class Batiment {
 		if(c.getObjectif().getType().getValue()==ObjectifType.allerVersSortie.getValue()){
 			c.visible = true;
 			CitoyenDehors.removeWith(c);
-			if(Math.random()*BoardGame.boardGame.getCitoyens().size()<=0.5*(BoardGame.boardGame.getCitoyens().size()-10)) BoardGame.boardGame.getCitoyens().add(
+			if(Math.random()*100<2.0 && Dortoir.listeDortoirs.size()*20>=BoardGame.boardGame.getCitoyens().size()) BoardGame.boardGame.getCitoyens().add(
 					new Citoyen(
 							(Point) BoardGame.boardGame.getListeBatiments().get((int)(Math.random()*BoardGame.boardGame.getListeBatiments().size())).getPos().clone()));
 		}

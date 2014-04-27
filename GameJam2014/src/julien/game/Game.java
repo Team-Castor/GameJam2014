@@ -141,6 +141,9 @@ public class Game  extends BasicGame{
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		checkKey();
 		
+		
+		g.drawString("Population : "+BoardGame.boardGame.getCitoyens().size(), 50, 50);
+		
 		for(int i=0;i<this.gCartes.size();i++){
 			gCartes.get(i).survolDecalage(input.getMouseX(),input.getMouseY());
 		}
