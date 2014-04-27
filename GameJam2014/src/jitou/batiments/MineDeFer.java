@@ -14,7 +14,7 @@ public class MineDeFer extends Batiment{
 
 	private int nb_occupant = 0;
 	private int nb_occupant_max = 3;
-	private double workingTime = 1200;
+	private double workingTime = 1300;
 
 	private double nbTour=-1, puissance=0.0;
 
