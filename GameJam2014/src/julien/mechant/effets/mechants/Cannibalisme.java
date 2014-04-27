@@ -4,6 +4,8 @@ import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import jitou.global.CitoyenDehors;
 import jitou.global.Fanatique;
+import julien.game.FXtype;
+import julien.game.Game;
 import julien.mechant.Effet;
 import julien.mechant.TypeEffet;
 
@@ -24,6 +26,7 @@ public class Cannibalisme extends Effet{
 
 		for(int i=0;i<x;i++){
 			Citoyen c = BoardGame.boardGame.getCitoyens().get((int) (Math.random()*BoardGame.boardGame.getCitoyens().size()));
+			Game.addFX(c,FXtype.sang);
 			c.tuer();
 		}
 	}

@@ -54,8 +54,8 @@ public class Game  extends BasicGame{
 	private static ArrayList<Citoyen> citoyenSansSprite = new ArrayList<Citoyen>();
 	private ArrayList<GCarte> gCartes = new ArrayList<GCarte>();
 	private ArrayList<GEnnemi> gEnnemis = new ArrayList<GEnnemi>();
-
 	private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
+	private ArrayList<FX> fx = new ArrayList<FX>();
 
 	public Game(String titre) {
 		super(titre);
@@ -195,6 +195,11 @@ public class Game  extends BasicGame{
 		for (GEnnemi e : gEnnemis) {
 			e.changeState(container, this);
 			g.drawAnimation(e.getAnim(), e.getX(), e.getY());	
+		}
+		
+		for (FX f : fx) {
+			g.drawAnimation(f.getAnim(), f.getX(), f.getY());
+			System.out.println(f.getAnim().getFrameCount());		
 		}
 		
 		for (GCarte carte : gCartes) {
@@ -469,6 +474,10 @@ public class Game  extends BasicGame{
 	public void nouvelEnnemi(Ennemi e) {
 		this.gEnnemis.add(new GEnnemi(e));
 
+	}
+
+	public static void addFX(Citoyen c, FXtype type) {
+		Game.getInstance().fx.add(new FX(type , c.getPos().x , c.getPos().y));
 	}
 
 
