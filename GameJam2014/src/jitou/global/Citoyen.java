@@ -19,7 +19,7 @@ public class Citoyen {
 	protected Point2D posInside;
 	protected Point2D posInsideF;
 
-	
+
 	protected float nourritureRestante, temperatureCorporelle, fatigue;
 	protected Ressource ressourceTransporte;
 	protected Objectif objectif=null;
@@ -147,7 +147,8 @@ public class Citoyen {
 								}
 								else{
 
-									if(posInside.distance(posInsideF)<0.2){
+									if((posInside.distance(posInsideF)<0.1 && pathfinder.size()<=1 )|| 
+											(posInside.distance(0.0,0.0)<0.1 && pathfinder.size()>1 )){
 										pathfinder.remove(0);
 										if(pathfinder.size()>0){
 										}
@@ -156,25 +157,46 @@ public class Citoyen {
 											pathfinder=null;
 										}
 									}else{
-										if(Math.signum(posInside.getX())<posInsideF.getX()){
-											posInside.setLocation(Math.min(posInsideF.getX(),
-													posInside.getX()+delta/facteurDiv),
-													posInside.getY());
-										}else if(Math.signum(posInside.getX())>posInsideF.getX()){
-											posInside.setLocation(Math.max(posInsideF.getX(),
-													posInside.getX()-delta/facteurDiv),
-													posInside.getY());
+										if(pathfinder.size()<=1){
+											if(Math.signum(posInside.getX())<posInsideF.getX()){
+												posInside.setLocation(Math.min(posInsideF.getX(),
+														posInside.getX()+delta/facteurDiv),
+														posInside.getY());
+											}else if(Math.signum(posInside.getX())>posInsideF.getX()){
+												posInside.setLocation(Math.max(posInsideF.getX(),
+														posInside.getX()-delta/facteurDiv),
+														posInside.getY());
+											}
+											if(Math.signum(posInside.getY())<posInsideF.getY()){
+												posInside.setLocation(
+														posInside.getX(),
+														Math.min(posInsideF.getY(),posInside.getY()+delta/facteurDiv));
+											}else if(Math.signum(posInside.getY())>posInsideF.getY()){
+												posInside.setLocation(
+														posInside.getX(),
+														Math.max(posInsideF.getY(),posInside.getY()-delta/facteurDiv));
+											}
 										}
-										if(Math.signum(posInside.getY())<posInsideF.getY()){
-											posInside.setLocation(
-													posInside.getX(),
-													Math.min(posInsideF.getY(),posInside.getY()+delta/facteurDiv));
-										}else if(Math.signum(posInside.getY())>posInsideF.getY()){
-											posInside.setLocation(
-													posInside.getX(),
-													Math.max(posInsideF.getY(),posInside.getY()-delta/facteurDiv));
+										else{
+											if(Math.signum(posInside.getX())<0.0){
+												posInside.setLocation(Math.min(0.0,
+														posInside.getX()+delta/facteurDiv),
+														posInside.getY());
+											}else if(Math.signum(posInside.getX())>0.0){
+												posInside.setLocation(Math.max(0.0,
+														posInside.getX()-delta/facteurDiv),
+														posInside.getY());
+											}
+											if(Math.signum(posInside.getY())<0.0){
+												posInside.setLocation(
+														posInside.getX(),
+														Math.min(0.0,posInside.getY()+delta/facteurDiv));
+											}else if(Math.signum(posInside.getY())>0.0){
+												posInside.setLocation(
+														posInside.getX(),
+														Math.max(0.0,posInside.getY()-delta/facteurDiv));
+											}
 										}
-
 
 
 									}
@@ -332,7 +354,7 @@ public class Citoyen {
 		tempsReveilZombie = temps;
 	}
 
-	
+
 
 
 }

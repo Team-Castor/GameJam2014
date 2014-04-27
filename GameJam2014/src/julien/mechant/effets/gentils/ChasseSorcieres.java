@@ -1,7 +1,9 @@
 package julien.mechant.effets.gentils;
 
+import jitou.global.BoardGame;
 import jitou.global.CitoyenDehors;
 import jitou.global.Fanatique;
+import julien.game.FXtype;
 import julien.mechant.Effet;
 import julien.mechant.TypeEffet;
 
@@ -20,7 +22,10 @@ public class ChasseSorcieres extends Effet{
 		super.appliquer();
 		int nb = Fanatique.liste_fanatiques.size();
 		if(nb>0){
-			Fanatique.liste_fanatiques.get((int) (Math.random()*nb)).tuer();
+			int v = (int) (Math.random()*nb);
+			Fanatique.liste_fanatiques.get(v).tuer();
+			julien.game.Game.addFX(Fanatique.liste_fanatiques.get(v), FXtype.sang);
+
 		}
 	}
 	

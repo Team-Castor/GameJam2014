@@ -7,6 +7,7 @@ import jitou.batiments.MineDeFer;
 import jitou.global.BoardGame;
 import jitou.global.CitoyenDehors;
 import jitou.global.Fanatique;
+import julien.game.FXtype;
 import julien.mechant.Effet;
 import julien.mechant.TypeEffet;
 
@@ -32,6 +33,8 @@ public class SabotageReserveExplosif extends Effet{
 			MineDeFer f =  MineDeFer.listeMineDeFer.get((int) (Math.random()*nb));
 			f.setDommage(dommage);
 			BoardGame.boardGame.getBatimentAdjacent(f.getPos()).setDommage(dommageSecondaire);
+			julien.game.Game.addFX(f, FXtype.explosion);
+
 		}
 
 	}

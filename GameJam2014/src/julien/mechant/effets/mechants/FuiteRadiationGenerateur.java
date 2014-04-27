@@ -7,6 +7,7 @@ import jitou.batiments.MineDeFer;
 import jitou.global.BoardGame;
 import jitou.global.CitoyenDehors;
 import jitou.global.Fanatique;
+import julien.game.FXtype;
 import julien.mechant.Effet;
 import julien.mechant.TypeEffet;
 
@@ -28,6 +29,8 @@ public class FuiteRadiationGenerateur extends Effet{
 		if(nb>0){
 			Generateur f =  Generateur.listeGenerateurs.get((int) (Math.random()*nb));
 			f.setTuerPopulationSurPlace();
+			julien.game.Game.addFX(f, FXtype.explosion);
+
 		}
 
 	}

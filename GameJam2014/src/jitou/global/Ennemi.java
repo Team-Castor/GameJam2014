@@ -3,6 +3,7 @@ package jitou.global;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import julien.game.FXtype;
 import julien.game.Game;
 
 public class Ennemi {
@@ -77,6 +78,8 @@ public class Ennemi {
 				else{
 					if(Math.random()<0.05){
 						BoardGame.boardGame.getCitoyens().get(i).tuer();
+						julien.game.Game.addFX(BoardGame.boardGame.getCitoyens().get(i), FXtype.sang);
+
 					}
 				}
 				return;
