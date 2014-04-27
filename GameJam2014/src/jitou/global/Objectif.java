@@ -196,7 +196,8 @@ public class Objectif {
 			type 		= ObjectifType.se_reposer;
 		}
 		else{
-			type= ObjectifType.aucun;
+			type= ObjectifType.faireSemblant;
+			seRendre = game.randomSalle(); 
 		}		
 	}
 

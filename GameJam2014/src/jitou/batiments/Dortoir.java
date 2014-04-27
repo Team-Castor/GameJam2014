@@ -29,12 +29,13 @@ public class Dortoir extends Batiment{
 
 		if(placeDisponible() && type.getValue()==ObjectifType.se_reposer.getValue()){
 			nb_occupant++;
-			citoyen.setFatigue((float) (3000+Math.random()*5000));
+			citoyen.setFatigue((float) (3000.0+Math.random()*2000));
 			citoyen.setWorkingTime(workingTime);
 		}
 	}
 
 	public void back(Citoyen c) {
+		super.back(c);
 		if(c.getObjectif().getType().getValue()==ObjectifType.se_reposer.getValue()){
 			nb_occupant--;
 			c.getObjectif().reset();

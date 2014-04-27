@@ -36,6 +36,7 @@ public class BoardGame {
 	}
 
 	public void update(int delta){
+		
 		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1),new Point(0, 0)};
 		for(int i = 0;i<this.liste_batiments.size();i++){
 			int x = liste_batiments.get(i).getPos().x;
@@ -62,13 +63,7 @@ public class BoardGame {
 			c.chauffe();
 		}
 
-		for(int a=0 ; a<Atelier.listeAtelier.size();a++){
-			double prix = this.liste_batiments.size()*15+50;
-			if(Atelier.listeAtelier.get(a).getFer()>prix){
-				constructionSalle();
-				Atelier.listeAtelier.get(a).setFer(Atelier.listeAtelier.get(a).getFer()-prix);
-			}
-		}
+
 
 		// Tour civil
 		for(int i=0;i<citoyens.size();i++){
@@ -82,70 +77,7 @@ public class BoardGame {
 		}
 	}
 
-	private void constructionSalle() {
-		final TypeBatiment bats[] = {
-				TypeBatiment.Generateur, 
-				TypeBatiment.Refectoire, 
-				TypeBatiment.Dortoir, 
-				TypeBatiment.Chaudiere, 
-				TypeBatiment.MineDeFer, 
-				TypeBatiment.PuitPetrol, 
-				TypeBatiment.FermeHydroponique, 
-				TypeBatiment.Atelier, 
-				TypeBatiment.Arsenal, 
-				TypeBatiment.Hopital};
 	
-		
-		
-		int nb = (int) (Math.random()*bats.length);
-		int val = bats[nb].getValue();
-
-		ArrayList<Point> liste = new ArrayList<Point>();
-		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
-
-		for(Batiment b : boardGame.liste_batiments){
-			int x = b.getPos().x;
-			int y = b.getPos().y;
-
-			for(int j=0;j<listePts.length;j++){
-				if(x+listePts[j].x>=0 && x+listePts[j].x<BoardGame.getDimensionworldx() &&
-						y+listePts[j].y>=0 && y+listePts[j].y<BoardGame.getDimensionworldy()-2){
-					if(boardGame.getBatiment(x+listePts[j].x, y+listePts[j].y)==null){
-						liste.add(new Point((x+listePts[j].x), (y+listePts[j].y)));
-					}
-				}
-			}
-			
-		}
-
-		Point p = (liste.get((int) (Math.random()*liste.size())));
-		System.out.println("Construction "+p);
-		Batiment bat=null;
-		if(val== TypeBatiment.Generateur.getValue()){
-			bat = new Generateur(p);
-		}else if(val==TypeBatiment.Refectoire.getValue()){
-			bat = new Refectoire(p);
-		}else if(val==TypeBatiment.Chaudiere.getValue()){
-			bat = new Chaudiere(p);
-		}else if(val==TypeBatiment.Dortoir.getValue()){
-			bat = new Dortoir(p); 
-		}else if(val==TypeBatiment.MineDeFer.getValue()){
-			bat = new MineDeFer(p); 
-		}else if(val==TypeBatiment.PuitPetrol.getValue()){
-			bat = new PuitPetrol(p); 
-		}else if(val==TypeBatiment.FermeHydroponique.getValue()){
-			bat = new Ferme(p); 
-		}else if(val==TypeBatiment.Atelier.getValue()){
-			bat = new Atelier(p); 
-		}else if(val==TypeBatiment.Hopital.getValue()){
-			bat = new Hopital(p); 
-		}else if(val==TypeBatiment.Arsenal.getValue()){
-			bat = new Arsenal(p); 
-		}
-		addBatiment(p,bat);
-
-		julien.game.Game.getInstance().changementCase(p.x, p.y);
-	}
 
 	public void initialisation() {
 		TypeBatiment batimentDepart[] = {
@@ -440,5 +372,16 @@ public class BoardGame {
 
 	public Batiment randomSalle() {
 		return boardGame.getListeBatiments().get((int) (Math.random()* boardGame.getListeBatiments().size()));
+	}
+
+	public Batiment getBatimentAdjacent(Point pos) {
+		Point listePts[] = {new Point(-1, 0),new Point(1, 0),new Point(0, 1),new Point(0, -1)};
+		ArrayList<Batiment> choix = new ArrayList<Batiment>();
+		for(int j=0;j<listePts.length;j++){
+			if(boardGame.getBatiment(pos.x+listePts[j].x, pos.y+listePts[j].y)!=null){
+				choix.add(boardGame.getBatiment(pos.x+listePts[j].x, pos.y+listePts[j].y));
+			}
+		}
+		return choix.get((int) (Math.random()*choix.size()));
 	}
 }
