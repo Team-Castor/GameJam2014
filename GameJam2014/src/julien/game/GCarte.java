@@ -119,6 +119,9 @@ public class GCarte extends Sprite{
 			img = new Image("julien/images/carte2.png");
 			img.getGraphics().drawString(this.carte.getEffetMal().getClass().getSimpleName(), 10, 10);
 			
+			carte.getEffetBien().
+			
+			
 			imgMal = getImage(this.carte.getEffetMal());
 			imgBonne = getImage(this.carte.getEffetBien());
 

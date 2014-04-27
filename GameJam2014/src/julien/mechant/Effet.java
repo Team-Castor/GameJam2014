@@ -29,6 +29,9 @@ public abstract class Effet {
 		return "non";
 	}
 	
+	public int[] getVariationEnergie(){
+		return variationEnergie;
+	}
 	
 	
 }
