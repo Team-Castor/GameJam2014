@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import jitou.batiments.Batiment;
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
 import jitou.global.CitoyenDehors;
@@ -485,8 +486,17 @@ public class Game  extends BasicGame{
 		int x = (int) ((c.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + c.getPosInside().getX()*(Case.getDimensionX()/2))-Game.getInstance().getOffsetX());
 		int y = (int)(((c.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + c.getPosInside().getY()*(Case.getDimensionY()/2)))-Game.getInstance().getOffsetY() - Game.getInstance().container.getHeight()) * -1;
 
-		Game.getInstance().fx.add(new FX(type , x , y));
+		Game.addFX(x , y , type);
+	}
+	
+	public static void addFX(Batiment b, FXtype type) {
+		int x = (int) (b.getPos().x*Case.getDimensionX()-Game.getInstance().offsetX);
+		int y = (int)((b.getPos().y*Case.getDimensionY()-Game.getInstance().offsetY - Game.getInstance().containerH) * -1 - Case.getDimensionY());
+		Game.addFX(x , y , type);
 	}
 
+	public static void addFX(int x , int y, FXtype type) {
+		Game.getInstance().fx.add(new FX(type , x , y));
+	}
 
 }
