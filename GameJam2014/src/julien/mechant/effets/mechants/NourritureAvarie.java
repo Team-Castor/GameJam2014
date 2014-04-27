@@ -1,4 +1,4 @@
-package julien.mechant.effets.gentils;
+package julien.mechant.effets.mechants;
 
 import java.util.ArrayList;
 
@@ -13,30 +13,26 @@ import jitou.global.Fanatique;
 import julien.mechant.Effet;
 import julien.mechant.TypeEffet;
 
-public class FilonDeFer extends Effet{
-	double nbTour 	 = 500.0;
-	double puissance = 0.3;
+public class NourritureAvarie extends Effet{
+
+
 	double gain 	 = 10.0+Math.random()*20.0;
 
-	public FilonDeFer() {
+	public NourritureAvarie() {
 		variationEnergie[0] = 0;
 		variationEnergie[1] = 4;
 		variationEnergie[2] = 1;
 
-		type = TypeEffet.bien;
+		type = TypeEffet.mal;
 	}
 
 	public String appliquer() {
 		super.appliquer();
 
+		ArrayList<Refectoire> tmp = Refectoire.listeRefectoire;
+		int n = (int) (Math.random()*tmp.size());
+		tmp.get(n).setQuantiteNourriture(tmp.get(n).getQuantiteNourriture()-gain);
 
-
-		ArrayList<MineDeFer> tmp = MineDeFer.listeMineDeFer;
-		for(int i=0;i<tmp.size();i++){
-			tmp.get(i).filonDeFer(nbTour, puissance);
-		}
-		
-return tmp.size()+" mines de fer produiront "+puissance+" métaux en plus pendant "+nbTour+" tours";
-
+		return "La nourriture avariée fait perdre "+gain+" nourriture.";
 	}
 }

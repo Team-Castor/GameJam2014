@@ -143,9 +143,7 @@ public class Game  extends BasicGame{
 		for(int i=0;i<this.gCartes.size();i++){
 			String str =gCartes.get(i).collisionCarte(x, y);
 			if(!str.isEmpty()){
-				System.out.println("MAJ "+str);
 				toolTip.set(str);
-				System.out.println("MAJ "+gCartes.get(i).getLog());
 
 			} 
 		}
@@ -184,7 +182,7 @@ public class Game  extends BasicGame{
 		}
 		
 		for(int k=0;k<jitou.global.CitoyenDehors.liste_cit.size();k++){
-			g.drawRect((float) jitou.global.CitoyenDehors.liste_cit.get(k).getX()*Case.getDimensionX(),  -20+0*Case.getDimensionY()-offsetY , 10, 10);
+			g.drawRect((float) jitou.global.CitoyenDehors.liste_cit.get(k).getX()*Case.getDimensionX(),  -30+0*Case.getDimensionY()-offsetY , 10, 10);
 		}
 		
 
@@ -229,6 +227,9 @@ public class Game  extends BasicGame{
 		}
 		for (GCarte carte : gCartes) {
 			g.drawImage(carte.getImage(), carte.getX(), carte.getY());	
+			g.drawImage(carte.getImageEffetMal(), carte.getX()+10, carte.getY()+20);	
+			g.drawImage(carte.getImageEffetBonne(), carte.getX()+10, carte.getY()+carte.getDimensionY()/2+20);	
+
 		}
 
 

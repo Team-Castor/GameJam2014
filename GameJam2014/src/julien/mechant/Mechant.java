@@ -45,14 +45,16 @@ public class Mechant {
 				new PanneChaudiere(), new PetitePluieDeMeteroite(), new PluieDeMeteroite(),
 				new VolOutils(), new AttaqueTaupeZombie(), new Kamikaze(), 
 				new SabotageReserveExplosif(), new ReveilZombie(), new VagueFanatique(), 
-				new Rat(), new Rhume(), new Grippe(), new FuiteRadiationGenerateur()};
+				new Rat(), new Rhume(), new Grippe(), new FuiteRadiationGenerateur(),
+				new ChariotBug(), new IndendiePetrole(), new NourritureAvarie(), new NourritureEmpoisonnee(), 
+				new RatCreve(), new SabotageReserveExplosif()};
 		
 		return ef[(int)(Math.random()*ef.length)];
 	}
 	public Effet piocherBonner(){
 		Effet[] ef = {new AvanceeMedicale(),new ChasseSorcieres(), new Rationnement(), 
 				 new SuperMacon(), new SuperBasket(), new EscouadeDeReparation(),
-				 new FilonDeFer()};
+				 new FilonDeFer(), new Mouton(), new FilonDePetrole(), new TroupeauMouton()};
 		
 		return ef[(int)(Math.random()*ef.length)];
 	}

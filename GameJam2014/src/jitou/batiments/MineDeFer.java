@@ -17,7 +17,7 @@ public class MineDeFer extends Batiment{
 	private double workingTime = 1300;
 
 	private double nbTour=-1, puissance=0.0;
-
+	private double temps=-1,  ratio=1.0;
 
 	public MineDeFer(Point pos) {
 		super(pos, TypeBatiment.MineDeFer);
@@ -48,7 +48,7 @@ public class MineDeFer extends Batiment{
 		if(c.getObjectif().getType().getValue()==ObjectifType.allerAUneMineDeFer.getValue()){
 			nb_occupant--;
 			nb_occupant = Math.max(nb_occupant, 0);
-			c.setRessourceTransporte(new Ressource( RessourceType.fer, 5+puissance));
+			c.setRessourceTransporte(new Ressource( RessourceType.fer, (5.+puissance)*ratio));
 			c.getObjectif().rapporterFer();
 
 		}
@@ -64,6 +64,12 @@ public class MineDeFer extends Batiment{
 		else{
 			puissance=0.0;
 		}
+		if(temps>0){
+			temps-=delta;
+		}
+		else{
+			ratio=1.0;
+		}
 	}
 
 	public String info() {
@@ -73,5 +79,10 @@ public class MineDeFer extends Batiment{
 	public void filonDeFer(double nbTour, double puissance) {
 		this.nbTour+=nbTour;
 		this.puissance=puissance;
+	}
+
+	public void setRatioMalus(double temps, double ratio) {
+		this.temps=temps;
+		this.ratio=ratio;
 	}
 }
