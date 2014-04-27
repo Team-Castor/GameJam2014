@@ -270,7 +270,7 @@ public class SpriteHumain extends Sprite {
 			}
 				
 				x = (float)((-1*(dehors.getX() * Case.getDimensionX()))+(Case.getDimensionX() * BoardGame.boardGame.getDimensionworldx())/2-game.getOffsetX());
-				y = (float)(-1000 + game.getOffsetY());
+				y = (float)(-1000 + game.getOffsetY())-20;
 		}
 		else {
 			x = (float) ((c.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + c.getPosInside().getX()*(Case.getDimensionX()/2))-game.getOffsetX());
