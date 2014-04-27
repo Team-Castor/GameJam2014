@@ -2,6 +2,7 @@ package jitou.global;
 
 import jitou.batiments.Atelier;
 import jitou.batiments.Batiment;
+import jitou.batiments.Dortoir;
 import jitou.batiments.Generateur;
 import jitou.batiments.Refectoire;
 
@@ -99,7 +100,7 @@ public class Objectif {
 				seRendre 	= puiDispo;
 				type 		= ObjectifType.allerPuitPetrole;
 			}
-			else if(proba<62){
+			else if(proba<62 && Dortoir.listeDortoirs.size()*15<game.getCitoyens().size()){
 				seRendre 	= sortie;
 				type 		= ObjectifType.allerVersSortie;
 			}

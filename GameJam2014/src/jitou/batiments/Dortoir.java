@@ -35,11 +35,13 @@ public class Dortoir extends Batiment{
 	}
 
 	public void back(Citoyen c) {
-		super.back(c);
 		if(c.getObjectif().getType().getValue()==ObjectifType.se_reposer.getValue()){
 			nb_occupant--;
 			c.getObjectif().reset();
 		}
+		
+		else super.back(c);
+
 	}
 
 

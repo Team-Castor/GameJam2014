@@ -8,11 +8,18 @@ public class Maladie {
 	
 	public Maladie(double malusVitesse, double malusTempsTravail,
 			double malusFatigue, double perteChaleur) {
-		super();
+	
 		this.malusVitesse = malusVitesse;
 		this.malusTempsTravail = malusTempsTravail;
 		this.malusFatigue = malusFatigue;
 		this.setPerteChaleur(perteChaleur);
+	}
+
+	public Maladie(Maladie mal) {
+		this.malusVitesse = mal.getMalusVitesse();
+		this.malusTempsTravail = mal.getMalusTempsTravail();
+		this.malusFatigue = mal.getMalusFatigue();
+		this.setPerteChaleur(mal.getPerteChaleur());
 	}
 
 	public double getPerteChaleur() {
