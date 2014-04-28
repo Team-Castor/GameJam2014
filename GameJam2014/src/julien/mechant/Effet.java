@@ -12,9 +12,9 @@ public abstract class Effet {
 	
 	public boolean estJouable() {
 		EnergieMal[] ener = Mechant.getInstance().getEnergies();
-		if (ener[0].getTotal() > -1*variationEnergie[0] &&
-				ener[1].getTotal() > -1*variationEnergie[1] &&
-				ener[2].getTotal() > -1*variationEnergie[2]
+		if (ener[0].getTotal() >= -1*variationEnergie[0] &&
+				ener[1].getTotal() >= -1*variationEnergie[1] &&
+				ener[2].getTotal() >= -1*variationEnergie[2]
 				) {
 			return true;
 		}

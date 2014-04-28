@@ -60,8 +60,8 @@ public class Mechant {
 	}
 	
 	public void piocher() {
-		cartes.add(new Carte(piocherBonner() ,  new AttaqueTaupeZombie() ));
-		cartes.add(new Carte(piocherBonner() ,  new ReveilZombie() ));
+		cartes.add(new Carte(piocherBonner() ,  new PanneChaudiere() ));
+		cartes.add(new Carte(piocherBonner() ,  new PanneChaudiere() ));
 
 		cartes.add(new Carte(piocherBonner() , piocherMauvaise() ));
 		Game.getInstance().redefinirLesCartes();

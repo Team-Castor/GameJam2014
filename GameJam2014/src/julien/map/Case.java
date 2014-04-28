@@ -16,7 +16,7 @@ public class Case extends Sprite{
 	static private int dimensionY = 175;
 	public int xcor, ycor;
 	public Batiment batiment;
-	private int typeDeSol;
+	public int typeDeSol;
 	
 	public Case (int x , int y, int xcor, int ycor) {
 		super(x,y,dimensionX,dimensionY);
