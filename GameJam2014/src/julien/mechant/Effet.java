@@ -4,6 +4,7 @@ public abstract class Effet {
 
 	/**
 	 * Les effets réels héritent de cette classe
+	 * bla
 	 */
 	
 	protected TypeEffet type;
