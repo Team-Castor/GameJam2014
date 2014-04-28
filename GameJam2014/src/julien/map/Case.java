@@ -142,7 +142,7 @@ public class Case extends Sprite{
 						Image couloir = new Image("julien/images/couloir_gauche.png");
 						img.getGraphics().drawImage(couloir,0,dimensionY/2);
 					}
-					if (batiment.getVoisin(Orientation.sud) != null) {
+					if (batiment.getVoisin(Orientation.sud) != null || batiment.getPos().y == BoardGame.boardGame.getDimensionworldy()-1) {
 						Image couloir = new Image("julien/images/couloir_haut.png");
 						img.getGraphics().drawImage(couloir,(dimensionX - (couloir.getWidth()))/2,0);
 					}
