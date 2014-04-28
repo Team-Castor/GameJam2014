@@ -97,7 +97,7 @@ public class Citoyen {
 		fatigue 				-= (delta+malusFatigue-Math.min(-10+temperatureCorporelle, 0.0))/12.0;
 
 		if(salle.estEndommage()){
-			salle.setDommage(salle.getDommage()-delta/2.0);
+			salle.setDommage(salle.getDommage()-delta/8.0);
 			activite = Activite.reparer;
 		}else{
 
@@ -345,6 +345,15 @@ public class Citoyen {
 		if(tempsReveilZombie>0.0){
 			new Ennemi(posX, posY, Ennemi.EnnemiType.zombi);
 		}
+	}
+	
+	public void convertion() {
+		BoardGame.boardGame.getBatiment(posX, posY).back(this);
+		BoardGame.boardGame.killCitoyen(this);
+		Fanatique.liste_fanatiques.remove(this);
+		estMort=true;	
+		BoardGame.boardGame.getCitoyens().add(new Fanatique(this.getPos()));
+		
 	}
 
 	public boolean aUneArme() {

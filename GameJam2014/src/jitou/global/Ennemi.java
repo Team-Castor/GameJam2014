@@ -38,8 +38,8 @@ public class Ennemi {
 		norme*=150;
 		vx/=norme;
 		vy/=norme;
-		
-		
+
+
 		if(type.equals(EnnemiType.tompeZombi)){
 			double bord = 0.98;
 			if(Math.random()<0.5){
@@ -78,10 +78,10 @@ public class Ennemi {
 					px = -bord;
 					x++;
 				}
-				
-			//	System.out.println(x+"  "+y+"V "+vx+"  "+vy);
 
-				
+				//	System.out.println(x+"  "+y+"V "+vx+"  "+vy);
+
+
 				if(BoardGame.boardGame.getBatiment(x, y)==null){
 					vx = -vx;
 					px = tmp+vx;
@@ -92,7 +92,7 @@ public class Ennemi {
 					if(BoardGame.boardGame.getBatiment((int) (Math.signum(vx)+x), y)==null){
 						if((vx<0 && px<-0.6) || (vx>0 && px>0.6) )vx=-vx;
 					}
-			
+
 				}
 			}
 		}else{
@@ -121,11 +121,14 @@ public class Ennemi {
 			if(BoardGame.boardGame.getCitoyens().get(i).getPos().equals(new Point(x, y))){
 				if(BoardGame.boardGame.getCitoyens().get(i).aUneArme()){
 					if(Math.random()<0.1){
-						julien.game.Game.addFX(BoardGame.boardGame.getCitoyens().get(i), FXtype.sang);
-						BoardGame.boardGame.getCitoyens().get(i).tuer();	
-					}
-					else {
-						meurt();
+
+						if(Math.random()<0.1){
+							julien.game.Game.addFX(BoardGame.boardGame.getCitoyens().get(i), FXtype.sang);
+							BoardGame.boardGame.getCitoyens().get(i).tuer();	
+						}
+						else {
+							meurt();
+						}
 					}
 				}
 				else{

@@ -24,8 +24,8 @@ public class VagueFanatique extends Effet{
 		
 		for(int i=0;i<x;i++){
 			Citoyen c = BoardGame.boardGame.getCitoyens().get((int) (Math.random()*BoardGame.boardGame.getCitoyens().size()));
-			c.tuer();
-			BoardGame.boardGame.getCitoyens().add(new Fanatique(c.getPos()));
+			c.convertion();
+		//	BoardGame.boardGame.getCitoyens().add(new Fanatique(c.getPos()));
 
 		}
 		return x+" citoyens rejoingne votre cause";

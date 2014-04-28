@@ -262,8 +262,8 @@ public class SpriteHumain extends Sprite {
 		float tempX = x;
 		float tempY = y;
 		
-		float centreX = 0.0f;//-7;
-		float centreY = 0.0f;//-20;
+		float centreX = -2.0f;//-7;
+		float centreY = -5.0f;//-20;
 		
 		CitoyenDehors dehors = null;
 		if (!c.visible) {

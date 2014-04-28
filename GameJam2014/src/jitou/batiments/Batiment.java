@@ -84,7 +84,7 @@ public class Batiment {
 			citoyen.getObjectif().allerDefendre();
 		}
 		else if(type.getValue()==ObjectifType.faireSemblant.getValue()){
-			citoyen.setWorkingTime(200);
+			citoyen.setWorkingTime(600);
 		}
 
 		citoyen.setWorkingTime(citoyen.getWorkingTime()+2.0);
@@ -126,9 +126,16 @@ public class Batiment {
 								(Point) BoardGame.boardGame.getListeBatiments().get((int)(Math.random()*BoardGame.boardGame.getListeBatiments().size())).getPos().clone()));
 
 			}
+			c.getObjectif().reset();	
+		}
+		else if(c.getObjectif().getType().getValue()==ObjectifType.allezAuCombat.getValue()&&
+				BoardGame.boardGame.estAttaquer()){
+			c.getObjectif().allerDefendre();
+		}
+		else{
+			c.getObjectif().reset();
 		}
 
-		c.getObjectif().reset();
 	}
 
 	public double getTemperatureSalle() {

@@ -9,7 +9,7 @@ import jitou.batiments.Batiment;
 public class Fanatique extends Citoyen{
 	public static ArrayList<Fanatique> liste_fanatiques = new ArrayList<Fanatique>();
 	private ArrayList<ObjectifType> listeMaitre = new ArrayList<ObjectifType>();
-
+	private double tempsConversion = 0.0;
 
 	public Fanatique(Point pos) {
 		super(pos);
@@ -31,13 +31,13 @@ public class Fanatique extends Citoyen{
 		}else{
 			objectif.trouverNouvelObjectifFanatique();	
 		}
-		
+
 		//System.out.println("Ordre fanatique "+ objectif);
 
 	}
 
 
-	
+
 	public void update(int delta){
 		double malusVitesse=0.0;
 		if(maladie!= null) malusVitesse = maladie.getMalusVitesse();
@@ -49,7 +49,7 @@ public class Fanatique extends Citoyen{
 		if(maladie!= null) malusPerteChaleur = maladie.getPerteChaleur();
 
 
-		
+
 		if(nbTourRationnement>0){
 			nbTourRationnement-=delta;
 		}
@@ -58,9 +58,23 @@ public class Fanatique extends Citoyen{
 		}
 		tempsReveilZombie-=delta;
 
+
+
+
 		final  double facteurDiv = 200.0+malusVitesse-puissanceBasket;
 		Batiment salle = BoardGame.boardGame.getBatiment(posX, posY);
-		
+
+		tempsConversion+=delta;
+		if(tempsConversion>5000){
+			if(Math.random()<0.01){
+				Citoyen c =salle.getCitoyenRandom();
+				if(c!=this){
+					c.convertion();
+				}
+			}
+			tempsConversion=0.0;
+		}
+
 		if(maladie!=null){
 			if(delta/1400.>Math.random()){
 				//System.out.println("Transmission maladie");
@@ -69,7 +83,7 @@ public class Fanatique extends Citoyen{
 
 			}
 		}
-		
+
 		temperatureCorporelle = (float) ((float) (temperatureCorporelle*0.999+salle.getTemperatureSalle()*0.001)-malusPerteChaleur);
 		nourritureRestante		-= (double)Math.max(0.1, delta-puissanceRationnement)/10.0;
 		fatigue 				-= (delta+malusFatigue-Math.min(-10+temperatureCorporelle, 0.0))/12.0;
@@ -208,11 +222,11 @@ public class Fanatique extends Citoyen{
 		testSurvie();
 	}
 
-	
+
 	public void ordonner(ObjectifType type){
 		listeMaitre .add(type);
 	}
-	
 
-	
+
+
 }

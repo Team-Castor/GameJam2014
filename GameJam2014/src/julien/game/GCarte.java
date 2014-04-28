@@ -130,17 +130,17 @@ public class GCarte extends Sprite{
 			img.getGraphics().setColor(Color.cyan);
 			img.getGraphics().drawString(
 					new Integer(carte.getEffetMal().getVariationEnergie()[0]).toString()
-					, 100,125);
+					, 95,125);
 			img.getGraphics().setColor(Color.blue);
 
 			img.getGraphics().drawString(
 					new Integer(carte.getEffetMal().getVariationEnergie()[1]).toString()
-					, 128,125);
+					, 123,125);
 			img.getGraphics().setColor(Color.red);
 
 			img.getGraphics().drawString(
 					new Integer(carte.getEffetMal().getVariationEnergie()[2]).toString()
-					, 156,125);
+					, 151,125);
 
 
 			img.getGraphics().setColor(Color.cyan);

@@ -57,7 +57,7 @@ public class Game  extends BasicGame{
 	private ArrayList<GEnnemi> gEnnemis = new ArrayList<GEnnemi>();
 	private ArrayList<SpriteHumain> spritesHumains = new ArrayList<SpriteHumain>();
 	private ArrayList<FX> fx = new ArrayList<FX>();
-	
+
 	private PresentationDebut presentation = null;
 	private ToolTips toolTip = null;
 	FX maladie;
@@ -73,10 +73,10 @@ public class Game  extends BasicGame{
 		board = BoardGame.boardGame;
 		containerH = container.getHeight();
 		containerW = container.getWidth();
-		
+
 		offsetX = (int) (board.getDimensionworldx() *Case.getDimensionX()/2.-3*Case.getDimensionX());
 		offsetY = (int) (board.getDimensionworldy() *Case.getDimensionY()/2.+Case.getDimensionY());
-		
+
 		instance = this;
 		Mechant.getInstance().premierePioche();
 
@@ -145,7 +145,7 @@ public class Game  extends BasicGame{
 
 	public void mouseClicked(int button,int  x, int  y, int  clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
-		
+		System.out.println("Debut clic");
 		for(int i=0;i<this.gCartes.size();i++){
 			String str =gCartes.get(i).collisionCarte(x, y);
 			if(!str.isEmpty()){
@@ -153,27 +153,28 @@ public class Game  extends BasicGame{
 
 			} 
 		}
-
+		System.out.println("Fin clic");
 	}
-	
+
 
 
 
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		checkKey();
-		kit=(kit+1)%casesADessiner.size();
+		if(casesADessiner.size()>0){
+			kit=(kit+1)%casesADessiner.size();
 
-		casesADessiner.get(kit).redraw();
-		
-		
+			casesADessiner.get(kit).redraw();
+		}
+
 		g.drawString("Population : "+BoardGame.boardGame.getCitoyens().size(), 50, 50);
-		
+
 		for(int i=0;i<this.gCartes.size();i++){
 			gCartes.get(i).survolDecalage(input.getMouseX(),input.getMouseY());
 		}
 
-		
+
 		for (Citoyen c : citoyenSansSprite) {
 			this.spritesHumains.add(new SpriteHumain(c));
 		}
@@ -189,7 +190,7 @@ public class Game  extends BasicGame{
 				g.setColor(new Color(  (float)Math.min(Math.max(0,(temp*2)/120.0),1)  ,0.0f,    (float)Math.min(Math.max(0,((90-(temp*2))/70.0)),1)));
 				g.drawString(df.format(temp)+"°C",casesADessiner.get(i).getX(), 
 						casesADessiner.get(i).getY()+julien.map.Case.getDimensionY()-27);
-			//	System.out.println(casesADessiner.get(i).batiment.getTemperatureSalle());
+				//	System.out.println(casesADessiner.get(i).batiment.getTemperatureSalle());
 				if (casesADessiner.get(i).batiment.estEndommage()) {
 					if (casesADessiner.get(i).typeDeSol <= 1) {
 						g.drawImage(decombres[0], casesADessiner.get(i).getX(), casesADessiner.get(i).getY());
@@ -199,7 +200,7 @@ public class Game  extends BasicGame{
 					}
 				}
 			}
-			
+
 
 		}
 
@@ -208,23 +209,23 @@ public class Game  extends BasicGame{
 			g.drawRect((float) jitou.global.CitoyenDehors.liste_cit.get(k).getX()*Case.getDimensionX(),  
 					-30+0*Case.getDimensionY()-offsetY , 10, 10);
 		}
-		*/
+		 */
 
 
 		ArrayList<Citoyen> citoyens = board.getCitoyens();
 		for (int i = 0 ; i < spritesHumains.size() ; i++) {
 			spritesHumains.get(i).changeState(container,this);
 			if (spritesHumains.get(i).actualiser(this)) i--;
-			
+
 		}
 
 		for(SpriteHumain cit : spritesHumains){
-			
+
 			g.drawAnimation(cit.getAnim(), cit.x, cit.y);
 			if (cit.getC().estMalade()) {
 				g.drawAnimation(maladie.getAnim(), cit.x, cit.y);
 			}
-			
+
 			//	g.drawImage(new SpriteHumain(null).getImage(),(float)((cit.getPos().x*Case.getDimensionX()) + (Case.getDimensionX()/2 + cit.getPosInside().getX()*(Case.getDimensionX()/2))-offsetX),
 			//			(float)(((cit.getPos().y*Case.getDimensionY()) + (Case.getDimensionY()/2 + cit.getPosInside().getY()*(Case.getDimensionY()/2)))-offsetY - containerH) * -1		
 			//	);
@@ -239,7 +240,7 @@ public class Game  extends BasicGame{
 			g.drawAnimation(e.getAnim(), e.getX()-e.w/2, e.getY()-e.h/2);	
 			//System.out.println(			e.getAnim().isStopped());
 		}
-		
+
 		ArrayList<FX> fxToRemove = new ArrayList<FX>();
 		for (FX f : fx) {
 			g.drawAnimation(f.getAnim(), f.getX(), f.getY());
@@ -278,16 +279,16 @@ public class Game  extends BasicGame{
 	}
 
 	public void changeCitoyen(Citoyen c) {
-	//	for (int i = 0 ; i < spritesHumains.size() ; i++)
+		//	for (int i = 0 ; i < spritesHumains.size() ; i++)
 	}
-	
+
 	public void redefinirLesCartes() {
 		gCartes.clear();
 		for (int i = 0 ; i < Mechant.getInstance().getCartes().size(); i++) {
 			gCartes.add(new GCarte(Mechant.getInstance().getCartes().get(i),i,container));
 		}
 	}
-	
+
 
 	public static void addSpriteCitoyen(Citoyen c) {
 		Game.citoyenSansSprite.add(c);
@@ -301,8 +302,8 @@ public class Game  extends BasicGame{
 		presentation.update(delta);
 		containerH = container.getHeight();
 		containerW = container.getWidth();
-		
-		
+
+
 	}
 
 	private void computeCaseADessiner() {
@@ -357,11 +358,11 @@ public class Game  extends BasicGame{
 		return false;
 
 	}
-	
+
 	public void changementCase(int x, int y) {
 		//TODO : 
-		
-		
+
+
 		for (Case c : casesADessiner) {
 			c.redraw();
 		}
@@ -527,12 +528,12 @@ public class Game  extends BasicGame{
 	}
 
 	public void ennemiCreve(Ennemi e) {
-		
+
 		for(int i=0;i<gEnnemis.size();i++){
 			if(gEnnemis.get(i).getEnemis()==e) 		gEnnemis.remove(gEnnemis.get(i));
 
 		}
-		
+
 	}
 
 	public void nouvelEnnemi(Ennemi e) {
@@ -546,7 +547,7 @@ public class Game  extends BasicGame{
 
 		Game.addFX(x , y , type);
 	}
-	
+
 	public static void addFX(Batiment b, FXtype type) {
 		int x = (int) (b.getPos().x*Case.getDimensionX()-Game.getInstance().offsetX);
 		int y = (int)((b.getPos().y*Case.getDimensionY()-Game.getInstance().offsetY - Game.getInstance().containerH) * -1 - Case.getDimensionY());

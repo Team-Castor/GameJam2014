@@ -19,7 +19,7 @@ public class Main {
 		try {
 			app = new AppGame();
 		} catch (SlickException e) {
-			System.err.println("Probleme creation de AppGame\n"+e.getMessage());
+			System.err.println("Probleme AppGame\n"+e);
 		}
 
 

@@ -16,7 +16,17 @@ public class Mechant {
 	private ArrayList<Carte> cartes = new ArrayList<Carte>();
 	
 	EnergieMal[] energies = new EnergieMal[3];
-	
+	Effet[] efm = {new Armagedon(),new Cannibalisme(), new JeuneFou(),
+			new PanneChaudiere(), new PetitePluieDeMeteroite(), new PluieDeMeteroite(),
+			new VolOutils(), new AttaqueTaupeZombie(), new Kamikaze(), 
+			new SabotageReserveExplosif(), new ReveilZombie(), new VagueFanatique(), 
+			new Rat(), new Rhume(), new Grippe(), new FuiteRadiationGenerateur(),
+			new ChariotBug(), new IndendiePetrole(), new NourritureAvarie(), new NourritureEmpoisonnee(), 
+			new RatCreve(), new SabotageReserveExplosif()};
+	Effet[] efb = {new AvanceeMedicale(),new ChasseSorcieres(), new Rationnement(), 
+			 new SuperMacon(), new SuperBasket(), new EscouadeDeReparation(),
+			 new FilonDeFer(), new Mouton(), new FilonDePetrole(), new TroupeauMouton()};
+
 	
 	public Mechant() {
 		instance = this;
@@ -41,28 +51,15 @@ public class Mechant {
 	}
 	
 	public Effet piocherMauvaise(){
-		Effet[] ef = {new Armagedon(),new Cannibalisme(), new JeuneFou(),
-				new PanneChaudiere(), new PetitePluieDeMeteroite(), new PluieDeMeteroite(),
-				new VolOutils(), new AttaqueTaupeZombie(), new Kamikaze(), 
-				new SabotageReserveExplosif(), new ReveilZombie(), new VagueFanatique(), 
-				new Rat(), new Rhume(), new Grippe(), new FuiteRadiationGenerateur(),
-				new ChariotBug(), new IndendiePetrole(), new NourritureAvarie(), new NourritureEmpoisonnee(), 
-				new RatCreve(), new SabotageReserveExplosif()};
 		
-		return ef[(int)(Math.random()*ef.length)];
+		return efm[(int)(Math.random()*efm.length)];
 	}
 	public Effet piocherBonner(){
-		Effet[] ef = {new AvanceeMedicale(),new ChasseSorcieres(), new Rationnement(), 
-				 new SuperMacon(), new SuperBasket(), new EscouadeDeReparation(),
-				 new FilonDeFer(), new Mouton(), new FilonDePetrole(), new TroupeauMouton()};
 		
-		return ef[(int)(Math.random()*ef.length)];
+		return efb[(int)(Math.random()*efb.length)];
 	}
 	
 	public void piocher() {
-		cartes.add(new Carte(piocherBonner() ,  new IndendiePetrole() ));
-		cartes.add(new Carte(piocherBonner() ,  new Kamikaze() ));
-
 		cartes.add(new Carte(piocherBonner() , piocherMauvaise() ));
 		Game.getInstance().redefinirLesCartes();
 	}
