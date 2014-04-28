@@ -36,7 +36,7 @@ public class FilonDeFer extends Effet{
 			tmp.get(i).filonDeFer(nbTour, puissance);
 		}
 		
-return tmp.size()+" mines de fer produiront "+puissance+" metaux en plus pendant "+nbTour+" tours";
+return "Mines produce "+puissance+" more metal during "+nbTour+" turns.";
 
 	}
 }

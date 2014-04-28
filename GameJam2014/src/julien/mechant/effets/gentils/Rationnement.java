@@ -29,7 +29,7 @@ public class Rationnement extends Effet{
 			tmp.get(i).rationnement(nbTourRationnement, puissanceRationnement);
 		}
 		
-		return" Les citoyens concommeront  "+puissanceRationnement+" nourriture en moins pendant "+nbTourRationnement+" tours";
+		return"Survivors eat "+puissanceRationnement+" less food during "+nbTourRationnement+" turns.";
 
 	}
 	

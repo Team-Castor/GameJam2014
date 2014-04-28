@@ -28,7 +28,7 @@ public class Armagedon extends Effet{
 			//CitoyenDehors.liste_cit.remove(i);
 		}
 
-		return n+" citoyens sont tuees pendant l'armagedon";
+		return n+" survivors outside of the bunker were killed by Armageddon!";
 
 	}
 	

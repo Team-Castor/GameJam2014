@@ -31,11 +31,11 @@ public class Kamikaze extends Effet{
 			BoardGame.boardGame.getBatiment(p.x, p.y).setDommage(dommage);
 			f.tuer();
 			Game.getInstance().addFX(BoardGame.boardGame.getBatiment(p.x, p.y), FXtype.explosion);
-			return "Un fanatique explose";
+			return "A fanatical kamikaze explodes!";
 
 		}
 		
-		return "Aucun fanatique de disponible";
+		return "Any fanatic available...";
 
 
 	}

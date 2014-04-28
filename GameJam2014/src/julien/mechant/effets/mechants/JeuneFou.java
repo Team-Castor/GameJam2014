@@ -20,7 +20,7 @@ public class JeuneFou extends Effet{
 		super.appliquer();
 		BoardGame.boardGame.getCitoyens().add(new Fanatique(BoardGame.boardGame.trouverSortie().getPos()));
 		
-		return "Un fanatique arrive";
+		return "A fanatic arrives.";
 
 	}
 	

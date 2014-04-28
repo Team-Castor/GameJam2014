@@ -35,7 +35,7 @@ public class RatCreve extends Effet{
 			nb++;}
 		}
 		
-		return nb+" citoyens tombent malade a cause d'un rat creve.";
+		return nb+" survivors get sick Due to a dead rat.";
 
 	}
 	

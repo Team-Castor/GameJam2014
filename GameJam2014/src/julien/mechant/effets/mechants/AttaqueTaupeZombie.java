@@ -27,7 +27,7 @@ public class AttaqueTaupeZombie extends Effet{
 		Batiment p = BoardGame.boardGame.randomSalle();
 		new Ennemi(p.getPos().x, p.getPos().y, Ennemi.EnnemiType.tompeZombi);
 
-		return " Une tombe zombie attaque!";
+		return "A Zombie Mole attack the bunker!";
 
 	}
 	

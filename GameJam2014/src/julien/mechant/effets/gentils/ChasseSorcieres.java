@@ -25,9 +25,9 @@ public class ChasseSorcieres extends Effet{
 			int v = (int) (Math.random()*nb);
 			julien.game.Game.addFX(Fanatique.liste_fanatiques.get(v), FXtype.sang);
 			Fanatique.liste_fanatiques.get(v).tuer();
-			return "Un fanatique est trouve!";
+			return "One of your fanatics was found and thrown out of the bunker.";
 		}
-		return "Il n'y a pas de fanatique!";
+		return "You don't have any fanatics in the bunker.";
 
 	}
 	

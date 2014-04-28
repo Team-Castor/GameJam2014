@@ -37,7 +37,7 @@ public class IndendiePetrole extends Effet{
 			julien.game.Game.addFX(f, FXtype.explosion);
 			
 		}
-		return "Le eetrole s'enflamme et explose et provoquant des degats collateraux";
+		return "Oil ignites and explodes, causing collateral damages.";
 	}
 	
 }

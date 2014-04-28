@@ -32,12 +32,12 @@ public class SabotageDuGrappinAscenseur extends Effet{
 			Point p = f.getPos();
 			BoardGame.boardGame.getBatiment(p.x, p.y).setTuerPopulationSurPlace();
 //			Game.getInstance().addFX(BoardGame.boardGame.getBatiment(p.x, p.y), FXtype.explosion);
-			return "Un sabote un ascenseur...il meurt avec d'autres";
+			return "A fanatic sabotaged an elevator ... but dies with the other survivors";
 
 		}
 
 		
-		return " Pas de fanatique pour faire un sabotage!";
+		return "There are no fanatic to sabotage something.";
 
 
 	}

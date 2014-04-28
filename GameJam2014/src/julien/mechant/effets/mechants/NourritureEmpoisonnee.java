@@ -31,7 +31,7 @@ public class NourritureEmpoisonnee extends Effet{
 			}
 		}
 
-		return x+" citoyens meurent de la nourriture empoisonnee.";
+		return x+" survivors die due to poisoned food.";
 
 	}
 

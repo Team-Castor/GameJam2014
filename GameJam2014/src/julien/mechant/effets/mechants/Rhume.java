@@ -35,7 +35,7 @@ public class Rhume extends Effet{
 			nb++;}
 		}
 		
-		return nb+" citoyens tombent malade";
+		return nb+" survivors fall ill.";
 
 	}
 	
