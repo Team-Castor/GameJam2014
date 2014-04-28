@@ -32,7 +32,7 @@ public class ReveilZombie extends Effet{
 			tmp.get(i).reveilZombie(temps);
 		}
 
-		return "La mort reigne...";
+		return "Some dying citizens will become zombi on die...";
 
 	}
 	

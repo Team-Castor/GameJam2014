@@ -33,7 +33,7 @@ public class ChariotBug extends Effet{
 			MineDeFer f =  MineDeFer.listeMineDeFer.get((int) (Math.random()*nb));
 			f.setRatioMalus(temps, ratio);
 		}
-		return "Une mine de fer pruoduit desormais "+ratio+" moins vite";
+		return "A mine produce "+ratio+" times slower.";
 	}
 	
 }

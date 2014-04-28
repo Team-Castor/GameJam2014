@@ -36,7 +36,7 @@ public class SabotageReserveExplosif extends Effet{
 			julien.game.Game.addFX(f, FXtype.explosion);
 			
 		}
-		return "Une mine de fer explose et provoque des degats collateraux";
+		return "A mine explodes, causing collateral damages.";
 	}
 	
 }

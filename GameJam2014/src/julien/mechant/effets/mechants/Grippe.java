@@ -37,7 +37,7 @@ public class Grippe extends Effet{
 			nb++;}
 		}
 		
-		return nb+" citoyens tombent malade";
+		return nb+" survivors become sick due to the flu.";
 
 	}
 	

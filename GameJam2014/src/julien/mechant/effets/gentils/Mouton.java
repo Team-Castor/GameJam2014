@@ -33,6 +33,6 @@ ArrayList<Refectoire> tmp = Refectoire.listeRefectoire;
 int n = (int) (Math.random()*tmp.size());
 tmp.get(n).setQuantiteNourriture(tmp.get(n).getQuantiteNourriture()+gain);
 
-return "Le mouton rapporte "+gain+" nourriture.";
+return "Sheep add "+gain+" food to the bunker.";
 	}
 }

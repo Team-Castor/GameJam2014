@@ -33,6 +33,6 @@ public class NourritureAvarie extends Effet{
 		int n = (int) (Math.random()*tmp.size());
 		tmp.get(n).setQuantiteNourriture(tmp.get(n).getQuantiteNourriture()-gain);
 
-		return "La nourriture avarieee fait perdre "+gain+" nourriture.";
+		return gain+" foods is wasted because it is rotten.";
 	}
 }

@@ -33,7 +33,7 @@ public class FuiteRadiationGenerateur extends Effet{
 
 		}
 		
-		return " Un generateur explose";
+		return "A generator explodes. BOOM!";
 
 
 	}

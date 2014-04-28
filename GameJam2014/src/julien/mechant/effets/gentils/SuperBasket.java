@@ -28,7 +28,7 @@ public class SuperBasket extends Effet{
 			tmp.get(i).puissanceBasket(tmp.get(i).getPuissanceBasket()+puissanceBasket);
 		}
 		
-		return" Les citoyens se deplaceront  x"+puissanceBasket+" plus vite";
+		return"Survivors move "+puissanceBasket+" times faster.";
 
 	}
 	

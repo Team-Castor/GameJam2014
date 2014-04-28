@@ -18,9 +18,9 @@ public class FilonDePetrole extends Effet{
 	double puissance = 0.3;
 
 	public FilonDePetrole() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 4;
-		variationEnergie[2] = 1;
+		variationEnergie[0] = 3;
+		variationEnergie[1] = 0;
+		variationEnergie[2] = 0;
 
 		type = TypeEffet.bien;
 	}
@@ -34,7 +34,7 @@ public class FilonDePetrole extends Effet{
 			tmp.get(i).filon(nbTour, puissance);
 		}
 		
-		return tmp.size()+" puits de petrole produiront "+puissance+" de fuel en plus pendant "+nbTour+" tours";
+		return tmp.size()+" Oil wells produce "+puissance+" more oil during "+nbTour+" turns.";
 
 
 	}

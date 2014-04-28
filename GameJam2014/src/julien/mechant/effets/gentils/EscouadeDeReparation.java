@@ -18,8 +18,8 @@ public class EscouadeDeReparation extends Effet{
 	int nbBatiment 	 = 1;
 
 	public EscouadeDeReparation() {
-		variationEnergie[0] = 0;
-		variationEnergie[1] = 4;
+		variationEnergie[0] = 2;
+		variationEnergie[1] = 0;
 		variationEnergie[2] = 1;
 
 		type = TypeEffet.bien;
@@ -38,6 +38,6 @@ public class EscouadeDeReparation extends Effet{
 			}
 		}
 		
-		return "Reparation de "+nb+" batiments";
+		return nb+" rooms are serviced by the repair squad.";
 	}
 }

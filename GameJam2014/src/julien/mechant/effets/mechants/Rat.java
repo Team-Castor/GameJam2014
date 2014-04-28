@@ -23,7 +23,7 @@ public class Rat extends Effet {
 		Refectoire c = Refectoire.listeRefectoire.get((int) (Math.random()*Refectoire.listeRefectoire.size()));
 		c.rat(nbTourRat, puissanceRat);
 		
-		return "Des rats devorent la nourriture";
+		return "Rats are eating food.";
 
 	}
 	

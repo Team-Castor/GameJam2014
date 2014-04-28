@@ -27,7 +27,7 @@ public class VolOutils extends Effet{
 			 Fanatique.liste_fanatiques.get(i).ordonner(ObjectifType.allerVolerOutils);
 		}
 		
-		return x+" de vos serviteurs vont aller voler des outils";
+		return x+" cultists are going to steal tools.";
 
 	}
 	

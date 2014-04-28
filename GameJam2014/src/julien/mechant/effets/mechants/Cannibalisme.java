@@ -30,7 +30,7 @@ public class Cannibalisme extends Effet{
 			c.tuer();
 		}
 		
-		return x+" citoyens sont retrouves devores";
+		return x+" survivors were devoured by your fanatics!";
 
 	}
 	

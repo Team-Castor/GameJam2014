@@ -22,7 +22,7 @@ public class PanneChaudiere extends Effet {
 		Chaudiere c = Chaudiere.listeChaudieres.get((int) (Math.random()*Chaudiere.listeChaudieres.size()));
 		c.infligerPenalite(this);
 		
-		return "La chaudieere est en panne, il faudra bien "+nbTour+" tours pour la reparer";
+		return "The boiler is down, it will take "+nbTour+" turns to repair.";
 
 	}
 	

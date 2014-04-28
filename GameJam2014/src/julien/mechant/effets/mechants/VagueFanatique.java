@@ -28,7 +28,7 @@ public class VagueFanatique extends Effet{
 			BoardGame.boardGame.getCitoyens().add(new Fanatique(c.getPos()));
 
 		}
-		return x+" citoyens rejoingne votre cause";
+		return x+" survivors join your cult.";
 	}
 	
 }

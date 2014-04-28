@@ -27,7 +27,7 @@ public class AvanceeMedicale extends Effet{
 		super.appliquer();
 		Hopital.setWorkingTime(Hopital.getWorkingTime()/1.5);
 		
-		return "Bonus permanent hopitaux";
+		return "Hospitals become 33% more efficient.";
 	}
 	
 }

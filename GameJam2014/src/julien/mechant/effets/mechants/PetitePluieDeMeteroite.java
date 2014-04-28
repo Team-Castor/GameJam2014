@@ -27,7 +27,7 @@ public class PetitePluieDeMeteroite extends Effet{
 			}
 			//CitoyenDehors.liste_cit.remove(i);
 		}
-		return n+" citoyens sont tues pendant la petite pluie de meteroites";
+		return "The small meteor rain caused the death of "+n+" survivors.";
 
 	}
 	

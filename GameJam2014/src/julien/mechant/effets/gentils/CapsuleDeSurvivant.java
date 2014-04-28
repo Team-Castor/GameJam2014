@@ -36,6 +36,6 @@ public class CapsuleDeSurvivant extends Effet{
 			new Citoyen(b.getPos());
 		}
 		
-		return "Nouveau "+nb+" citoyens";
+		return nb+" new survivors joined the bunker.";
 	}
 }
