@@ -62,6 +62,7 @@ public class Game  extends BasicGame{
 	private ToolTips toolTip = null;
 	FX maladie;
 	int kit=0;
+	private Image[] decombres;
 	public Game(String titre) {
 		super(titre);
 	}
@@ -91,7 +92,9 @@ public class Game  extends BasicGame{
 		maladie = new FX(FXtype.maladie,0,0);
 		maladie.initAnimation();
 		maladie.getAnim().stopAt(-1);
-		
+		decombres = new Image[2];
+		decombres[0] = new Image("julien/images/debris01.png");
+		decombres[1] = new Image("julien/images/debris02.png");
 		toolTip = new ToolTips(container);
 		presentation = new PresentationDebut(container);
 
@@ -180,10 +183,21 @@ public class Game  extends BasicGame{
 		for (int i = 0 ; i < casesADessiner.size() ; i++) {
 			g.drawImage(casesADessiner.get(i).getImage(), casesADessiner.get(i).getX(), casesADessiner.get(i).getY());	
 			if(casesADessiner.get(i).batiment!=null){
+				g.setColor(Color.black);
 				g.drawString(casesADessiner.get(i).batiment.info(),casesADessiner.get(i).getX(), casesADessiner.get(i).getY());
-				g.drawString(df.format( casesADessiner.get(i).batiment.getTemperatureSalle())+"°C",casesADessiner.get(i).getX(), 
-						casesADessiner.get(i).getY()+julien.map.Case.getDimensionY()-25);
+				double temp = casesADessiner.get(i).batiment.getTemperatureSalle();
+				g.setColor(new Color(  (float)Math.min(Math.max(0,(temp*2)/120.0),1)  ,0.0f,    (float)Math.min(Math.max(0,((90-(temp*2))/70.0)),1)));
+				g.drawString(df.format(temp)+"°C",casesADessiner.get(i).getX(), 
+						casesADessiner.get(i).getY()+julien.map.Case.getDimensionY()-27);
 			//	System.out.println(casesADessiner.get(i).batiment.getTemperatureSalle());
+				if (casesADessiner.get(i).batiment.estEndommage()) {
+					if (casesADessiner.get(i).typeDeSol <= 1) {
+						g.drawImage(decombres[0], casesADessiner.get(i).getX(), casesADessiner.get(i).getY());
+					}
+					else {
+						g.drawImage(decombres[1], casesADessiner.get(i).getX(), casesADessiner.get(i).getY());
+					}
+				}
 			}
 			
 
@@ -252,11 +266,15 @@ public class Game  extends BasicGame{
 
 	private void drawJauges(GameContainer container2, Graphics g) {
 		EnergieMal[] ener = Mechant.getInstance().getEnergies();
-		g.setColor(Color.blue);
+		g.setColor(Color.cyan);
+		g.drawString(String.valueOf(ener[0].getTotal()), espaceJauge*2,             baseJauge + 4);		
 		g.fillRect(espaceJauge*2, baseJauge, this.jaugesW, -1 * Math.min(jaugesMaxH, ener[0].getTotal()*facteurJauge));
-		g.fillRect(espaceJauge*3 + jaugesW, baseJauge, this.jaugesW, -1 * Math.min(jaugesMaxH, ener[0].getTotal()*facteurJauge));
-		g.fillRect(espaceJauge*4 + 2*jaugesW, baseJauge, this.jaugesW,-1 * Math.min(jaugesMaxH, ener[0].getTotal()*facteurJauge));
-
+		g.setColor(Color.blue);
+		g.drawString(String.valueOf(ener[1].getTotal()), espaceJauge*3 + jaugesW,   baseJauge + 4);
+		g.fillRect(espaceJauge*3 + jaugesW, baseJauge, this.jaugesW, -1 * Math.min(jaugesMaxH, ener[1].getTotal()*facteurJauge));
+		g.setColor(Color.red);
+		g.fillRect(espaceJauge*4 + 2*jaugesW, baseJauge, this.jaugesW,-1 * Math.min(jaugesMaxH, ener[2].getTotal()*facteurJauge));
+		g.drawString(String.valueOf(ener[2].getTotal()), espaceJauge*4 + 2*jaugesW, baseJauge + 4);
 	}
 
 	public void changeCitoyen(Citoyen c) {

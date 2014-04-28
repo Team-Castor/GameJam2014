@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import jitou.batiments.Activite;
 import jitou.batiments.Batiment;
 import jitou.ressources.Ressource;
 import julien.game.Game;
@@ -32,6 +33,8 @@ public class Citoyen {
 
 	protected double puissanceBasket=0.0;
 	protected double tempsReveilZombie;
+	
+	protected Activite activite;
 
 	
 	public Citoyen(Point pos){
@@ -57,6 +60,7 @@ public class Citoyen {
 
 
 	public void update(int delta){
+		activite = null;
 		double malusVitesse=0.0;
 		if(maladie!= null) malusVitesse = maladie.getMalusVitesse();
 		double malusFatigue=0.0;
@@ -76,7 +80,7 @@ public class Citoyen {
 		}
 		tempsReveilZombie-=delta;
 
-		final  double facteurDiv = 200.0+malusVitesse-puissanceBasket;
+		final  double facteurDiv = 300.0+malusVitesse-puissanceBasket;
 		Batiment salle = BoardGame.boardGame.getBatiment(posX, posY);
 		
 		if(maladie!=null){
@@ -94,7 +98,7 @@ public class Citoyen {
 
 		if(salle.estEndommage()){
 			salle.setDommage(salle.getDommage()-delta/2.0);
-			//System.out.println("Reparation...");
+			activite = Activite.reparer;
 		}else{
 
 			if(workingTime>=0.0){
@@ -366,6 +370,14 @@ public class Citoyen {
 
 	public void reveilZombie(double temps) {
 		tempsReveilZombie = temps;
+	}
+
+	public Activite getActivite() {
+		return activite;
+	}
+
+	public void setActivite(Activite activite) {
+		this.activite = activite;
 	}
 
 

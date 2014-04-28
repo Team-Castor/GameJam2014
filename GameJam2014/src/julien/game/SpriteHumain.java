@@ -2,6 +2,7 @@ package julien.game;
 
 import java.util.ArrayList;
 
+import jitou.batiments.Activite;
 import jitou.batiments.Orientation;
 import jitou.global.BoardGame;
 import jitou.global.Citoyen;
@@ -33,11 +34,13 @@ public class SpriteHumain extends Sprite {
 	private static ArrayList<Image> imagesDroite = new ArrayList<Image>();
 	private static ArrayList<Image> imagesHautFanatique = new ArrayList<Image>();
 	private static ArrayList<Image> imagesHaut = new ArrayList<Image>();
-
+	private static ArrayList<Image> imagesReparerGauche = new ArrayList<Image>();
+	private static ArrayList<Image> imagesReparerDroite = new ArrayList<Image>();
 	private static ArrayList<Image> imagesGaucheFanatique = new ArrayList<Image>();
 	private static ArrayList<Image> imagesDroiteFanatique = new ArrayList<Image>();
 	private static ArrayList<Image> imagesTravail = new ArrayList<Image>();
 	private boolean etaitActif = false;
+	private boolean reparait = false;
 	private static ArrayList<Image> imagesTravailFanatique  = new ArrayList<Image>();;
 
 	public SpriteHumain (Citoyen c) {
@@ -66,100 +69,91 @@ public class SpriteHumain extends Sprite {
 	}
 
 	public void initAnimation() {
+		anim = new Animation();
+		anim.setAutoUpdate(true);
+		if (c.getActivite() == Activite.reparer && !(c instanceof Fanatique)) {
+			if (dir.equals(Orientation.ouest)) {
+				for (int i = 0; i < 4; i++){
+					anim.addFrame(this.imagesReparerGauche.get(i),120);
+				}
+			} else {
+				for (int i = 0; i < 4; i++){
+					anim.addFrame(this.imagesReparerDroite.get(i),120);
+				}
+			}
 
-		if (dir.equals(Orientation.ouest))
-		 if (c.estActif() && !(c instanceof Fanatique)) {
-			// System.out.println("est actif");
-	    		anim = new Animation();
-	    		anim.setAutoUpdate(true);
-	            for (int i = 0; i < 1; i++){
-	            	anim.addFrame(imagesTravail.get(i),100);
-	            }
-			}
-		 else if (c.estActif()){
-	    		anim = new Animation();
-	    		anim.setAutoUpdate(true);
-	            for (int i = 0; i < 1; i++){
-	            	anim.addFrame(imagesTravailFanatique.get(i),100);
-	            }
-		 }
-		 else if (!(c instanceof Fanatique)) {
-			anim = new Animation();
-			anim.setAutoUpdate(true);
-			for (int i = 0; i < 4; i++){
-				anim.addFrame(imagesGauche.get(i),100);
-			}
-        }
-        else{
-    		anim = new Animation();
-    		anim.setAutoUpdate(true);
-            for (int i = 0; i < 4; i++){
-            	anim.addFrame(imagesGaucheFanatique.get(i),100);
-            }
-        }
-		else if (dir.equals(Orientation.est)){
-			 if (c.estActif() && !(c instanceof Fanatique)) {
+		}
+		else {
+			if (dir.equals(Orientation.ouest))
+				 if (c.estActif() && !(c instanceof Fanatique) && c.visible) {
 					// System.out.println("est actif");
-			    		anim = new Animation();
-			    		anim.setAutoUpdate(true);
 			            for (int i = 0; i < 1; i++){
 			            	anim.addFrame(imagesTravail.get(i),100);
 			            }
-					} 
-			 else if (c.estActif()){
-			    		anim = new Animation();
-			    		anim.setAutoUpdate(true);
+					}
+				 else if (c.estActif() && c.visible){
 			            for (int i = 0; i < 1; i++){
 			            	anim.addFrame(imagesTravailFanatique.get(i),100);
 			            }
 				 }
 				 else if (!(c instanceof Fanatique)) {
-					anim = new Animation();
-					anim.setAutoUpdate(true);
 					for (int i = 0; i < 4; i++){
-						anim.addFrame(imagesDroite.get(i),100);
+						anim.addFrame(imagesGauche.get(i),100);
 					}
 		        }
 		        else{
-		    		anim = new Animation();
-		    		anim.setAutoUpdate(true);
 		            for (int i = 0; i < 4; i++){
-		            	anim.addFrame(imagesDroiteFanatique.get(i),100);
+		            	anim.addFrame(imagesGaucheFanatique.get(i),100);
 		            }
 		        }
-			 
+				else if (dir.equals(Orientation.est)){
+					 if (c.estActif() && !(c instanceof Fanatique) && c.visible) {
+					            for (int i = 0; i < 1; i++){
+					            	anim.addFrame(imagesTravail.get(i),100);
+					            }
+							} 
+					 else if (c.estActif() && c.visible){
+					            for (int i = 0; i < 1; i++){
+					            	anim.addFrame(imagesTravailFanatique.get(i),100);
+					            }
+						 }
+						 else if (!(c instanceof Fanatique)) {
+							for (int i = 0; i < 4; i++){
+								anim.addFrame(imagesDroite.get(i),100);
+							}
+				        }
+				        else{
+				            for (int i = 0; i < 4; i++){
+				            	anim.addFrame(imagesDroiteFanatique.get(i),100);
+				            }
+				        }
+					 
+				}
+				else if (dir.equals(Orientation.nord)){
+					 if (c.estActif() && !(c instanceof Fanatique) && c.visible) {
+					            for (int i = 0; i < 1; i++){
+					            	anim.addFrame(imagesTravail.get(i),100);
+					            }
+							} 
+					 else if (c.estActif() && c.visible){
+					            for (int i = 0; i < 1; i++){
+					            	anim.addFrame(imagesTravailFanatique.get(i),100);
+					            }
+						 }
+						 else if (!(c instanceof Fanatique)) {
+							for (int i = 0; i < 2; i++){
+								anim.addFrame(imagesHaut.get(i),100);
+							}
+				        }
+				        else{
+				            for (int i = 0; i < 2; i++){
+				            	anim.addFrame(imagesHautFanatique.get(i),100);
+				            }
+				        }
+					 
+				}
 		}
-		else if (dir.equals(Orientation.nord)){
-			 if (c.estActif() && !(c instanceof Fanatique)) {
-			    		anim = new Animation();
-			    		anim.setAutoUpdate(true);
-			            for (int i = 0; i < 1; i++){
-			            	anim.addFrame(imagesTravail.get(i),100);
-			            }
-					} 
-			 else if (c.estActif()){
-			    		anim = new Animation();
-			    		anim.setAutoUpdate(true);
-			            for (int i = 0; i < 1; i++){
-			            	anim.addFrame(imagesTravailFanatique.get(i),100);
-			            }
-				 }
-				 else if (!(c instanceof Fanatique)) {
-					anim = new Animation();
-					anim.setAutoUpdate(true);
-					for (int i = 0; i < 2; i++){
-						anim.addFrame(imagesHaut.get(i),100);
-					}
-		        }
-		        else{
-		    		anim = new Animation();
-		    		anim.setAutoUpdate(true);
-		            for (int i = 0; i < 2; i++){
-		            	anim.addFrame(imagesHautFanatique.get(i),100);
-		            }
-		        }
-			 
-		}
+	
 	}
 
 
@@ -229,6 +223,14 @@ public class SpriteHumain extends Sprite {
 		imagesHaut.add(new Image("julien/images/reacteur man01.png"));
 		imagesHautFanatique.add(new Image("julien/images/reacteur_fanatique00.png"));
 		imagesHautFanatique.add(new Image("julien/images/reacteur_fanatique01.png"));
+		imagesReparerGauche.add(new Image("julien/images/reparer01.png"));
+		imagesReparerGauche.add(new Image("julien/images/reparer02.png"));
+		imagesReparerGauche.add(new Image("julien/images/reparer03.png"));
+		imagesReparerGauche.add(new Image("julien/images/reparer04.png"));
+		imagesReparerDroite.add(imagesReparerGauche.get(0).getFlippedCopy(true, false));
+		imagesReparerDroite.add(imagesReparerGauche.get(1).getFlippedCopy(true, false));
+		imagesReparerDroite.add(imagesReparerGauche.get(2).getFlippedCopy(true, false));
+		imagesReparerDroite.add(imagesReparerGauche.get(3).getFlippedCopy(true, false));
 	}
 
 	public Animation getAnim() {
@@ -308,7 +310,13 @@ public class SpriteHumain extends Sprite {
 			initAnimation();
 		}
 		
-
+		if (reparait && !(c.getActivite() == Activite.reparer)) {
+			reparait = false;
+			initAnimation();
+		} else if (!reparait && (c.getActivite() == Activite.reparer)){
+			reparait = true;
+			initAnimation();
+		}
 		
 		
 	}
